@@ -135,7 +135,9 @@ watch(
                     v-if="item.dropdown"
                     @click="toggleDropdown(index)"
                     class="flex cursor-pointer items-center justify-between px-4 py-3 text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
-                    :class="{ 'bg-gray-700 text-white': isLinkActive(item.href) }"
+                    :class="{
+                        'bg-gray-700 text-white': isLinkActive(item.href),
+                    }"
                 >
                     <span>{{ item.name }}</span>
                     <svg
@@ -158,7 +160,9 @@ watch(
                     v-else
                     :href="item.href"
                     class="block px-4 py-3 text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
-                    :class="{ 'bg-gray-700 text-white': isLinkActive(item.href) }"
+                    :class="{
+                        'bg-gray-700 text-white': isLinkActive(item.href),
+                    }"
                     @click="openDropdown = null"
                 >
                     {{ item.name }}
@@ -176,7 +180,11 @@ watch(
                         :key="subItem.name"
                         :href="subItem.href"
                         class="block px-4 py-2 text-sm text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
-                        :class="{ 'bg-gray-700 text-white': isLinkActive(subItem.href) }"
+                        :class="{
+                            'bg-gray-700 text-white': isLinkActive(
+                                subItem.href,
+                            ),
+                        }"
                         @click="openDropdown = null"
                     >
                         {{ subItem.name }}
