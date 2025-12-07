@@ -63,9 +63,10 @@ const services = ref([
 
 <template>
     <section class="bg-white py-24">
-        <div class="mx-auto max-w-screen-2xl px-4">
-            <div class="title px-4 py-8">
-                <h2 class="text-[32px] font-semibold text-[#000]">
+        <div class="mx-auto max-w-screen-xl px-4">
+            <div class="mb-6 flex items-center">
+                <div class="mr-4 h-8 w-1.5 bg-[#0CB1F1]"></div>
+                <h2 class="text-3xl font-bold text-gray-900">
                     Voici nos services clés
                 </h2>
             </div>
@@ -73,7 +74,7 @@ const services = ref([
                 <div
                     v-for="(item, index) in services"
                     :key="index"
-                    class="group relative h-[300px] cursor-pointer overflow-hidden rounded-lg shadow-lg md:h-[350px]"
+                    class="group relative h-[300px] cursor-pointer overflow-hidden shadow-lg md:h-[350px]"
                     :class="item.span"
                 >
                     <Link :href="item.link" class="absolute inset-0">
@@ -95,9 +96,7 @@ const services = ref([
                                 {{ item.title }}
                             </h3>
 
-                            <div
-                                class="my-4 h-1 w-12 rounded bg-blue-500"
-                            ></div>
+                            <div class="my-4 h-1 w-12 bg-[#0cb1f1]"></div>
 
                             <p
                                 class="max-w-lg text-sm leading-relaxed text-gray-200 md:text-base"

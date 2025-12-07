@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import AboutUs from '@/components/home/AboutUs.vue';
 import Hero from '@/components/home/Hero.vue';
 import Services from '@/components/home/Services.vue';
+import WhyUs from '@/components/home/Why.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
@@ -23,5 +25,11 @@ withDefaults(defineProps<Props>(), {
 
         <!-- Service Section -->
         <Services />
+
+        <!--Why section-->
+        <WhyUs />
+
+        <!--About section-->
+        <AboutUs />
     </MainLayout>
 </template>
