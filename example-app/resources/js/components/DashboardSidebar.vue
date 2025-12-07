@@ -59,6 +59,7 @@ const menuItems: MenuItem[] = [
             { name: 'Social Links', href: '/dashboard/social-links' },
             { name: 'Footer Menu', href: '/dashboard/footer-menu' },
             { name: 'Navbar Menu', href: '/dashboard/navbar-menu' },
+            { name: 'CTA Settings', href: '/dashboard/general/cta' },
         ],
     },
     {

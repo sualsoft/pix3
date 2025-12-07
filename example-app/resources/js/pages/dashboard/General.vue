@@ -9,6 +9,12 @@ const form = ref({
     address: '',
     description: '',
     logo_url: '',
+    // Add CTA data
+    cta: {
+        title: '',
+        btn_text: '',
+        link: '',
+    },
 });
 
 const message = ref('');
@@ -326,6 +332,56 @@ onMounted(() => {
                                 <p class="mt-1 text-sm text-gray-500">
                                     Briefly describe your company or website
                                 </p>
+                            </div>
+                        </div>
+
+                        <!-- Add CTA Settings Component -->
+                        <div class="mt-8">
+                            <h3 class="mb-4 text-lg font-medium text-gray-900">
+                                Call to Action Settings
+                            </h3>
+                            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                <div>
+                                    <label
+                                        class="mb-1 block text-sm font-medium text-gray-700"
+                                    >
+                                        CTA Title
+                                    </label>
+                                    <input
+                                        v-model="form.cta.title"
+                                        type="text"
+                                        class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        placeholder="Enter CTA title"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="mb-1 block text-sm font-medium text-gray-700"
+                                    >
+                                        Button Text
+                                    </label>
+                                    <input
+                                        v-model="form.cta.btn_text"
+                                        type="text"
+                                        class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        placeholder="Enter button text"
+                                    />
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label
+                                        class="mb-1 block text-sm font-medium text-gray-700"
+                                    >
+                                        Button Link
+                                    </label>
+                                    <input
+                                        v-model="form.cta.link"
+                                        type="text"
+                                        class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        placeholder="Enter button link"
+                                    />
+                                </div>
                             </div>
                         </div>
 

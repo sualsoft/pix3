@@ -24,6 +24,10 @@ Route::prefix('dashboard')->group(function () {
         return Inertia::render('dashboard/NavbarMenu');
     })->name('dashboard.navbar-menu');
 
+    Route::get('/general/cta', function () {
+        return Inertia::render('dashboard/CtaSettings');
+    })->name('dashboard.general.cta');
+
     Route::get('/home', function () {
         return Inertia::render('dashboard/Home');
     })->name('dashboard.home');

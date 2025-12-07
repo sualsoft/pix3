@@ -106,4 +106,22 @@ class SettingsController extends Controller
 
         return response()->json(['message' => 'Navbar menu updated successfully!']);
     }
+
+    // 6. UPDATE CTA SETTINGS
+    public function updateCta(Request $request)
+    {
+    // Find the 'cta' box
+    $setting = SiteSetting::where('key', 'cta')->first();
+
+    if ($setting) {
+        // Save the new data (Title, Button Text, Link)
+        $setting->content = $request->all();
+        $setting->save();
+        return response()->json(['message' => 'CTA updated successfully!']);
+    }
+
+    return response()->json(['message' => 'Error: CTA setting not found'], 404);
+}
+
+
 }

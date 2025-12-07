@@ -13,7 +13,8 @@ class LayoutController extends Controller
         $navbar  = SiteSetting::where('key', 'navbar')->first();
         $footer  = SiteSetting::where('key', 'footer')->first();
         $general = SiteSetting::where('key', 'general')->first(); 
-        $social  = SiteSetting::where('key', 'social')->first(); 
+        $social  = SiteSetting::where('key', 'social')->first();
+        $cta = SiteSetting::where('key', 'cta')->first(); 
 
         // 2. Send it all to Vue as JSON
         return response()->json([
@@ -21,6 +22,7 @@ class LayoutController extends Controller
             'footer'  => $footer ? $footer->content : [],
             'general' => $general ? $general->content : [],
             'social' => $social ? $social->content : [],
+            'cta'     => $cta ? $cta->content : [],
         ]);
     }
 }

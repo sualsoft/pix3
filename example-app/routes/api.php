@@ -26,3 +26,6 @@ Route::post('/settings/footer', [SettingsController::class, 'updateFooter']);
 
 // navbar menu update
 Route::post('/settings/navbar', [SettingsController::class, 'updateNavbar']);
+
+// CTA update
+Route::post('/settings/cta', [SettingsController::class, 'updateCta']);
