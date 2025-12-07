@@ -1,3 +1,34 @@
+<script setup>
+import { onMounted, ref } from 'vue';
+
+const footerLinks = ref([]);
+
+const generalInfo = ref({
+    description: '',
+    phone: '',
+    email: '',
+    address: '',
+});
+
+const fetchLayout = async () => {
+    try {
+        const response = await fetch('/api/layout');
+        const data = await response.json();
+
+        if (data.general) {
+            generalInfo.value = data.general;
+        }
+        if (data.footer) footerLinks.value = data.footer;
+    } catch (error) {
+        console.error('Error loading footer:', error);
+    }
+};
+
+onMounted(() => {
+    fetchLayout();
+});
+</script>
+
 <style scoped>
 footer {
     font-family: 'Poppins', sans-serif;
@@ -13,17 +44,12 @@ footer {
             <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
                 <div class="md:col-span-2">
                     <img
-                        src="/images/logo.png"
+                        :src="generalInfo.logo_url"
                         alt="PIX3i Logo"
                         class="mb-4 h-12"
                     />
                     <p class="text-left text-black">
-                        PIX3i garantit des prestations conformes et sécurisées
-                        grâce à ses télépilotes certifiés CATS, formés pour
-                        intervenir en zones réglementées. Grâce à ses
-                        technologies avancées, PIX3i offre une vision précise et
-                        une analyse approfondie des projets, optimisant la
-                        gestion des sinistres et des travaux du bâtiment.
+                        {{ generalInfo.description }}
                     </p>
                 </div>
 
@@ -32,15 +58,10 @@ footer {
                         Pages juridiques
                     </h4>
                     <ul class="space-y-2 text-gray-600">
-                        <li>
-                            <a href="#" class="hover:text-gray-700"
-                                >Conditions générales</a
-                            >
-                        </li>
-                        <li>
-                            <a href="#" class="hover:text-gray-700"
-                                >Politique de confidentialité</a
-                            >
+                        <li v-for="(item, index) in footerLinks">
+                            <a :href="item.link" class="hover:text-gray-700">{{
+                                item.name
+                            }}</a>
                         </li>
                     </ul>
                 </div>
@@ -53,18 +74,18 @@ footer {
                         <p class="mb-2">
                             Téléphone:
                             <a
-                                href="callto:0667132459"
+                                :href="'tel:' + generalInfo.phone"
                                 class="text-blue-500 underline hover:text-blue-600"
-                                >0667132459</a
+                                >{{ generalInfo.phone }}</a
                             >
                         </p>
-                        <p class="mb-2">Adresse : 18230 SAINT DOULCHARD.</p>
+                        <p class="mb-2">Adresse : {{ generalInfo.address }}.</p>
                         <p class="mb-2">
                             Email:
                             <a
-                                href="mailto:agence.pix3i@gmail.com"
+                                :href="'mailto:' + generalInfo.email"
                                 class="text-blue-500 underline hover:text-blue-600"
-                                >agence.pix3i@gmail.com</a
+                                >{{ generalInfo.email }}</a
                             >
                         </p>
                     </address>

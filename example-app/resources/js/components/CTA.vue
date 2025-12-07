@@ -10,7 +10,7 @@
             </h2>
             <p class="pt-12">
                 <a
-                    href="/"
+                    href="/contact"
                     class="bg-[#e6e6e6] px-12 py-4 text-black transition duration-300 hover:bg-[#fff] hover:text-[#0CB1F1]"
                     >Appelez maintenant</a
                 >
