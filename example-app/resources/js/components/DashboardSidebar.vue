@@ -104,8 +104,8 @@ const menuItems: MenuItem[] = [
         name: 'Contact',
         href: '/dashboard/contact',
         dropdown: [
-            { name: 'Messages', href: '/dashboard/contact/messages' },
-            { name: 'Form Settings', href: '/dashboard/contact/settings' },
+            { name: 'Inner Hero', href: '/dashboard/contact/innerhero' },
+            { name: 'Map', href: '/dashboard/contact/map' },
         ],
     },
 ];
