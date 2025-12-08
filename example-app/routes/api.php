@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -44,3 +45,6 @@ Route::post('/settings/about', [SettingsController::class, 'updateAbout']);
 
 // gallery section update
 Route::post('/settings/gallery', [SettingsController::class, 'updateGallery']);
+
+//Email
+Route::post('/contact-send', [ContactController::class, 'sendEmail']);

@@ -20,6 +20,8 @@ class LayoutController extends Controller
         $home_why = SiteSetting::where('key', 'home_why')->first();
         $home_about = SiteSetting::where('key', 'home_about')->first();
         $home_gallery = SiteSetting::where('key', 'home_gallery')->first();
+        $contact_hero = SiteSetting::where('key', 'contact_hero')->first();
+        $contact_map = SiteSetting::where('key', 'contact_map')->first();
 
         // 2. Send it all to Vue as JSON
         return response()->json([
@@ -33,6 +35,8 @@ class LayoutController extends Controller
             'home_why'      => $home_why ? $home_why->content : [],
             'home_about'    => $home_about ? $home_about->content : [],
             'home_gallery'  => $home_gallery ? $home_gallery->content : [],
+            'contact_hero'  => $contact_hero ? $contact_hero->content : [],
+            'contact_map'   => $contact_map ? $contact_map->content : [],
         ]);
     }
 }

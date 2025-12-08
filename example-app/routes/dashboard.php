@@ -77,4 +77,14 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/contact', function () {
         return Inertia::render('dashboard/Contact');
     })->name('dashboard.contact');
+
+    Route::prefix('contact')->group(function () {
+    Route::get('/innerhero', function () {
+        return Inertia::render('dashboard/contact/InnerHero');
+    })->name('dashboard.contact.innerhero');
+    
+    Route::get('/map', function () {
+        return Inertia::render('dashboard/contact/Map');
+    })->name('dashboard.contact.map');
+});
 });

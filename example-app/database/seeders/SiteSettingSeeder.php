@@ -176,5 +176,26 @@ class SiteSettingSeeder extends Seeder
                 ]
             ]
         ]);
+
+        // ==========================================
+        //  🏠 CONTACT PAGE SECTIONS
+        // ==========================================
+
+        // 1. CONTACT HERO (The Title)
+        SiteSetting::create([
+            'key' => 'contact_hero',
+            'content' => [
+                'title' => 'Nous Contacter',
+                'bg_image' => '/images/hero-bg-1765171683.png', // Default placeholder
+            ]
+        ]);
+
+        // 2. CONTACT MAP (The Google Map)
+        SiteSetting::create([
+            'key' => 'contact_map',
+            'content' => [
+                'iframe' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45086.04298603893!2d2.3144612425280484!3d47.111907478589494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fa9580793bba75%3A0x1c0dc8da8809c700!2s18230%20Saint-Doulchard%2C%20France!5e1!3m2!1sen!2slk!4v1765180281192!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+            ]
+        ]);
     }
 }
