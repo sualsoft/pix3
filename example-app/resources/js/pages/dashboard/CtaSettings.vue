@@ -72,10 +72,10 @@ onMounted(() => {
             <div class="mx-auto max-w-6xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        CTA Settings
+                        Paramètres CTA
                     </h1>
                     <p class="mt-2 text-gray-600">
-                        Manage your website's call to action section
+                        Gérez le contenu de votre section appel à l'action
                     </p>
                 </div>
 
@@ -83,9 +83,12 @@ onMounted(() => {
                     <div
                         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">Edit CTA Settings</h2>
+                        <h2 class="text-2xl font-bold">
+                            Modifier les paramètres CTA
+                        </h2>
                         <p class="mt-1 opacity-90">
-                            Update your call to action section content
+                            Mettre à jour le contenu de votre section appel à
+                            l'action
                         </p>
                     </div>
 
@@ -95,7 +98,7 @@ onMounted(() => {
                                 <label
                                     class="mb-2 block text-sm font-semibold text-gray-700"
                                 >
-                                    Title
+                                    Titre
                                 </label>
                                 <input
                                     v-model="ctaData.title"
@@ -109,7 +112,7 @@ onMounted(() => {
                                 <label
                                     class="mb-2 block text-sm font-semibold text-gray-700"
                                 >
-                                    Button Text
+                                    Texte du bouton
                                 </label>
                                 <input
                                     v-model="ctaData.btn_text"
@@ -123,7 +126,7 @@ onMounted(() => {
                                 <label
                                     class="mb-2 block text-sm font-semibold text-gray-700"
                                 >
-                                    Button Link
+                                    Lien du bouton
                                 </label>
                                 <input
                                     v-model="ctaData.link"
@@ -142,7 +145,7 @@ onMounted(() => {
                                 @click="fetchLayout"
                                 class="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition duration-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 focus:outline-none"
                             >
-                                Reset
+                                Réinitialiser
                             </button>
                             <button
                                 type="submit"
@@ -173,7 +176,11 @@ onMounted(() => {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
-                                {{ isLoading ? 'Saving...' : 'Save Changes' }}
+                                {{
+                                    isLoading
+                                        ? 'Économie...'
+                                        : 'Enregistrer les changements'
+                                }}
                             </button>
                         </div>
 

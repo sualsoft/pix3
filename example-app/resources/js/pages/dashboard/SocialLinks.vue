@@ -92,10 +92,10 @@ onMounted(() => {
             <div class="mx-auto max-w-6xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        Social Links Settings
+                        Paramètres des liens sociaux
                     </h1>
                     <p class="mt-2 text-gray-600">
-                        Manage your website's social media links
+                        Gérez les liens sociaux de votre site web
                     </p>
                 </div>
 
@@ -103,9 +103,11 @@ onMounted(() => {
                     <div
                         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">Edit Social Links</h2>
+                        <h2 class="text-2xl font-bold">
+                            Modifier les liens sociaux
+                        </h2>
                         <p class="mt-1 opacity-90">
-                            Update your social media profiles
+                            Mettre à jour vos profils de médias sociaux
                         </p>
                     </div>
 
@@ -119,14 +121,14 @@ onMounted(() => {
                                 <div class="md:col-span-3">
                                     <label
                                         class="mb-2 block text-sm font-semibold text-gray-700"
-                                        >Platform</label
+                                        >Plate-forme</label
                                     >
                                     <select
                                         v-model="link.media"
                                         class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 transition duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                                     >
                                         <option value="">
-                                            Select Platform
+                                            Sélectionnez la plateforme
                                         </option>
                                         <option value="facebook">
                                             Facebook
@@ -149,7 +151,8 @@ onMounted(() => {
                                 <div class="md:col-span-4">
                                     <label
                                         class="mb-2 block text-sm font-semibold text-gray-700"
-                                        >Icon Class</label
+                                        >Classe d'icône (référence :
+                                        favicon.com)</label
                                     >
                                     <input
                                         v-model="link.icon"
@@ -212,7 +215,7 @@ onMounted(() => {
                                             clip-rule="evenodd"
                                         />
                                     </svg>
-                                    Add Link
+                                    Ajouter un lien
                                 </button>
                             </div>
                         </div>
@@ -225,7 +228,7 @@ onMounted(() => {
                                 @click="loadCurrentData"
                                 class="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition duration-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 focus:outline-none"
                             >
-                                Reset
+                                Réinitialiser
                             </button>
                             <button
                                 type="submit"
@@ -256,7 +259,11 @@ onMounted(() => {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
-                                {{ isLoading ? 'Saving...' : 'Save Changes' }}
+                                {{
+                                    isLoading
+                                        ? 'Économie...'
+                                        : 'Enregistrer les changements'
+                                }}
                             </button>
                         </div>
 

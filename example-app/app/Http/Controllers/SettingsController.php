@@ -4,46 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SiteSetting;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 
 class SettingsController extends Controller
 {
-    // 1. UPDATE GENERAL SETTINGS
+    
+
+    // 1. UPDATE GENERAL SETTINGS (Without CTA)
     public function updateGeneral(Request $request)
     {
-        // Find the 'general' box in the database
         $setting = SiteSetting::where('key', 'general')->first();
 
-        // Update the content with what came from the form
-        if ($setting) {
-            $setting->content = $request->all(); // Save everything sent
-            $setting->save();
-            return response()->json(['message' => 'Settings updated successfully!']);
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'general';
         }
 
-        return response()->json(['message' => 'Error: Setting not found'], 404);
+        // Saves Phone, Email, Address, Logo, Description
+        $setting->content = $request->all();
+        $setting->save();
+
+        return response()->json(['message' => 'Settings updated successfully!']);
     }
 
-    // 2. UPLOAD LOGO
+    // 2. UPLOAD LOGO (Directly to Public Folder)
     public function uploadLogo(Request $request)
     {
-        $request->validate([
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             
-            // Generate a unique filename
-            $filename = 'logo_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            // 1. Clean Filename
+            $filename = 'logo-' . time() . '.' . $file->getClientOriginalExtension();
             
-            // Store the file in the public disk
-            $path = $file->storeAs('logos', $filename, 'public');
+            // 2. Move to Public Folder
+            $file->move(public_path('images'), $filename);
             
-            // Return the URL to the uploaded file
-            $logoUrl = Storage::url($path);
+            // 3. Return URL
+            $logoUrl = '/images/' . $filename;
             
             return response()->json(['logo_url' => $logoUrl]);
         }
@@ -123,6 +120,8 @@ class SettingsController extends Controller
 
     return response()->json(['message' => 'Error: CTA setting not found'], 404);
     }
+
+    // 7. UPDATE HERO SECTION
 
     public function updateHero(Request $request)
     {

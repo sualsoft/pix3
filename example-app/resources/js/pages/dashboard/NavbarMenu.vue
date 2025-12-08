@@ -89,10 +89,10 @@ onMounted(() => {
             <div class="mx-auto max-w-6xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        Navigation Bar Settings
+                        Paramètres de la barre de navigation
                     </h1>
                     <p class="mt-2 text-gray-600">
-                        Manage your website's navigation menu
+                        Gérez le menu de navigation de votre site web
                     </p>
                 </div>
 
@@ -100,9 +100,12 @@ onMounted(() => {
                     <div
                         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">Edit Navigation Bar</h2>
+                        <h2 class="text-2xl font-bold">
+                            Modifier la barre de navigation
+                        </h2>
                         <p class="mt-1 opacity-90">
-                            Update your navigation menu links
+                            Mettre à jour vos liens de navigation de barre de
+                            navigation
                         </p>
                     </div>
 
@@ -116,7 +119,7 @@ onMounted(() => {
                                 <div class="md:col-span-4">
                                     <label
                                         class="mb-2 block text-sm font-semibold text-gray-700"
-                                        >Link Name</label
+                                        >Nom du lien</label
                                     >
                                     <input
                                         v-model="link.name"
@@ -203,7 +206,7 @@ onMounted(() => {
                                         </button>
                                         <span
                                             class="ml-3 text-sm font-medium text-gray-700"
-                                            >Button Style</span
+                                            >Style de bouton</span
                                         >
                                     </div>
                                 </div>
@@ -248,7 +251,7 @@ onMounted(() => {
                                             clip-rule="evenodd"
                                         />
                                     </svg>
-                                    Add Link
+                                    Ajouter un lien
                                 </button>
                             </div>
                         </div>
@@ -261,7 +264,7 @@ onMounted(() => {
                                 @click="loadCurrentData"
                                 class="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition duration-200 hover:bg-gray-50 focus:ring-2 focus:ring-gray-200 focus:outline-none"
                             >
-                                Reset
+                                Réinitialiser
                             </button>
                             <button
                                 type="submit"
@@ -292,7 +295,11 @@ onMounted(() => {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
-                                {{ isLoading ? 'Saving...' : 'Save Changes' }}
+                                {{
+                                    isLoading
+                                        ? 'Enregistrement...'
+                                        : 'Enregistrer les changements'
+                                }}
                             </button>
                         </div>
 
