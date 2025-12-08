@@ -55,10 +55,10 @@ onMounted(() => loadData());
             <div class="mx-auto max-w-6xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        About Section
+                        À propos de la section
                     </h1>
                     <p class="mt-2 text-gray-600">
-                        Manage the "Who We Are" text on your homepage.
+                        Gérez le texte "Who We Are" de votre page d'accueil.
                     </p>
                 </div>
 
@@ -66,9 +66,10 @@ onMounted(() => loadData());
                     <div
                         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">Edit Content</h2>
+                        <h2 class="text-2xl font-bold">Éditer le contenu</h2>
                         <p class="mt-1 opacity-90">
-                            Update your company description and story.
+                            Mettez à jour votre description et votre histoire de
+                            société.
                         </p>
                     </div>
 
@@ -76,7 +77,7 @@ onMounted(() => loadData());
                         <div>
                             <label
                                 class="mb-2 block text-sm font-semibold text-gray-700"
-                                >Section Title</label
+                                >Titre de la section</label
                             >
                             <input
                                 v-model="form.title"
@@ -98,12 +99,12 @@ onMounted(() => loadData());
                                 placeholder="Enter your company description here..."
                             ></textarea>
                             <p class="mt-2 text-sm text-gray-500">
-                                💡 <strong>Tip:</strong> Press
+                                💡 <strong>Conseil:</strong> Appuyez sur
                                 <span class="rounded bg-gray-200 px-1 font-bold"
-                                    >Enter</span
+                                    >Entrer</span
                                 >
-                                to create a new paragraph. The website will
-                                automatically space them out.
+                                pour créer un nouveau paragraphe. Le site web
+                                les espacera automatiquement.
                             </p>
                         </div>
 
@@ -126,7 +127,7 @@ onMounted(() => loadData());
                                 @click="loadData"
                                 class="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
                             >
-                                Reset
+                                Réinitialiser
                             </button>
 
                             <button
@@ -153,7 +154,11 @@ onMounted(() => loadData());
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
-                                {{ isLoading ? 'Saving...' : 'Save Changes' }}
+                                {{
+                                    isLoading
+                                        ? 'Enregistrement...'
+                                        : 'Enregistrer les modifications'
+                                }}
                             </button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-// 1. Initialize empty data bucket
+// 1. Initialize with default structure
 const generalInfo = ref({
     cta: {
         title: '',
@@ -10,14 +10,24 @@ const generalInfo = ref({
     },
 });
 
-// 2. Fetch data from Laravel
 const fetchLayout = async () => {
     try {
         const response = await fetch('/api/layout');
         const data = await response.json();
 
+        // 2. Load General Info (Phone, Email, etc.)
         if (data.general) {
             generalInfo.value = data.general;
+        }
+
+        // 3. THE FIX: Manually attach the CTA data
+        // The controller sends it as 'home_cta', so we grab it from there.
+        if (data.home_cta) {
+            generalInfo.value.cta = data.home_cta;
+        }
+        // Fallback: If you saved it as just 'cta'
+        else if (data.cta) {
+            generalInfo.value.cta = data.cta;
         }
     } catch (error) {
         console.error('Error loading CTA:', error);

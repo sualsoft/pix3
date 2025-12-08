@@ -74,10 +74,10 @@ onMounted(() => loadData());
             <div class="mx-auto max-w-6xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        Gallery Manager
+                        Gestionnaire de galerie
                     </h1>
                     <p class="mt-2 text-gray-600">
-                        Manage the photo grid on your homepage.
+                        Gérez la grille de photos de votre page d'accueil.
                     </p>
                 </div>
 
@@ -85,9 +85,10 @@ onMounted(() => loadData());
                     <div
                         class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">Edit Photos</h2>
+                        <h2 class="text-2xl font-bold">Éditer les Photos</h2>
                         <p class="mt-1 opacity-90">
-                            Add, remove, or rearrange your gallery images.
+                            Ajoutez, supprimez ou réorganisez vos images de
+                            galerie.
                         </p>
                     </div>
 
@@ -95,7 +96,7 @@ onMounted(() => loadData());
                         <div>
                             <label
                                 class="mb-2 block text-sm font-semibold text-gray-700"
-                                >Gallery Title</label
+                                >Titre de la galerie</label
                             >
                             <input
                                 v-model="form.title"
@@ -110,7 +111,8 @@ onMounted(() => loadData());
                             >
                                 <span>Images ({{ form.images.length }})</span>
                                 <span class="font-normal text-gray-400"
-                                    >Click 'Upload' to add more</span
+                                    >Cliquez sur 'Télécharger' pour ajouter
+                                    plus</span
                                 >
                             </label>
 
@@ -130,7 +132,7 @@ onMounted(() => loadData());
                                     </div>
                                     <span
                                         class="text-sm font-medium text-gray-500 group-hover:text-blue-600"
-                                        >Upload</span
+                                        >Télécharger</span
                                     >
                                     <input
                                         type="file"
@@ -197,7 +199,7 @@ onMounted(() => loadData());
                                 @click="loadData"
                                 class="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
                             >
-                                Reset
+                                Réinitialiser
                             </button>
 
                             <button
@@ -224,7 +226,11 @@ onMounted(() => loadData());
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
-                                {{ isLoading ? 'Saving...' : 'Save Gallery' }}
+                                {{
+                                    isLoading
+                                        ? 'Économie...'
+                                        : 'Enregistrer la galerie'
+                                }}
                             </button>
                         </div>
                     </div>
