@@ -16,6 +16,10 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
+Route::get('/portfolio', function () {
+    return Inertia::render('Portfolio');
+})->name('portfolio');
+
 require __DIR__.'/dashboard.php';
 require __DIR__.'/settings.php';
 

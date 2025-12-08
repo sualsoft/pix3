@@ -440,6 +440,80 @@ contactForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 contact.form = contactForm
 
 /**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+export const portfolio = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: portfolio.url(options),
+    method: 'get',
+})
+
+portfolio.definition = {
+    methods: ["get","head"],
+    url: '/portfolio',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+portfolio.url = (options?: RouteQueryOptions) => {
+    return portfolio.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+portfolio.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: portfolio.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+portfolio.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: portfolio.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+const portfolioForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: portfolio.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+portfolioForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: portfolio.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:19
+* @route '/portfolio'
+*/
+portfolioForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: portfolio.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+portfolio.form = portfolioForm
+
+/**
 * @see routes/dashboard.php:7
 * @route '/dashboard'
 */
