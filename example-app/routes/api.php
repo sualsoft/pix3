@@ -35,3 +35,6 @@ Route::post('/settings/hero', [SettingsController::class, 'updateHero']);
 
 // services section update
 Route::post('/settings/services', [SettingsController::class, 'updateServices']);
+
+// why section update
+Route::post('/settings/why', [SettingsController::class, 'updateWhy']);

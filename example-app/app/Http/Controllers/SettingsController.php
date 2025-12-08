@@ -204,6 +204,26 @@ class SettingsController extends Controller
     $setting->save();
 
     return response()->json(['message' => 'Services updated successfully!', 'data' => $cleanServices]);
+    }
+
+    // 9. UPDATE HOME WHY SECTION
+
+    public function updateWhy(Request $request)
+{
+    $data = $request->all(); // This is the array of feature cards
+
+    // Save directly to DB
+    $setting = \App\Models\SiteSetting::where('key', 'home_why')->first();
+    
+    if (!$setting) {
+        $setting = new \App\Models\SiteSetting();
+        $setting->key = 'home_why';
+    }
+    
+    $setting->content = $data;
+    $setting->save();
+
+    return response()->json(['message' => 'Features updated successfully!']);
 }
 
 }
