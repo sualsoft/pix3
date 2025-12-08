@@ -1,7 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../wayfinder'
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 export const login = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -15,8 +14,7 @@ login.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 login.url = (options?: RouteQueryOptions) => {
@@ -24,8 +22,7 @@ login.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,8 +31,7 @@ login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +40,7 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,8 +49,7 @@ const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 loginForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -64,8 +58,7 @@ loginForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:27
 * @route '/login'
 */
 loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -137,8 +130,7 @@ logoutForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 logout.form = logoutForm
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -152,8 +144,7 @@ register.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 register.url = (options?: RouteQueryOptions) => {
@@ -161,8 +152,7 @@ register.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -171,8 +161,7 @@ register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -181,8 +170,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 const registerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -191,8 +179,7 @@ const registerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 registerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -201,8 +188,7 @@ registerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
+* @see routes/web.php:31
 * @route '/register'
 */
 registerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -512,6 +498,154 @@ portfolioForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 })
 
 portfolio.form = portfolioForm
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+export const drone = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: drone.url(options),
+    method: 'get',
+})
+
+drone.definition = {
+    methods: ["get","head"],
+    url: '/drone',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+drone.url = (options?: RouteQueryOptions) => {
+    return drone.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+drone.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: drone.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+drone.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: drone.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+const droneForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: drone.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+droneForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: drone.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:23
+* @route '/drone'
+*/
+droneForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: drone.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+drone.form = droneForm
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+export const user = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: user.url(options),
+    method: 'get',
+})
+
+user.definition = {
+    methods: ["get","head"],
+    url: '/user',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+user.url = (options?: RouteQueryOptions) => {
+    return user.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+user.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: user.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+user.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: user.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+const userForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: user.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+userForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: user.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:35
+* @route '/user'
+*/
+userForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: user.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+user.form = userForm
 
 /**
 * @see routes/dashboard.php:7

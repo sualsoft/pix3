@@ -1,15 +1,15 @@
 <script setup>
-import Card from '@/components/timelapse/Card.vue';
-import Detail from '@/components/timelapse/Detail.vue';
-import InnerHero from '@/components/timelapse/InnerHero.vue';
-import Video from '@/components/timelapse/Video.vue';
+import Card from '@/components/drone/Card.vue';
+import Detail from '@/components/drone/Details.vue';
+import InnerHero from '@/components/drone/InnerHero.vue';
+import Video from '@/components/drone/Video.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
     <MainLayout>
-        <Head title="Timelapse" />
+        <Head title="Drone" />
 
         <!-- Hero Section -->
         <InnerHero />
