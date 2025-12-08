@@ -32,3 +32,6 @@ Route::post('/settings/cta', [SettingsController::class, 'updateCta']);
 
 // hero section update
 Route::post('/settings/hero', [SettingsController::class, 'updateHero']);
+
+// services section update
+Route::post('/settings/services', [SettingsController::class, 'updateServices']);

@@ -159,5 +159,51 @@ class SettingsController extends Controller
     return response()->json(['message' => 'Error: Hero setting not found'], 404);
     }
 
+    // 8. UPDATE HOME service SECTION
+    public function updateServices(Request $request)
+{
+    $services = $request->all(); // This gets the array of services
+
+    $cleanServices = [];
+
+    foreach ($services as $service) {
+        // IMAGE HANDLING LOGIC
+        // If it's a Base64 string (New Upload)
+        if (isset($service['image']) && str_contains($service['image'], 'data:image')) {
+            
+            // 1. Decode Image
+            $image_64 = $service['image']; 
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+            $image = str_replace($replace, '', $image_64); 
+            $image = str_replace(' ', '+', $image); 
+            
+            // 2. Create Unique Name
+            $imageName = 'service-' . uniqid() . '.' . $extension;
+            
+            // 3. Save to Public Folder
+            file_put_contents(public_path('images/' . $imageName), base64_decode($image));
+
+            // 4. Update the array with the new path
+            $service['image'] = '/images/' . $imageName;
+        }
+        
+        // If it's just a text URL (from internet), we do nothing and keep it as is.
+
+        $cleanServices[] = $service;
+    }
+
+    // SAVE TO DATABASE
+    $setting = \App\Models\SiteSetting::where('key', 'home_services')->first();
+    if (!$setting) {
+        $setting = new \App\Models\SiteSetting();
+        $setting->key = 'home_services';
+    }
+    
+    $setting->content = $cleanServices;
+    $setting->save();
+
+    return response()->json(['message' => 'Services updated successfully!', 'data' => $cleanServices]);
+}
 
 }
