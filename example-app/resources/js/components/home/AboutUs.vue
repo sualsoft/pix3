@@ -1,24 +1,27 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
-// 1. DATA: Text Content
-const aboutData = {
-    title: 'À propos de nous',
-    paragraph1:
-        'PIX3i s’engage à fournir des prestations de qualité, en respectant les réglementations en vigueur. Les télépilotes, titulaires du CATS, sont formés pour intervenir dans les zones réglementées et urbaines, garantissant ainsi la sécurité et la conformité des missions réalisées.',
-    paragraph2:
-        'En intégrant des technologies avancées, PIX3i permet à ses clients de bénéficier d’une vision précise et d’une compréhension approfondie de leurs projets, tout en optimisant la gestion des sinistres et des travaux dans le bâtiment.',
+const aboutData = ref({ title: '', description: '' });
+const galleryData = ref({ title: '', images: [] });
+
+// 1. Fetch Data
+const fetchLayout = async () => {
+    try {
+        const response = await fetch('/api/layout');
+        const data = await response.json();
+
+        if (data.home_about) aboutData.value = data.home_about;
+        if (data.home_gallery) galleryData.value = data.home_gallery;
+    } catch (error) {
+        console.error(error);
+    }
 };
 
-// 2. DATA: Images for the Gallery (I used placeholders matching your thermal/drone theme)
-const galleryImages = ref([
-    'https://images.unsplash.com/photo-1564513294021-d1c9533f81e6?q=80&w=800&auto=format&fit=crop', // Normal House
-    'https://images.unsplash.com/photo-1599557022207-6b80155b414e?q=80&w=800&auto=format&fit=crop', // Thermal House 1 (Simulated)
-    'https://plus.unsplash.com/premium_photo-1661962360580-2a544747768e?q=80&w=800&auto=format&fit=crop', // Thermal House 2
-    'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=800&auto=format&fit=crop', // Solar Panels
-    'https://images.unsplash.com/photo-1622543925917-091a13e2f520?q=80&w=800&auto=format&fit=crop', // Solar Panels Wide
-    'https://images.unsplash.com/photo-1581092921461-eab62e97a783?q=80&w=800&auto=format&fit=crop', // Thermal Roof
-]);
+// 2. PARAGRAPH LOGIC: Split the text by "New Line"
+const aboutParagraphs = computed(() => {
+    if (!aboutData.value.description) return [];
+    return aboutData.value.description.split('\n');
+});
 
 // 3. LIGHTBOX LOGIC
 const isLightboxOpen = ref(false);
@@ -27,30 +30,32 @@ const currentImageIndex = ref(0);
 const openLightbox = (index) => {
     currentImageIndex.value = index;
     isLightboxOpen.value = true;
-    document.body.style.overflow = 'hidden'; // Stop scrolling background
+    document.body.style.overflow = 'hidden';
 };
 
 const closeLightbox = () => {
     isLightboxOpen.value = false;
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+    document.body.style.overflow = 'auto';
 };
 
 const nextImage = () => {
-    // Loop back to start if at the end
     currentImageIndex.value =
-        (currentImageIndex.value + 1) % galleryImages.value.length;
+        (currentImageIndex.value + 1) % galleryData.value.images.length;
 };
 
 const prevImage = () => {
-    // Loop to end if at the start
     currentImageIndex.value =
-        (currentImageIndex.value - 1 + galleryImages.value.length) %
-        galleryImages.value.length;
+        (currentImageIndex.value - 1 + galleryData.value.images.length) %
+        galleryData.value.images.length;
 };
+
+onMounted(() => {
+    fetchLayout();
+});
 </script>
 
 <template>
-    <section class="overflow-hidden bg-white py-16">
+    <section class="overflow-hidden bg-white py-16" v-if="aboutData.title">
         <div class="mx-auto max-w-screen-xl px-4">
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
                 <div class="flex flex-col">
@@ -61,11 +66,12 @@ const prevImage = () => {
                         </h2>
                     </div>
 
-                    <p class="mb-6 leading-relaxed text-gray-600">
-                        {{ aboutData.paragraph1 }}
-                    </p>
-                    <p class="leading-relaxed text-gray-600">
-                        {{ aboutData.paragraph2 }}
+                    <p
+                        v-for="(para, index) in aboutParagraphs"
+                        :key="index"
+                        class="mb-6 leading-relaxed text-gray-600 last:mb-0"
+                    >
+                        {{ para }}
                     </p>
                 </div>
 
@@ -73,20 +79,19 @@ const prevImage = () => {
                     <div class="mb-6 flex items-center">
                         <div class="mr-4 h-8 w-1.5 bg-[#0CB1F1]"></div>
                         <h2 class="text-3xl font-bold text-gray-900">
-                            Prises de vue
+                            {{ galleryData.title }}
                         </h2>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
                         <div
-                            v-for="(img, index) in galleryImages"
+                            v-for="(img, index) in galleryData.images"
                             :key="index"
                             class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-gray-100"
                             @click="openLightbox(index)"
                         >
                             <img
                                 :src="img"
-                                alt="Gallery image"
                                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                             <div
@@ -114,43 +119,32 @@ const prevImage = () => {
                 >
                     &times;
                 </button>
-
                 <button
                     @click.stop="prevImage"
-                    class="absolute left-4 p-2 text-3xl text-white hover:text-gray-300 focus:outline-none md:left-8 md:text-5xl"
+                    class="absolute left-4 p-2 text-3xl text-white hover:text-gray-300 md:left-8 md:text-5xl"
                 >
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
-
                 <img
-                    :src="galleryImages[currentImageIndex]"
+                    :src="galleryData.images[currentImageIndex]"
                     class="max-h-[85vh] max-w-[90vw] rounded-md object-contain shadow-2xl"
                 />
-
                 <button
                     @click.stop="nextImage"
-                    class="absolute right-4 p-2 text-3xl text-white hover:text-gray-300 focus:outline-none md:right-8 md:text-5xl"
+                    class="absolute right-4 p-2 text-3xl text-white hover:text-gray-300 md:right-8 md:text-5xl"
                 >
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
-
-                <div
-                    class="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-4 py-1 font-medium text-white"
-                >
-                    {{ currentImageIndex + 1 }} / {{ galleryImages.length }}
-                </div>
             </div>
         </transition>
     </section>
 </template>
 
 <style scoped>
-/* Simple Fade Animation for Lightbox */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.3s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;

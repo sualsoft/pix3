@@ -1,5 +1,5 @@
 <script setup>
-import CTA from '@/Components/CTA.vue';
+import CtaSection from '@/components/CtaSection.vue';
 import Footer from '@/Components/Footer.vue';
 import Navbar from '@/Components/Navbar.vue';
 </script>
@@ -10,7 +10,7 @@ import Navbar from '@/Components/Navbar.vue';
 
         <main class="pt-24">
             <slot />
-            <CTA />
+            <CtaSection />
             <Footer />
         </main>
     </div>

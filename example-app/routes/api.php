@@ -38,3 +38,9 @@ Route::post('/settings/services', [SettingsController::class, 'updateServices'])
 
 // why section update
 Route::post('/settings/why', [SettingsController::class, 'updateWhy']);
+
+// about section update
+Route::post('/settings/about', [SettingsController::class, 'updateAbout']);
+
+// gallery section update
+Route::post('/settings/gallery', [SettingsController::class, 'updateGallery']);

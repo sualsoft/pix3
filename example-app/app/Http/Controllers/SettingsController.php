@@ -224,6 +224,67 @@ class SettingsController extends Controller
     $setting->save();
 
     return response()->json(['message' => 'Features updated successfully!']);
-}
+    }
+
+    // 10. UPDATE ABOUT SECTION
+    public function updateAbout(Request $request)
+    {
+        $setting = SiteSetting::where('key', 'home_about')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'home_about';
+        }
+        $setting->content = $request->all();
+        $setting->save();
+        return response()->json(['message' => 'About section updated!']);
+    }
+
+    // 11. UPDATE GALLERY SECTION
+    public function updateGallery(Request $request)
+    {
+        $data = $request->all(); // { title: '...', images: [...] }
+        $cleanImages = [];
+
+        if (isset($data['images']) && is_array($data['images'])) {
+            foreach ($data['images'] as $img) {
+                // Check if it's a NEW Base64 upload
+                if (str_contains($img, 'data:image')) {
+                    // Decode and Save
+                    $image_64 = $img; 
+                    $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                    $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+                    $image = str_replace($replace, '', $image_64); 
+                    $image = str_replace(' ', '+', $image); 
+                    
+                    $imageName = 'gallery-' . uniqid() . '.' . $extension;
+                    
+                    if (!file_exists(public_path('images/gallery'))) {
+                        mkdir(public_path('images/gallery'), 0755, true);
+                    }
+                    
+                    file_put_contents(public_path('images/gallery/' . $imageName), base64_decode($image));
+                    $cleanImages[] = '/images/gallery/' . $imageName;
+                } else {
+                    // It's already a URL, keep it
+                    $cleanImages[] = $img;
+                }
+            }
+        }
+
+        $setting = SiteSetting::where('key', 'home_gallery')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'home_gallery';
+        }
+        
+        // Save structure
+        $setting->content = [
+            'title' => $data['title'] ?? 'Prises de vue',
+            'images' => $cleanImages
+        ];
+        $setting->save();
+
+        return response()->json(['message' => 'Gallery updated!', 'data' => $setting->content]);
+    }
 
 }
