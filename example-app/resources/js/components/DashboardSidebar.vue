@@ -67,10 +67,10 @@ const menuItems: MenuItem[] = [
         href: '/dashboard/home',
         dropdown: [
             { name: 'Hero Section', href: '/dashboard/home/hero' },
-            { name: 'About Section', href: '/dashboard/home/about' },
             { name: 'Services Section', href: '/dashboard/home/services' },
-            { name: 'Testimonials', href: '/dashboard/home/testimonials' },
-            { name: 'Call to Action', href: '/dashboard/home/cta' },
+            { name: 'Why Pix3 Section', href: '/dashboard/home/why-pix3' },
+            { name: 'Gallery Section', href: '/dashboard/home/gallery' },
+            { name: 'About Section', href: '/dashboard/home/about' },
         ],
     },
     {

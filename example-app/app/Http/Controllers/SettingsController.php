@@ -7,6 +7,7 @@ use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+
 class SettingsController extends Controller
 {
     // 1. UPDATE GENERAL SETTINGS
@@ -121,7 +122,43 @@ class SettingsController extends Controller
     }
 
     return response()->json(['message' => 'Error: CTA setting not found'], 404);
-}
+    }
+
+    public function updateHero(Request $request)
+    {
+    $data = $request->all();
+    
+    if (isset($data['bg_image']) && str_contains($data['bg_image'], 'data:image')) {
+        
+        // 1. Decode the Base64 image
+        $image_64 = $data['bg_image']; 
+        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        $image = str_replace($replace, '', $image_64); 
+        $image = str_replace(' ', '+', $image); 
+        
+        
+        $imageName = 'hero-bg-' . time() . '.' . $extension;
+        // Ensure the images directory exists
+        if (!file_exists(public_path('images'))) {
+            mkdir(public_path('images'), 0755, true);
+        }
+        file_put_contents(public_path('images/' . $imageName), base64_decode($image));
+
+        
+        $data['bg_image'] = '/images/' . $imageName;
+    }
+
+   
+    $setting = \App\Models\SiteSetting::where('key', 'home_hero')->first();
+    if ($setting) {
+        $setting->content = $data;
+        $setting->save();
+        return response()->json(['message' => 'Hero updated successfully!', 'data' => $data]);
+    }
+
+    return response()->json(['message' => 'Error: Hero setting not found'], 404);
+    }
 
 
 }

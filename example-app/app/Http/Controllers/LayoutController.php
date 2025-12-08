@@ -14,7 +14,12 @@ class LayoutController extends Controller
         $footer  = SiteSetting::where('key', 'footer')->first();
         $general = SiteSetting::where('key', 'general')->first(); 
         $social  = SiteSetting::where('key', 'social')->first();
-        $cta = SiteSetting::where('key', 'cta')->first(); 
+        $cta = SiteSetting::where('key', 'cta')->first();
+        $home_hero = SiteSetting::where('key', 'home_hero')->first();
+        $home_services = SiteSetting::where('key', 'home_services')->first();
+        $home_why = SiteSetting::where('key', 'home_why')->first();
+        $home_about = SiteSetting::where('key', 'home_about')->first();
+        $home_gallery = SiteSetting::where('key', 'home_gallery')->first();
 
         // 2. Send it all to Vue as JSON
         return response()->json([
@@ -23,6 +28,11 @@ class LayoutController extends Controller
             'general' => $general ? $general->content : [],
             'social' => $social ? $social->content : [],
             'cta'     => $cta ? $cta->content : [],
+            'home_hero'     => $home_hero ? $home_hero->content : [],
+            'home_services' => $home_services ? $home_services->content : [],
+            'home_why'      => $home_why ? $home_why->content : [],
+            'home_about'    => $home_about ? $home_about->content : [],
+            'home_gallery'  => $home_gallery ? $home_gallery->content : [],
         ]);
     }
 }

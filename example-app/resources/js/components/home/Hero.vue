@@ -1,17 +1,43 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
-// État pour gérer l'ouverture/fermeture de la modale vidéo
+const pageData = ref({});
 const isVideoOpen = ref(false);
 
-// ID de la vidéo YouTube extrait de votre lien
-const videoId = 'IumYMCllMsM';
+// 1. Fetch Data
+const fetchHomeData = async () => {
+    try {
+        const response = await fetch('/api/layout');
+        const data = await response.json();
+        pageData.value = data;
+    } catch (error) {
+        console.error('Error loading home data:', error);
+    }
+};
+
+// 2. Computed Property to extract YouTube ID from the database link
+const currentVideoId = computed(() => {
+    const url = pageData.value.home_hero?.video_link;
+    if (!url) return '';
+
+    // Regular expression to find the ID (works for youtube.com and youtu.be)
+    const regExp =
+        /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+
+    return match && match[2].length === 11 ? match[2] : null;
+});
+
+onMounted(() => {
+    fetchHomeData();
+});
 </script>
 
 <template>
     <section
-        class="relative flex h-[80vh] w-full items-center justify-center bg-cover bg-center"
-        style="background-image: url('/images/hero-bg.png')"
+        v-if="pageData.home_hero"
+        class="relative flex h-[100vh] w-full items-center justify-center bg-cover bg-center"
+        :style="{ 'background-image': `url(${pageData.home_hero.bg_image})` }"
     >
         <div class="absolute inset-0 bg-black/40"></div>
 
@@ -19,15 +45,13 @@ const videoId = 'IumYMCllMsM';
             <h1
                 class="font-['Poppins'] text-[32px] leading-tight font-semibold text-white md:text-5xl"
             >
-                Valorisez, Inspectez et Optimisez <br class="hidden md:block" />
-                avec PIX3i
+                {{ pageData.home_hero.title }}
             </h1>
 
             <p
                 class="mx-auto mt-4 max-w-2xl font-['Poppins'] text-[20px] text-[#C6C6C6]"
             >
-                Votre partenaire de confiance pour les prestations drone et
-                timelapse à Bourges (18).
+                {{ pageData.home_hero.description }}
             </p>
 
             <div class="mt-8">
@@ -35,7 +59,9 @@ const videoId = 'IumYMCllMsM';
                     @click="isVideoOpen = true"
                     class="group inline-flex cursor-pointer items-center gap-3 text-white transition-all duration-300 hover:scale-105 hover:opacity-90"
                 >
-                    <span class="text-lg font-medium">Regarder une vidéo</span>
+                    <span class="text-lg font-medium">
+                        {{ pageData.home_hero.btn_text }}
+                    </span>
 
                     <img
                         src="/images/icons/play-btn.png"
@@ -76,15 +102,18 @@ const videoId = 'IumYMCllMsM';
                     </svg>
                 </button>
 
-                <div class="aspect-video w-full">
+                <div class="aspect-video w-full" v-if="currentVideoId">
                     <iframe
                         class="h-full w-full"
-                        :src="`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`"
+                        :src="`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`"
                         title="YouTube video player"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                     ></iframe>
+                </div>
+                <div v-else class="p-4 text-center text-white">
+                    Video link not found.
                 </div>
             </div>
         </div>
@@ -92,7 +121,6 @@ const videoId = 'IumYMCllMsM';
 </template>
 
 <style scoped>
-/* Animation simple pour l'apparition de la modale */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.3s ease;

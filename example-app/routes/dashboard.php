@@ -49,6 +49,14 @@ Route::prefix('dashboard')->group(function () {
             return Inertia::render('dashboard/home/Testimonials');
         })->name('dashboard.home.testimonials');
         
+        Route::get('/why-pix3', function () {
+            return Inertia::render('dashboard/home/WhyPix3');
+        })->name('dashboard.home.why-pix3');
+        
+        Route::get('/gallery', function () {
+            return Inertia::render('dashboard/home/Gallery');
+        })->name('dashboard.home.gallery');
+        
         Route::get('/cta', function () {
             return Inertia::render('dashboard/home/Cta');
         })->name('dashboard.home.cta');

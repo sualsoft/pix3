@@ -29,3 +29,6 @@ Route::post('/settings/navbar', [SettingsController::class, 'updateNavbar']);
 
 // CTA update
 Route::post('/settings/cta', [SettingsController::class, 'updateCta']);
+
+// hero section update
+Route::post('/settings/hero', [SettingsController::class, 'updateHero']);
