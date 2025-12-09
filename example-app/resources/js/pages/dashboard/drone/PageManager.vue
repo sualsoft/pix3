@@ -7,18 +7,21 @@ import { onMounted, ref } from 'vue';
 const items = ref([]);
 const message = ref('');
 const isLoading = ref(false);
-const isEditing = ref(false); // Are we editing?
-const editingId = ref(null); // Which ID are we editing?
+const isEditing = ref(false);
+const editingId = ref(null);
+
+// Reference for scrolling
+const formTop = ref(null);
 
 // 2. FORM
 const form = ref({
     title: '',
     category: 'timelapse',
-    icon: 'fa-solid fa-camera', // Default icon
+    icon: 'fa-solid fa-camera',
     video_url: '',
     content: '',
     thumbnail: null,
-    thumbnail_preview: null, // For showing existing image while editing
+    thumbnail_preview: null, // Holds the URL for preview
 });
 
 // 3. LOAD LIST
@@ -31,34 +34,39 @@ const loadData = async () => {
     }
 };
 
-// 4. HANDLE FILE
+// 4. HANDLE FILE (Preview Logic)
 const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
         form.value.thumbnail = file;
-        // Create local preview
+        // Create local preview immediately
         const reader = new FileReader();
         reader.onload = (e) => (form.value.thumbnail_preview = e.target.result);
         reader.readAsDataURL(file);
     }
 };
 
-// 5. EDIT MODE: Load item into form
+// 5. EDIT MODE (With Auto-Scroll and Image Preview)
 const editItem = (item) => {
     isEditing.value = true;
     editingId.value = item.id;
 
-    // Fill form
+    // Fill form with database data
     form.value.title = item.title;
     form.value.category = item.category;
     form.value.icon = item.icon || 'fa-solid fa-camera';
     form.value.video_url = item.video_url;
     form.value.content = item.content;
-    form.value.thumbnail_preview = item.thumbnail; // Show current image
-    form.value.thumbnail = null; // Reset file input
 
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // SHOW EXISTING THUMBNAIL
+    // We set the preview to the URL coming from the database
+    form.value.thumbnail_preview = item.thumbnail;
+    form.value.thumbnail = null; // Reset actual file input since we haven't picked a new one yet
+
+    // AUTO SCROLL TO FORM
+    if (formTop.value) {
+        formTop.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 };
 
 const cancelEdit = () => {
@@ -79,7 +87,7 @@ const resetForm = () => {
     };
 };
 
-// 6. SAVE FUNCTION (Create OR Update)
+// 6. SAVE FUNCTION
 const save = async () => {
     isLoading.value = true;
     message.value = '';
@@ -91,12 +99,14 @@ const save = async () => {
     formData.append('content', form.value.content);
     if (form.value.video_url)
         formData.append('video_url', form.value.video_url);
-    if (form.value.thumbnail)
+
+    // Only append file if user selected a NEW one
+    if (form.value.thumbnail) {
         formData.append('thumbnail', form.value.thumbnail);
+    }
 
     try {
         if (isEditing.value) {
-            // UPDATE EXISTING
             await axios.post(
                 `/api/service-pages/${editingId.value}`,
                 formData,
@@ -106,15 +116,14 @@ const save = async () => {
             );
             message.value = '✅ Page mise à jour !';
         } else {
-            // CREATE NEW
             await axios.post('/api/service-pages', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             message.value = '✅ Page créée !';
         }
 
-        cancelEdit(); // Reset mode
-        loadData(); // Reload list
+        cancelEdit();
+        loadData();
     } catch (error) {
         message.value = '❌ Erreur de sauvegarde.';
         console.error(error);
@@ -142,7 +151,7 @@ onMounted(() => loadData());
             class="min-h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8"
         >
             <div class="mx-auto max-w-6xl">
-                <div class="mb-8 text-center">
+                <div class="mb-8 text-center" ref="formTop">
                     <h1 class="text-3xl font-bold text-gray-900">
                         Gestionnaire de Pages
                     </h1>
@@ -152,12 +161,22 @@ onMounted(() => loadData());
                 </div>
 
                 <div
-                    class="mb-12 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl"
+                    class="mb-12 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl transition-all duration-500"
+                    :class="
+                        isEditing
+                            ? 'scale-[1.01] transform ring-4 ring-blue-300'
+                            : ''
+                    "
                 >
                     <div
                         class="flex items-center justify-between bg-gradient-to-r from-blue-700 to-indigo-800 p-6 text-white"
                     >
-                        <h2 class="text-2xl font-bold">
+                        <h2 class="flex items-center gap-2 text-2xl font-bold">
+                            <i
+                                v-if="isEditing"
+                                class="fa-solid fa-pen-to-square"
+                            ></i>
+                            <i v-else class="fa-solid fa-plus-circle"></i>
                             {{
                                 isEditing ? 'Modifier la Page' : 'Nouvelle Page'
                             }}
@@ -165,7 +184,7 @@ onMounted(() => loadData());
                         <button
                             v-if="isEditing"
                             @click="cancelEdit"
-                            class="rounded bg-white/20 px-3 py-1 text-sm hover:bg-white/30"
+                            class="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur-sm transition hover:bg-white/30"
                         >
                             Annuler l'édition
                         </button>
@@ -182,7 +201,7 @@ onMounted(() => loadData());
                                     v-model="form.title"
                                     type="text"
                                     placeholder="ex: Suivi de Chantier"
-                                    class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 focus:border-blue-600"
+                                    class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
                                 />
                             </div>
 
@@ -193,7 +212,7 @@ onMounted(() => loadData());
                                 >
                                 <select
                                     v-model="form.category"
-                                    class="w-full rounded-lg border-2 border-gray-300 bg-white p-3 font-medium text-gray-900 focus:border-blue-600"
+                                    class="w-full rounded-lg border-2 border-gray-300 bg-white p-3 font-medium text-gray-900 transition focus:border-blue-600"
                                 >
                                     <option value="timelapse">Timelapse</option>
                                     <option value="drone">Drone</option>
@@ -203,11 +222,11 @@ onMounted(() => loadData());
                             <div>
                                 <label
                                     class="mb-2 block text-sm font-bold text-gray-800"
-                                    >Icône (FontAwesome)</label
+                                    >Icône</label
                                 >
                                 <div class="flex gap-2">
                                     <div
-                                        class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-gray-100 text-xl text-blue-600"
+                                        class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-xl text-blue-600 shadow-sm"
                                     >
                                         <i :class="form.icon"></i>
                                     </div>
@@ -215,30 +234,21 @@ onMounted(() => loadData());
                                         v-model="form.icon"
                                         type="text"
                                         placeholder="ex: fa-solid fa-camera"
-                                        class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 focus:border-blue-600"
+                                        class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
                                     />
                                 </div>
-                                <p class="mt-1 text-xs text-gray-600">
-                                    Trouvez des icônes sur
-                                    <a
-                                        href="https://fontawesome.com/search"
-                                        target="_blank"
-                                        class="text-blue-600 underline"
-                                        >FontAwesome</a
-                                    >
-                                </p>
                             </div>
 
                             <div>
                                 <label
                                     class="mb-2 block text-sm font-bold text-gray-800"
-                                    >Lien YouTube (Optionnel)</label
+                                    >Lien YouTube</label
                                 >
                                 <input
                                     v-model="form.video_url"
                                     type="text"
                                     placeholder="https://youtube.com/..."
-                                    class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 focus:border-blue-600"
+                                    class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
                                 />
                             </div>
 
@@ -247,21 +257,46 @@ onMounted(() => loadData());
                                     class="mb-2 block text-sm font-bold text-gray-800"
                                     >Image de couverture</label
                                 >
-                                <div class="flex items-center gap-4">
+
+                                <div
+                                    class="flex flex-col items-start gap-6 md:flex-row"
+                                >
                                     <div
-                                        v-if="form.thumbnail_preview"
-                                        class="h-20 w-32 overflow-hidden rounded-lg border border-gray-300 bg-gray-100"
+                                        class="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-gray-300 bg-gray-100 md:w-1/3"
                                     >
                                         <img
+                                            v-if="form.thumbnail_preview"
                                             :src="form.thumbnail_preview"
-                                            class="h-full w-full object-cover"
+                                            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                                        />
+                                        <div
+                                            v-else
+                                            class="p-4 text-center text-gray-400"
+                                        >
+                                            <i
+                                                class="fa-regular fa-image mb-2 text-3xl"
+                                            ></i>
+                                            <p class="text-xs">Aucune image</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full flex-1">
+                                        <p
+                                            class="mb-2 text-sm text-gray-600"
+                                            v-if="isEditing"
+                                        >
+                                            L'image actuelle est affichée à
+                                            gauche. Téléchargez-en une nouvelle
+                                            seulement si vous souhaitez la
+                                            remplacer.
+                                        </p>
+                                        <input
+                                            type="file"
+                                            @change="handleFileChange"
+                                            accept="image/*"
+                                            class="w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-700 file:mr-4 file:rounded-full file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-bold file:text-blue-700 hover:file:bg-blue-100"
                                         />
                                     </div>
-                                    <input
-                                        type="file"
-                                        @change="handleFileChange"
-                                        class="w-full rounded-lg border-2 border-gray-300 p-3 text-gray-900"
-                                    />
                                 </div>
                             </div>
                         </div>
@@ -284,7 +319,7 @@ onMounted(() => loadData());
                         >
                             <span
                                 v-if="message"
-                                class="text-lg font-bold"
+                                class="animate-pulse text-lg font-bold"
                                 :class="
                                     message.includes('✅')
                                         ? 'text-green-600'
@@ -294,18 +329,14 @@ onMounted(() => loadData());
                             >
 
                             <button
-                                v-if="isEditing"
-                                @click="cancelEdit"
-                                class="px-4 py-3 font-bold text-gray-600 hover:text-gray-800"
-                            >
-                                Annuler
-                            </button>
-
-                            <button
                                 @click="save"
                                 :disabled="isLoading"
-                                class="transform rounded-lg bg-blue-600 px-8 py-3 font-bold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700"
+                                class="flex transform items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-700 px-8 py-3 font-bold text-white shadow-lg transition hover:scale-105 hover:from-blue-700 hover:to-indigo-800 disabled:scale-100 disabled:opacity-70"
                             >
+                                <i
+                                    v-if="isLoading"
+                                    class="fa-solid fa-spinner animate-spin"
+                                ></i>
                                 {{
                                     isLoading
                                         ? 'Sauvegarde...'
@@ -319,7 +350,10 @@ onMounted(() => loadData());
                 </div>
 
                 <div>
-                    <h3 class="mb-6 text-2xl font-bold text-gray-900">
+                    <h3
+                        class="mb-6 flex items-center gap-2 text-2xl font-bold text-gray-900"
+                    >
+                        <i class="fa-solid fa-layer-group text-blue-600"></i>
                         Pages Existantes ({{ items.length }})
                     </h3>
 
@@ -332,31 +366,43 @@ onMounted(() => loadData());
                             class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                         >
                             <div
-                                class="relative h-40 overflow-hidden bg-gray-100"
+                                class="relative h-48 overflow-hidden bg-gray-100"
                             >
                                 <img
                                     :src="
                                         item.thumbnail ||
-                                        '/images/default-placeholder.png'
+                                        '/images/hero-bg-1765171683.png'
                                     "
                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
                                 />
+
                                 <div
-                                    class="absolute top-2 right-2 rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase shadow-sm backdrop-blur"
+                                    class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/50 to-transparent"
+                                ></div>
+
+                                <div
+                                    class="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-bold uppercase shadow-sm backdrop-blur"
                                     :class="
                                         item.category === 'drone'
                                             ? 'text-purple-700'
                                             : 'text-blue-700'
                                     "
                                 >
+                                    <i
+                                        :class="
+                                            item.category === 'drone'
+                                                ? 'fa-solid fa-plane-up'
+                                                : 'fa-solid fa-clock'
+                                        "
+                                    ></i>
                                     {{ item.category }}
                                 </div>
                             </div>
 
                             <div class="p-5">
-                                <div class="mb-3 flex items-center gap-3">
+                                <div class="mb-3 flex items-start gap-4">
                                     <div
-                                        class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600"
+                                        class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 text-xl text-blue-600 shadow-sm"
                                     >
                                         <i
                                             :class="
@@ -365,42 +411,41 @@ onMounted(() => loadData());
                                             "
                                         ></i>
                                     </div>
-                                    <h4
-                                        class="text-lg leading-tight font-bold text-gray-900"
-                                    >
-                                        {{ item.title }}
-                                    </h4>
+                                    <div>
+                                        <h4
+                                            class="mb-1 text-lg leading-tight font-bold text-gray-900"
+                                        >
+                                            {{ item.title }}
+                                        </h4>
+                                        <p
+                                            class="inline-block rounded bg-gray-100 px-1 font-mono text-xs text-gray-500"
+                                        >
+                                            /{{ item.slug }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <p class="mb-4 text-xs text-gray-500">
-                                    /{{ item.category }}/{{ item.slug }}
-                                </p>
 
-                                <div class="flex gap-2 border-t pt-4">
+                                <div
+                                    class="mt-4 flex gap-2 border-t border-gray-100 pt-4"
+                                >
                                     <button
                                         @click="editItem(item)"
-                                        class="flex-1 rounded bg-gray-100 py-2 font-bold text-gray-700 transition hover:bg-gray-200"
+                                        class="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-50 py-2.5 font-bold text-blue-700 transition hover:bg-blue-100"
                                     >
                                         <i
-                                            class="fa-solid fa-pen-to-square mr-1"
+                                            class="fa-solid fa-pen-to-square"
                                         ></i>
                                         Modifier
                                     </button>
                                     <button
                                         @click="deleteItem(item.id)"
-                                        class="rounded bg-red-50 px-4 py-2 font-bold text-red-600 transition hover:bg-red-100"
+                                        class="rounded-lg bg-red-50 px-4 py-2.5 font-bold text-red-600 transition hover:bg-red-100"
                                     >
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div
-                        v-if="items.length === 0"
-                        class="rounded-xl border border-dashed border-gray-300 bg-white py-12 text-center text-gray-500"
-                    >
-                        Aucune page trouvée. Créez-en une au-dessus !
                     </div>
                 </div>
             </div>
