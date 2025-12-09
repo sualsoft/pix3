@@ -6,6 +6,7 @@ use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ServicePageController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -73,3 +74,10 @@ Route::post('/settings/timelapse-hero', [SettingsController::class, 'updateTimel
 Route::post('/settings/drone-hero', [SettingsController::class, 'updateDroneHero']);
 
 
+
+// Service Pages CMS
+Route::get('/service-pages', [ServicePageController::class, 'index']);
+Route::post('/service-pages', [ServicePageController::class, 'store']);
+// NEW: Route for updating (We use POST because files are involved)
+Route::post('/service-pages/{id}', [ServicePageController::class, 'update']);
+Route::delete('/service-pages/{id}', [ServicePageController::class, 'destroy']);

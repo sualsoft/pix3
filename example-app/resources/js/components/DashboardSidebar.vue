@@ -87,8 +87,7 @@ const menuItems: MenuItem[] = [
         href: '/dashboard/drone',
         dropdown: [
             { name: 'Inner Hero', href: '/dashboard/drone/innerhero' },
-            { name: 'Add New', href: '/dashboard/drone/new' },
-            { name: 'Specifications', href: '/dashboard/drone/specs' },
+            { name: 'Page Manager', href: '/dashboard/drone/pagemanager' },
         ],
     },
     {

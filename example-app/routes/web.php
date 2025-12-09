@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\ServicePageController;
 
 Route::get('/', function () {
     return Inertia::render('Home');
@@ -39,6 +40,10 @@ Route::get('/user', function () {
 Route::get('/singlepage', function () {
     return Inertia::render('SinglePage');
 })->name('singlepage');
+
+// This wildcard route catches links like /timelapse/my-page or /drone/my-page
+Route::get('/{category}/{slug}', [ServicePageController::class, 'show'])
+    ->where('category', 'drone|timelapse'); // Only allow these 2 categories
 
 require __DIR__.'/dashboard.php';
 require __DIR__.'/settings.php';

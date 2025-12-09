@@ -113,9 +113,9 @@ Route::prefix('dashboard')->group(function () {
             return Inertia::render('dashboard/drone/InnerHero');
         })->name('dashboard.drone.innerhero');
         
-        Route::get('/map', function () {
-            return Inertia::render('dashboard/contact/Map');
-        })->name('dashboard.contact.map');
+        Route::get('/pagemanager', function () {
+            return Inertia::render('dashboard/drone/PageManager');
+        })->name('dashboard.drone.pagemanager');
     });
 
 });
