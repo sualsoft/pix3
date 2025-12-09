@@ -220,14 +220,92 @@ class SiteSettingSeeder extends Seeder
             ]
         ]);
 
+        SiteSetting::create([
+            'key' => 'timelapse_detail',
+            'content' => [
+                'title' => 'Qu’est-ce qu’un timelapse ?',
+                'description' => "Le timelapse est une technique vidéo qui consiste à capturer le passage du temps sous forme accélérée...\n\nCette méthode est idéale pour observer des transformations sur une longue durée...\n\nLe timelapse offre une perspective fascinante en condensant de longues périodes.",
+                // You can add the 3 images here if you want them editable later
+                'images' => [
+                    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&w=600&q=80',
+                    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&w=600&q=80',
+                    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&w=600&q=80'
+                ]
+            ]
+        ]);
+
+        // 2. TIMELAPSE VIDEOS (The grid of 3 videos)
+        SiteSetting::create([
+            'key' => 'timelapse_videos',
+            'content' => [
+                'title' => 'Notre portefeuille',
+                'videos' => [
+                    [
+                        'youtubeId' => 'uBgFTIYy5eU', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800', 
+                        'alt' => 'Chantier 1'
+                    ],
+                    [
+                        'youtubeId' => 'dQw4w9WgXcQ', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800', 
+                        'alt' => 'Chantier 2'
+                    ],
+                    [
+                        'youtubeId' => 'uBgFTIYy5eU', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1590644365607-1c5a2e9e3b70?w=800', 
+                        'alt' => 'Chantier 3'
+                    ],
+                ]
+            ]
+        ]);
+
         // ==========================================
-        //  🏠 Drone PAGE SECTIONS
+        //  🚁 DRONE PAGE SECTIONS
         // ==========================================
          SiteSetting::create([
             'key' => 'drone_hero',
             'content' => [
                 'title' => 'Page des drones',
                 'bg_image' => '/images/hero-bg-1765171683.png', // Default placeholder
+            ]
+        ]);
+
+        // 1. DRONE DETAILS
+        SiteSetting::create([
+            'key' => 'drone_detail',
+            'content' => [
+                'title' => 'Pourquoi choisir le drone ?',
+                'description' => "L'inspection par drone offre une précision inégalée et une sécurité optimale...\n\nIdéal pour les toitures, les panneaux solaires et les zones difficiles d'accès.",
+                'images' => [
+                    'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&q=80',
+                    'https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?w=600&q=80',
+                    'https://images.unsplash.com/photo-1506947411487-a56738267384?w=600&q=80'
+                ]
+            ]
+        ]);
+
+        // 2. DRONE VIDEOS
+        SiteSetting::create([
+            'key' => 'drone_videos',
+            'content' => [
+                'title' => 'Vidéos Aériennes',
+                'videos' => [
+                    [
+                        'youtubeId' => 'uBgFTIYy5eU', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800', 
+                        'alt' => 'Inspection Toiture'
+                    ],
+                    [
+                        'youtubeId' => 'dQw4w9WgXcQ', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?w=800', 
+                        'alt' => 'Suivi Solaire'
+                    ],
+                    [
+                        'youtubeId' => 'uBgFTIYy5eU', 
+                        'thumbnail' => 'https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?w=800', 
+                        'alt' => 'Chantier BTP'
+                    ],
+                ]
             ]
         ]);
     }

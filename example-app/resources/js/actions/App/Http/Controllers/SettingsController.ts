@@ -895,6 +895,118 @@ updateDroneHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'p
 
 updateDroneHero.form = updateDroneHeroForm
 
-const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery, updateContactHero, updateContactMap, updatePortfolioHero, updateTimelapseHero, updateDroneHero }
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
+* @see app/Http/Controllers/SettingsController.php:564
+* @route '/api/settings/timelapse-detail'
+*/
+export const updateTimelapseDetail = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseDetail.url(options),
+    method: 'post',
+})
+
+updateTimelapseDetail.definition = {
+    methods: ["post"],
+    url: '/api/settings/timelapse-detail',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
+* @see app/Http/Controllers/SettingsController.php:564
+* @route '/api/settings/timelapse-detail'
+*/
+updateTimelapseDetail.url = (options?: RouteQueryOptions) => {
+    return updateTimelapseDetail.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
+* @see app/Http/Controllers/SettingsController.php:564
+* @route '/api/settings/timelapse-detail'
+*/
+updateTimelapseDetail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseDetail.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
+* @see app/Http/Controllers/SettingsController.php:564
+* @route '/api/settings/timelapse-detail'
+*/
+const updateTimelapseDetailForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseDetail.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
+* @see app/Http/Controllers/SettingsController.php:564
+* @route '/api/settings/timelapse-detail'
+*/
+updateTimelapseDetailForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseDetail.url(options),
+    method: 'post',
+})
+
+updateTimelapseDetail.form = updateTimelapseDetailForm
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
+* @see app/Http/Controllers/SettingsController.php:606
+* @route '/api/settings/timelapse-videos'
+*/
+export const updateTimelapseVideos = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseVideos.url(options),
+    method: 'post',
+})
+
+updateTimelapseVideos.definition = {
+    methods: ["post"],
+    url: '/api/settings/timelapse-videos',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
+* @see app/Http/Controllers/SettingsController.php:606
+* @route '/api/settings/timelapse-videos'
+*/
+updateTimelapseVideos.url = (options?: RouteQueryOptions) => {
+    return updateTimelapseVideos.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
+* @see app/Http/Controllers/SettingsController.php:606
+* @route '/api/settings/timelapse-videos'
+*/
+updateTimelapseVideos.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseVideos.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
+* @see app/Http/Controllers/SettingsController.php:606
+* @route '/api/settings/timelapse-videos'
+*/
+const updateTimelapseVideosForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseVideos.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
+* @see app/Http/Controllers/SettingsController.php:606
+* @route '/api/settings/timelapse-videos'
+*/
+updateTimelapseVideosForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseVideos.url(options),
+    method: 'post',
+})
+
+updateTimelapseVideos.form = updateTimelapseVideosForm
+
+const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery, updateContactHero, updateContactMap, updatePortfolioHero, updateTimelapseHero, updateDroneHero, updateTimelapseDetail, updateTimelapseVideos }
 
 export default SettingsController

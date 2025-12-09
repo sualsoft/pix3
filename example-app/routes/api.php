@@ -81,3 +81,9 @@ Route::post('/service-pages', [ServicePageController::class, 'store']);
 // NEW: Route for updating (We use POST because files are involved)
 Route::post('/service-pages/{id}', [ServicePageController::class, 'update']);
 Route::delete('/service-pages/{id}', [ServicePageController::class, 'destroy']);
+
+//service
+Route::post('/settings/timelapse-detail', [SettingsController::class, 'updateTimelapseDetail']);
+Route::post('/settings/timelapse-videos', [SettingsController::class, 'updateTimelapseVideos']);
+
+//

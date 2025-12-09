@@ -29,8 +29,14 @@ class ServicePageController extends Controller
     }
     // --- API FOR CMS ---
 
-    public function index()
+    public function index(Request $request)
     {
+        // If the Frontend asks for ?category=timelapse, filter the results
+        if ($request->has('category')) {
+            return ServicePage::where('category', $request->category)->get();
+        }
+        
+        // Otherwise return everything (for the Admin Panel list)
         return ServicePage::latest()->get();
     }
 
@@ -87,4 +93,6 @@ class ServicePageController extends Controller
         }
         return response()->json(['message' => 'Erreur'], 404);
     }
+
+    
 }

@@ -78,8 +78,15 @@ const menuItems: MenuItem[] = [
         href: '/dashboard/timelapse',
         dropdown: [
             { name: 'Inner Hero', href: '/dashboard/timelapse/innerhero' },
-            { name: 'Add New', href: '/dashboard/timelapse/new' },
-            { name: 'Categories', href: '/dashboard/timelapse/categories' },
+            {
+                name: 'Detail Section',
+                href: '/dashboard/timelapse/detailsection',
+            },
+            {
+                name: 'Video Section',
+                href: '/dashboard/timelapse/videosection',
+            },
+            { name: 'Page Manager', href: '/dashboard/timelapse/pagemanager' },
         ],
     },
     {
@@ -87,6 +94,14 @@ const menuItems: MenuItem[] = [
         href: '/dashboard/drone',
         dropdown: [
             { name: 'Inner Hero', href: '/dashboard/drone/innerhero' },
+            {
+                name: 'Detail Section',
+                href: '/dashboard/drone/detailsection',
+            },
+            {
+                name: 'Video Section',
+                href: '/dashboard/drone/videosection',
+            },
             { name: 'Page Manager', href: '/dashboard/drone/pagemanager' },
         ],
     },

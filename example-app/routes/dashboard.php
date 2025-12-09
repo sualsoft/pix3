@@ -102,9 +102,17 @@ Route::prefix('dashboard')->group(function () {
             return Inertia::render('dashboard/timelapse/InnerHero');
         })->name('dashboard.timelapse.innerhero');
         
-        Route::get('/map', function () {
-            return Inertia::render('dashboard/contact/Map');
-        })->name('dashboard.contact.map');
+        Route::get('/detailsection', function () {
+            return Inertia::render('dashboard/timelapse/DetailSection');
+        })->name('dashboard.timelapse.detailsection');
+
+        Route::get('/videosection', function () {
+            return Inertia::render('dashboard/timelapse/VideoSection');
+        })->name('dashboard.timelapse.videosection');
+
+        Route::get('/pagemanager', function () {
+            return Inertia::render('dashboard/timelapse/PageManager');
+        })->name('dashboard.timelapse.pagemanager');
     });
 
     // Drone Group
@@ -112,6 +120,14 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/innerhero', function () {
             return Inertia::render('dashboard/drone/InnerHero');
         })->name('dashboard.drone.innerhero');
+
+        Route::get('/detailsection', function () {
+            return Inertia::render('dashboard/drone/DetailSection');
+        })->name('dashboard.drone.detailsection');
+
+        Route::get('/videosection', function () {
+            return Inertia::render('dashboard/drone/VideoSection');
+        })->name('dashboard.drone.videosection');
         
         Route::get('/pagemanager', function () {
             return Inertia::render('dashboard/drone/PageManager');

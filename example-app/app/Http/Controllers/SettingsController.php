@@ -560,4 +560,159 @@ class SettingsController extends Controller
         return response()->json(['message' => 'Map updated successfully!', 'data' => $setting->content]);
     }
 
+    // 17. UPDATE TIMELAPSE DETAILS (Text + 3 Images)
+    public function updateTimelapseDetail(Request $request)
+    {
+        $data = $request->all();
+        $cleanImages = [];
+
+        // Handle the 3 Images
+        if (isset($data['images']) && is_array($data['images'])) {
+            foreach ($data['images'] as $img) {
+                // Check if New Image Upload (Base64)
+                if (str_contains($img, 'data:image')) {
+                    $image_64 = $img; 
+                    $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                    $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+                    $image = str_replace($replace, '', $image_64); 
+                    $image = str_replace(' ', '+', $image); 
+                    
+                    $imageName = 'tl-detail-' . uniqid() . '.' . $extension;
+                    if (!file_exists(public_path('images/timelapse'))) {
+                        mkdir(public_path('images/timelapse'), 0755, true);
+                    }
+                    file_put_contents(public_path('images/timelapse/' . $imageName), base64_decode($image));
+                    
+                    $cleanImages[] = '/images/timelapse/' . $imageName;
+                } else {
+                    // Keep existing URL
+                    $cleanImages[] = $img;
+                }
+            }
+        }
+
+        $setting = SiteSetting::firstOrNew(['key' => 'timelapse_detail']);
+        $setting->content = [
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'images' => $cleanImages
+        ];
+        $setting->save();
+
+        return response()->json(['message' => 'Détails mis à jour !']);
+    }
+
+    // 18. UPDATE TIMELAPSE VIDEOS (List of Videos)
+    public function updateTimelapseVideos(Request $request)
+    {
+        $data = $request->all(); // { title: '...', videos: [...] }
+        $cleanVideos = [];
+
+        if (isset($data['videos']) && is_array($data['videos'])) {
+            foreach ($data['videos'] as $video) {
+                // Handle Thumbnail Upload
+                if (isset($video['thumbnail']) && str_contains($video['thumbnail'], 'data:image')) {
+                    $image_64 = $video['thumbnail'];
+                    $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                    $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+                    $image = str_replace($replace, '', $image_64); 
+                    $image = str_replace(' ', '+', $image); 
+                    
+                    $imageName = 'tl-video-' . uniqid() . '.' . $extension;
+                     if (!file_exists(public_path('images/timelapse'))) {
+                        mkdir(public_path('images/timelapse'), 0755, true);
+                    }
+                    file_put_contents(public_path('images/timelapse/' . $imageName), base64_decode($image));
+                    
+                    $video['thumbnail'] = '/images/timelapse/' . $imageName;
+                }
+                
+                $cleanVideos[] = $video;
+            }
+        }
+
+        $setting = SiteSetting::firstOrNew(['key' => 'timelapse_videos']);
+        $setting->content = [
+            'title' => $data['title'],
+            'videos' => $cleanVideos
+        ];
+        $setting->save();
+
+        return response()->json(['message' => 'Vidéos mises à jour !']);
+    }
+    // 19. UPDATE DRONE DETAILS
+    public function updateDroneDetail(Request $request)
+    {
+        $data = $request->all();
+        $cleanImages = [];
+
+        if (isset($data['images']) && is_array($data['images'])) {
+            foreach ($data['images'] as $img) {
+                if (str_contains($img, 'data:image')) {
+                    $image_64 = $img; 
+                    $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                    $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+                    $image = str_replace($replace, '', $image_64); 
+                    $image = str_replace(' ', '+', $image); 
+                    
+                    $imageName = 'drone-detail-' . uniqid() . '.' . $extension;
+                    if (!file_exists(public_path('images/drone'))) {
+                        mkdir(public_path('images/drone'), 0755, true);
+                    }
+                    file_put_contents(public_path('images/drone/' . $imageName), base64_decode($image));
+                    $cleanImages[] = '/images/drone/' . $imageName;
+                } else {
+                    $cleanImages[] = $img;
+                }
+            }
+        }
+
+        $setting = SiteSetting::firstOrNew(['key' => 'drone_detail']);
+        $setting->content = [
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'images' => $cleanImages
+        ];
+        $setting->save();
+
+        return response()->json(['message' => 'Détails Drone mis à jour !']);
+    }
+
+    // 20. UPDATE DRONE VIDEOS
+    public function updateDroneVideos(Request $request)
+    {
+        $data = $request->all();
+        $cleanVideos = [];
+
+        if (isset($data['videos']) && is_array($data['videos'])) {
+            foreach ($data['videos'] as $video) {
+                if (isset($video['thumbnail']) && str_contains($video['thumbnail'], 'data:image')) {
+                    $image_64 = $video['thumbnail'];
+                    $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                    $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+                    $image = str_replace($replace, '', $image_64); 
+                    $image = str_replace(' ', '+', $image); 
+                    
+                    $imageName = 'drone-video-' . uniqid() . '.' . $extension;
+                    if (!file_exists(public_path('images/drone'))) {
+                        mkdir(public_path('images/drone'), 0755, true);
+                    }
+                    file_put_contents(public_path('images/drone/' . $imageName), base64_decode($image));
+                    
+                    $video['thumbnail'] = '/images/drone/' . $imageName;
+                }
+                $cleanVideos[] = $video;
+            }
+        }
+
+        $setting = SiteSetting::firstOrNew(['key' => 'drone_videos']);
+        $setting->content = [
+            'title' => $data['title'],
+            'videos' => $cleanVideos
+        ];
+        $setting->save();
+
+        return response()->json(['message' => 'Vidéos Drone mises à jour !']);
+    }
+
 }

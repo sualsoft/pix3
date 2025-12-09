@@ -25,6 +25,10 @@ class LayoutController extends Controller
         $portfolio_hero = SiteSetting::where('key', 'portfolio_hero')->first();
         $timelapse_hero = SiteSetting::where('key', 'timelapse_hero')->first();
         $drone_hero = SiteSetting::where('key', 'drone_hero')->first();
+        $timelapse_detail = SiteSetting::where('key', 'timelapse_detail')->first();
+        $timelapse_videos = SiteSetting::where('key', 'timelapse_videos')->first();
+        $drone_detail = SiteSetting::where('key', 'drone_detail')->first();
+        $drone_videos = SiteSetting::where('key', 'drone_videos')->first();
 
         // 2. Send it all to Vue as JSON
         return response()->json([
@@ -43,6 +47,10 @@ class LayoutController extends Controller
             'portfolio_hero'  => $portfolio_hero ? $portfolio_hero->content : [],
             'timelapse_hero'  => $timelapse_hero ? $timelapse_hero->content : [],
             'drone_hero'  => $drone_hero ? $drone_hero->content : [],
+            'timelapse_detail' => $timelapse_detail ? $timelapse_detail->content : [],
+            'timelapse_videos' => $timelapse_videos ? $timelapse_videos->content : [],
+            'drone_detail' => $drone_detail ? $drone_detail->content : [],
+            'drone_videos' => $drone_videos ? $drone_videos->content : [],
         ]);
     }
 }
