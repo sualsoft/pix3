@@ -1,4 +1,23 @@
+<script setup>
+import { Head, useForm } from '@inertiajs/vue3';
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const handleLogin = () => {
+    // FIX: Use string '/login', NOT route('login')
+    form.post('/login', {
+        onFinish: () => form.reset('password'),
+    });
+};
+</script>
+
 <template>
+    <Head title="Se connecter" />
+
     <div class="flex min-h-screen font-sans">
         <div class="relative hidden bg-black lg:flex lg:w-1/2">
             <img
@@ -6,26 +25,19 @@
                 alt="Timelapse Architecture"
                 class="absolute inset-0 h-full w-full object-cover opacity-60"
             />
-
             <div
                 class="relative z-10 flex w-full flex-col justify-between p-12 text-white"
             >
                 <div class="text-3xl font-extrabold tracking-tight">
                     <a href="/">PIX3i</a>
                 </div>
-
                 <div class="mb-10">
                     <blockquote class="text-xl leading-relaxed font-medium">
                         "Grâce à PIX3i, nous avons pu suivre l'évolution de
-                        notre chantier en temps réel. Une interface fluide et
-                        des images d'une qualité exceptionnelle."
+                        notre chantier en temps réel."
                     </blockquote>
                     <div class="mt-4 flex items-center">
                         <div class="font-bold text-[#50aceb]">Jean DuPont</div>
-                        <div class="mx-2 text-gray-400">•</div>
-                        <div class="text-sm text-gray-300">
-                            Directeur de Projet, BTP France
-                        </div>
                     </div>
                 </div>
             </div>
@@ -38,12 +50,8 @@
                 <div class="mb-8 text-center lg:hidden">
                     <h1 class="text-3xl font-extrabold text-black">PIX3i</h1>
                 </div>
-
                 <div class="text-left">
                     <h2 class="text-3xl font-bold text-gray-900">Bon retour</h2>
-                    <p class="mt-2 text-sm text-gray-600">
-                        Veuillez entrer vos coordonnées pour vous connecter.
-                    </p>
                 </div>
 
                 <div class="mt-8">
@@ -52,40 +60,38 @@
                             <label
                                 for="email"
                                 class="block text-sm font-medium text-gray-700"
+                                >Email</label
                             >
-                                Adresse e-mail
-                            </label>
                             <div class="mt-1">
                                 <input
                                     id="email"
-                                    name="email"
                                     type="email"
                                     v-model="form.email"
-                                    autocomplete="email"
                                     required
-                                    class="w-full border border-sky-300 px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none focus:border-sky-500"
+                                    class="w-full border border-sky-300 px-4 py-3 text-gray-500 outline-none focus:border-sky-500"
                                 />
+                            </div>
+                            <div
+                                v-if="form.errors.email"
+                                class="mt-1 text-xs text-red-500"
+                            >
+                                {{ form.errors.email }}
                             </div>
                         </div>
 
-                        <div class="space-y-1">
-                            <div class="flex items-center justify-between">
-                                <label
-                                    for="password"
-                                    class="block text-sm font-medium text-gray-700"
-                                >
-                                    Mot de passe
-                                </label>
-                            </div>
+                        <div>
+                            <label
+                                for="password"
+                                class="block text-sm font-medium text-gray-700"
+                                >Mot de passe</label
+                            >
                             <div class="mt-1">
                                 <input
                                     id="password"
-                                    name="password"
                                     type="password"
                                     v-model="form.password"
-                                    autocomplete="current-password"
                                     required
-                                    class="w-full border border-sky-300 px-4 py-3 text-gray-900 placeholder-gray-400 transition-colors outline-none focus:border-sky-500"
+                                    class="w-full border border-sky-300 px-4 py-3 text-gray-500 outline-none focus:border-sky-500"
                                 />
                             </div>
                         </div>
@@ -93,52 +99,27 @@
                         <div>
                             <button
                                 type="submit"
-                                class="flex w-full justify-center rounded-sm border border-transparent bg-[#50aceb] px-4 py-3 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-[#429ad6] focus:ring-2 focus:ring-[#50aceb] focus:ring-offset-2 focus:outline-none"
+                                :disabled="form.processing"
+                                class="flex w-full justify-center bg-[#50aceb] px-4 py-3 text-sm font-medium text-white hover:bg-[#429ad6] disabled:opacity-50"
                             >
-                                Se connecter
+                                {{
+                                    form.processing
+                                        ? 'Connexion...'
+                                        : 'Se connecter'
+                                }}
                             </button>
                         </div>
                     </form>
 
-                    <div class="mt-6">
-                        <div class="relative">
-                            <div class="absolute inset-0 flex items-center">
-                                <div
-                                    class="w-full border-t border-gray-300"
-                                ></div>
-                            </div>
-                            <div class="relative flex justify-center text-sm">
-                                <span class="bg-white px-2 text-gray-500">
-                                    Nouveau sur PIX3i ?
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 text-center">
-                            <a
-                                href="/register"
-                                class="font-medium text-[#50aceb] transition-colors hover:text-sky-600"
-                            >
-                                Créer un compte gratuitement
-                                <i class="fa-solid fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                    <div class="mt-6 text-center">
+                        <a
+                            href="/register"
+                            class="font-medium text-[#50aceb] hover:text-sky-600"
+                            >Créer un compte</a
+                        >
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
-<script setup>
-import { reactive } from 'vue';
-
-const form = reactive({
-    email: '',
-    password: '',
-});
-
-const handleLogin = () => {
-    console.log('Login split attempt:', form);
-};
-</script>

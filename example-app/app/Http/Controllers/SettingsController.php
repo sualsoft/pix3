@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\SiteSetting;
-
+use App\Models\User;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -713,6 +716,50 @@ class SettingsController extends Controller
         $setting->save();
 
         return response()->json(['message' => 'Vidéos Drone mises à jour !']);
+    }
+
+    // 21. UPDATE MY PROFILE
+    public function updateProfile(Request $request)
+    {
+        // Tell the editor: "Trust me, this variable is my User model"
+        /** @var \App\Models\User $user */
+        $user = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
+            'password' => 'nullable|min:8|confirmed',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save(); // The red line will disappear now!
+
+        return response()->json(['message' => 'Profil mis à jour !']);
+    }
+
+    // 22. CREATE NEW ADMIN
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'admin', // Force role to Admin
+        ]);
+
+        return response()->json(['message' => 'Nouvel administrateur créé !']);
     }
 
 }

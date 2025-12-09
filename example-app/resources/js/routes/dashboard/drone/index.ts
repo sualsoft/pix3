@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../wayfinder'
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 export const innerhero = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ innerhero.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 innerhero.url = (options?: RouteQueryOptions) => {
@@ -22,7 +22,7 @@ innerhero.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 innerhero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +31,7 @@ innerhero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 innerhero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +40,7 @@ innerhero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 const innerheroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +49,7 @@ const innerheroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> 
 })
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 innerheroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +58,7 @@ innerheroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 })
 
 /**
-* @see routes/dashboard.php:120
+* @see routes/dashboard.php:53
 * @route '/dashboard/drone/innerhero'
 */
 innerheroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -74,7 +74,7 @@ innerheroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 innerhero.form = innerheroForm
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 export const detailsection = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -88,7 +88,7 @@ detailsection.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 detailsection.url = (options?: RouteQueryOptions) => {
@@ -96,7 +96,7 @@ detailsection.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 detailsection.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -105,7 +105,7 @@ detailsection.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 detailsection.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -114,7 +114,7 @@ detailsection.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => (
 })
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 const detailsectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -123,7 +123,7 @@ const detailsectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'ge
 })
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 detailsectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ detailsectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'
 })
 
 /**
-* @see routes/dashboard.php:124
+* @see routes/dashboard.php:54
 * @route '/dashboard/drone/detailsection'
 */
 detailsectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -148,7 +148,7 @@ detailsectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get
 detailsection.form = detailsectionForm
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 export const videosection = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -162,7 +162,7 @@ videosection.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 videosection.url = (options?: RouteQueryOptions) => {
@@ -170,7 +170,7 @@ videosection.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 videosection.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -179,7 +179,7 @@ videosection.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 videosection.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -188,7 +188,7 @@ videosection.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 const videosectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -197,7 +197,7 @@ const videosectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get
 })
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 videosectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -206,7 +206,7 @@ videosectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'>
 })
 
 /**
-* @see routes/dashboard.php:128
+* @see routes/dashboard.php:55
 * @route '/dashboard/drone/videosection'
 */
 videosectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -222,7 +222,7 @@ videosectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'
 videosection.form = videosectionForm
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 export const pagemanager = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -236,7 +236,7 @@ pagemanager.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 pagemanager.url = (options?: RouteQueryOptions) => {
@@ -244,7 +244,7 @@ pagemanager.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 pagemanager.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -253,7 +253,7 @@ pagemanager.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 pagemanager.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -262,7 +262,7 @@ pagemanager.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 const pagemanagerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -271,7 +271,7 @@ const pagemanagerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'
 })
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 pagemanagerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -280,7 +280,7 @@ pagemanagerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> 
 })
 
 /**
-* @see routes/dashboard.php:132
+* @see routes/dashboard.php:56
 * @route '/dashboard/drone/pagemanager'
 */
 pagemanagerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../wayfinder'
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 export const innerhero = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ innerhero.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 innerhero.url = (options?: RouteQueryOptions) => {
@@ -22,7 +22,7 @@ innerhero.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 innerhero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +31,7 @@ innerhero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 innerhero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +40,7 @@ innerhero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 const innerheroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +49,7 @@ const innerheroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> 
 })
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 innerheroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +58,7 @@ innerheroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 })
 
 /**
-* @see routes/dashboard.php:90
+* @see routes/dashboard.php:39
 * @route '/dashboard/contact/innerhero'
 */
 innerheroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -74,7 +74,7 @@ innerheroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 innerhero.form = innerheroForm
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 export const map = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -88,7 +88,7 @@ map.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 map.url = (options?: RouteQueryOptions) => {
@@ -96,7 +96,7 @@ map.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 map.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -105,7 +105,7 @@ map.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 map.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -114,7 +114,7 @@ map.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 const mapForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -123,7 +123,7 @@ const mapForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 mapForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ mapForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:94
+* @see routes/dashboard.php:40
 * @route '/dashboard/contact/map'
 */
 mapForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

@@ -94,3 +94,7 @@ Route::post('/user-project/file', [UserPageController::class, 'storeFile']);
 Route::delete('/user-project/file/{id}', [UserPageController::class, 'destroyFile']);
 
 Route::get('/dashboard', [UserPageController::class, 'index'])->name('user.dashboard');
+
+// Settings Page Routes
+Route::post('/settings/profile', [SettingsController::class, 'updateProfile']);
+Route::post('/settings/new-admin', [SettingsController::class, 'storeAdmin']);

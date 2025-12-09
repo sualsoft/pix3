@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../wayfinder'
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 export const user = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ user.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 user.url = (options?: RouteQueryOptions) => {
@@ -22,7 +22,7 @@ user.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 user.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +31,7 @@ user.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 user.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +40,7 @@ user.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 const userForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +49,7 @@ const userForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 userForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +58,7 @@ userForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:138
+* @see routes/dashboard.php:60
 * @route '/dashboard/user'
 */
 userForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

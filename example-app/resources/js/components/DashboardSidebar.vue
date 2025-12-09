@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
-import { onMounted, ref, watch } from 'vue';
+import { Link, router, usePage } from '@inertiajs/vue3';
+import { computed, onMounted, ref, watch } from 'vue';
 
 interface MenuItem {
     name: string;
@@ -8,27 +8,31 @@ interface MenuItem {
     dropdown?: boolean | Array<{ name: string; href: string }>;
 }
 
+// 1. Get User Data
+const page = usePage();
+const user = computed(() => page.props.auth?.user || { name: 'Admin' });
+
 const openDropdown = ref<number | null>(null);
 
 const toggleDropdown = (index: number) => {
     openDropdown.value = openDropdown.value === index ? null : index;
 };
 
-// Check if a link is active
+// 2. Logout Function
+const logout = () => {
+    router.post('/logout');
+};
+
 const isLinkActive = (href: string) => {
     const currentUrl = window.location.pathname;
-    // For dropdown items, check if the current URL starts with the href
     if (href !== '#' && href !== '/dashboard') {
         return currentUrl === href || currentUrl.startsWith(href);
     }
-    // For main items, exact match
     return currentUrl === href;
 };
 
-// Auto-open dropdown based on current URL
 const autoOpenDropdown = () => {
     const currentUrl = window.location.pathname;
-
     menuItems.forEach((item, index) => {
         if (item.dropdown && Array.isArray(item.dropdown)) {
             const hasActiveChild = item.dropdown.some(
@@ -37,7 +41,6 @@ const autoOpenDropdown = () => {
                         subItem.href.replace(/\/[^/]+$/, ''),
                     ) || currentUrl === subItem.href,
             );
-
             if (hasActiveChild) {
                 openDropdown.value = index;
             }
@@ -45,12 +48,9 @@ const autoOpenDropdown = () => {
     });
 };
 
+// 3. UPDATED MENU ITEMS
 const menuItems: MenuItem[] = [
-    {
-        name: 'Dashboard',
-        href: '/dashboard',
-        dropdown: false,
-    },
+    { name: 'Dashboard', href: '/dashboard', dropdown: false },
     {
         name: 'General',
         href: '/dashboard/general',
@@ -94,14 +94,8 @@ const menuItems: MenuItem[] = [
         href: '/dashboard/drone',
         dropdown: [
             { name: 'Inner Hero', href: '/dashboard/drone/innerhero' },
-            {
-                name: 'Detail Section',
-                href: '/dashboard/drone/detailsection',
-            },
-            {
-                name: 'Video Section',
-                href: '/dashboard/drone/videosection',
-            },
+            { name: 'Detail Section', href: '/dashboard/drone/detailsection' },
+            { name: 'Video Section', href: '/dashboard/drone/videosection' },
             { name: 'Page Manager', href: '/dashboard/drone/pagemanager' },
         ],
     },
@@ -121,19 +115,15 @@ const menuItems: MenuItem[] = [
             { name: 'Map', href: '/dashboard/contact/map' },
         ],
     },
-
-    {
-        name: 'User',
-        href: '/dashboard/user/',
-    },
+    { name: 'User', href: '/dashboard/user/' },
+    // ADDED SETTING HERE
+    { name: 'Settings', href: '/dashboard/setting' },
 ];
 
-// Run on component mount
 onMounted(() => {
     autoOpenDropdown();
 });
 
-// Watch for page changes
 watch(
     () => usePage().url,
     () => {
@@ -143,22 +133,45 @@ watch(
 </script>
 
 <template>
-    <div class="min-h-screen w-64 bg-gray-800 text-white">
+    <div class="flex min-h-screen w-64 flex-col bg-gray-800 text-white">
         <div class="border-b border-gray-700 p-4">
             <h1 class="text-xl font-bold">Admin Panel</h1>
+            <div class="mt-4 flex items-center gap-3">
+                <div
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-bold text-white shadow-md"
+                >
+                    {{ user.name ? user.name.charAt(0).toUpperCase() : 'A' }}
+                </div>
+                <div class="overflow-hidden">
+                    <p
+                        class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
+                    >
+                        Hi,
+                    </p>
+                    <p class="truncate text-sm font-bold text-white">
+                        {{ user.name }}
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <nav class="mt-5">
-            <div v-for="(item, index) in menuItems" :key="item.name">
+        <nav class="mt-5 flex-1 overflow-y-auto px-2">
+            <div
+                v-for="(item, index) in menuItems"
+                :key="item.name"
+                class="mb-1"
+            >
                 <div
                     v-if="item.dropdown"
                     @click="toggleDropdown(index)"
-                    class="flex cursor-pointer items-center justify-between px-4 py-3 text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
+                    class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
                     :class="{
-                        'bg-gray-700 text-white': isLinkActive(item.href),
+                        'bg-gray-700 font-semibold text-white': isLinkActive(
+                            item.href,
+                        ),
                     }"
                 >
-                    <span>{{ item.name }}</span>
+                    <span class="text-sm">{{ item.name }}</span>
                     <svg
                         class="h-4 w-4 transition-transform duration-200"
                         :class="{ 'rotate-180': openDropdown === index }"
@@ -178,9 +191,11 @@ watch(
                 <Link
                     v-else
                     :href="item.href"
-                    class="block px-4 py-3 text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
+                    class="block rounded-lg px-4 py-3 text-sm text-gray-300 transition-colors hover:bg-gray-700 hover:text-white"
                     :class="{
-                        'bg-gray-700 text-white': isLinkActive(item.href),
+                        'bg-gray-700 font-semibold text-white': isLinkActive(
+                            item.href,
+                        ),
                     }"
                     @click="openDropdown = null"
                 >
@@ -189,7 +204,7 @@ watch(
 
                 <div
                     v-if="item.dropdown && openDropdown === index"
-                    class="ml-4 rounded bg-gray-900"
+                    class="mt-1 ml-4 border-l-2 border-gray-600 pl-2"
                 >
                     <Link
                         v-for="subItem in item.dropdown as Array<{
@@ -198,9 +213,9 @@ watch(
                         }>"
                         :key="subItem.name"
                         :href="subItem.href"
-                        class="block px-4 py-2 text-sm text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
+                        class="block rounded-md px-4 py-2 text-sm text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
                         :class="{
-                            'bg-gray-700 text-white': isLinkActive(
+                            'bg-gray-700 font-medium text-white': isLinkActive(
                                 subItem.href,
                             ),
                         }"
@@ -211,5 +226,29 @@ watch(
                 </div>
             </div>
         </nav>
+
+        <div class="border-t border-gray-700 p-4">
+            <form @submit.prevent="logout">
+                <button
+                    type="submit"
+                    class="flex w-full items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-bold text-white shadow-md transition duration-200 hover:bg-red-700"
+                >
+                    <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        ></path>
+                    </svg>
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
 </template>

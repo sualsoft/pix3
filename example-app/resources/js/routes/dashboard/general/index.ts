@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../wayfinder'
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 export const cta = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ cta.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 cta.url = (options?: RouteQueryOptions) => {
@@ -22,7 +22,7 @@ cta.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 cta.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +31,7 @@ cta.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 cta.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +40,7 @@ cta.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 const ctaForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +49,7 @@ const ctaForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 ctaForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +58,7 @@ ctaForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:27
+* @see routes/dashboard.php:13
 * @route '/dashboard/general/cta'
 */
 ctaForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

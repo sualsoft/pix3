@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../wayfinder'
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 export const hero = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ hero.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 hero.url = (options?: RouteQueryOptions) => {
@@ -22,7 +22,7 @@ hero.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 hero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -31,7 +31,7 @@ hero.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 hero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -40,7 +40,7 @@ hero.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 const heroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -49,7 +49,7 @@ const heroForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 heroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -58,7 +58,7 @@ heroForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:36
+* @see routes/dashboard.php:18
 * @route '/dashboard/home/hero'
 */
 heroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -74,7 +74,7 @@ heroForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 hero.form = heroForm
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 export const about = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -88,7 +88,7 @@ about.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 about.url = (options?: RouteQueryOptions) => {
@@ -96,7 +96,7 @@ about.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -105,7 +105,7 @@ about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -114,7 +114,7 @@ about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 const aboutForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -123,7 +123,7 @@ const aboutForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 })
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 aboutForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ aboutForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:40
+* @see routes/dashboard.php:19
 * @route '/dashboard/home/about'
 */
 aboutForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -148,7 +148,7 @@ aboutForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 about.form = aboutForm
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 export const services = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -162,7 +162,7 @@ services.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 services.url = (options?: RouteQueryOptions) => {
@@ -170,7 +170,7 @@ services.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 services.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -179,7 +179,7 @@ services.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 services.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -188,7 +188,7 @@ services.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 const servicesForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -197,7 +197,7 @@ const servicesForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 })
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 servicesForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -206,7 +206,7 @@ servicesForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 })
 
 /**
-* @see routes/dashboard.php:44
+* @see routes/dashboard.php:20
 * @route '/dashboard/home/services'
 */
 servicesForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -222,7 +222,7 @@ servicesForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 services.form = servicesForm
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 export const testimonials = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -236,7 +236,7 @@ testimonials.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 testimonials.url = (options?: RouteQueryOptions) => {
@@ -244,7 +244,7 @@ testimonials.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 testimonials.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -253,7 +253,7 @@ testimonials.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 testimonials.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -262,7 +262,7 @@ testimonials.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 const testimonialsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -271,7 +271,7 @@ const testimonialsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get
 })
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 testimonialsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -280,7 +280,7 @@ testimonialsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'>
 })
 
 /**
-* @see routes/dashboard.php:48
+* @see routes/dashboard.php:21
 * @route '/dashboard/home/testimonials'
 */
 testimonialsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -296,7 +296,7 @@ testimonialsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'
 testimonials.form = testimonialsForm
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 export const whyPix3 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -310,7 +310,7 @@ whyPix3.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 whyPix3.url = (options?: RouteQueryOptions) => {
@@ -318,7 +318,7 @@ whyPix3.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 whyPix3.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -327,7 +327,7 @@ whyPix3.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 whyPix3.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -336,7 +336,7 @@ whyPix3.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 const whyPix3Form = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -345,7 +345,7 @@ const whyPix3Form = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 })
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 whyPix3Form.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -354,7 +354,7 @@ whyPix3Form.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 })
 
 /**
-* @see routes/dashboard.php:52
+* @see routes/dashboard.php:22
 * @route '/dashboard/home/why-pix3'
 */
 whyPix3Form.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -370,7 +370,7 @@ whyPix3Form.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 whyPix3.form = whyPix3Form
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 export const gallery = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -384,7 +384,7 @@ gallery.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 gallery.url = (options?: RouteQueryOptions) => {
@@ -392,7 +392,7 @@ gallery.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 gallery.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -401,7 +401,7 @@ gallery.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 gallery.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -410,7 +410,7 @@ gallery.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 const galleryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -419,7 +419,7 @@ const galleryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 })
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 galleryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -428,7 +428,7 @@ galleryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 })
 
 /**
-* @see routes/dashboard.php:56
+* @see routes/dashboard.php:23
 * @route '/dashboard/home/gallery'
 */
 galleryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -444,7 +444,7 @@ galleryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 gallery.form = galleryForm
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 export const cta = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -458,7 +458,7 @@ cta.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 cta.url = (options?: RouteQueryOptions) => {
@@ -466,7 +466,7 @@ cta.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 cta.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -475,7 +475,7 @@ cta.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 cta.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -484,7 +484,7 @@ cta.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 const ctaForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -493,7 +493,7 @@ const ctaForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 ctaForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -502,7 +502,7 @@ ctaForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:60
+* @see routes/dashboard.php:24
 * @route '/dashboard/home/cta'
 */
 ctaForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
