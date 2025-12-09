@@ -36,6 +36,10 @@ Route::get('/user', function () {
     return Inertia::render('User');
 })->name('user');
 
+Route::get('/singlepage', function () {
+    return Inertia::render('SinglePage');
+})->name('singlepage');
+
 require __DIR__.'/dashboard.php';
 require __DIR__.'/settings.php';
 

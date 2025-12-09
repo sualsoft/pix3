@@ -648,6 +648,80 @@ userForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 user.form = userForm
 
 /**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+export const singlepage = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: singlepage.url(options),
+    method: 'get',
+})
+
+singlepage.definition = {
+    methods: ["get","head"],
+    url: '/singlepage',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+singlepage.url = (options?: RouteQueryOptions) => {
+    return singlepage.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+singlepage.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: singlepage.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+singlepage.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: singlepage.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+const singlepageForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: singlepage.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+singlepageForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: singlepage.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:39
+* @route '/singlepage'
+*/
+singlepageForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: singlepage.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+singlepage.form = singlepageForm
+
+/**
 * @see routes/dashboard.php:7
 * @route '/dashboard'
 */
