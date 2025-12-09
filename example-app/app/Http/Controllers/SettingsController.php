@@ -539,4 +539,25 @@ class SettingsController extends Controller
         return response()->json(['message' => 'Hero section updated!', 'data' => $setting->content]);
     }
 
+    // 16. UPDATE CONTACT MAP
+    public function updateContactMap(Request $request)
+    {
+        // Validate that we received an iframe string
+        $request->validate([
+            'iframe' => 'required|string',
+        ]);
+
+        $setting = SiteSetting::where('key', 'contact_map')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'contact_map';
+        }
+
+        // Save exactly what the user pasted
+        $setting->content = ['iframe' => $request->iframe];
+        $setting->save();
+
+        return response()->json(['message' => 'Map updated successfully!', 'data' => $setting->content]);
+    }
+
 }

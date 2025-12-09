@@ -672,6 +672,62 @@ updateContactHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<
 updateContactHero.form = updateContactHeroForm
 
 /**
+* @see \App\Http\Controllers\SettingsController::updateContactMap
+* @see app/Http/Controllers/SettingsController.php:543
+* @route '/api/settings/contact-map'
+*/
+export const updateContactMap = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateContactMap.url(options),
+    method: 'post',
+})
+
+updateContactMap.definition = {
+    methods: ["post"],
+    url: '/api/settings/contact-map',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactMap
+* @see app/Http/Controllers/SettingsController.php:543
+* @route '/api/settings/contact-map'
+*/
+updateContactMap.url = (options?: RouteQueryOptions) => {
+    return updateContactMap.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactMap
+* @see app/Http/Controllers/SettingsController.php:543
+* @route '/api/settings/contact-map'
+*/
+updateContactMap.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateContactMap.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactMap
+* @see app/Http/Controllers/SettingsController.php:543
+* @route '/api/settings/contact-map'
+*/
+const updateContactMapForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateContactMap.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactMap
+* @see app/Http/Controllers/SettingsController.php:543
+* @route '/api/settings/contact-map'
+*/
+updateContactMapForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateContactMap.url(options),
+    method: 'post',
+})
+
+updateContactMap.form = updateContactMapForm
+
+/**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
 * @see app/Http/Controllers/SettingsController.php:354
 * @route '/api/settings/portfolio-hero'
@@ -839,6 +895,6 @@ updateDroneHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'p
 
 updateDroneHero.form = updateDroneHeroForm
 
-const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery, updateContactHero, updatePortfolioHero, updateTimelapseHero, updateDroneHero }
+const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery, updateContactHero, updateContactMap, updatePortfolioHero, updateTimelapseHero, updateDroneHero }
 
 export default SettingsController

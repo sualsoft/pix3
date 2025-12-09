@@ -53,6 +53,9 @@ Route::post('/settings/contact-hero', [SettingsController::class, 'updateContact
 //Email
 Route::post('/contact-send', [ContactController::class, 'sendEmail']);
 
+//Contact map update
+Route::post('/settings/contact-map', [SettingsController::class, 'updateContactMap']);
+
 
 // PORTFOLIO ITEMS MANAGER
 Route::get('/portfolio', [PortfolioController::class, 'index']);
@@ -68,3 +71,5 @@ Route::post('/settings/timelapse-hero', [SettingsController::class, 'updateTimel
 
 //Drone hero section update
 Route::post('/settings/drone-hero', [SettingsController::class, 'updateDroneHero']);
+
+

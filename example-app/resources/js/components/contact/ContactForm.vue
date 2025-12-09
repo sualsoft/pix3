@@ -2,8 +2,13 @@
 import axios from 'axios';
 import { onMounted, reactive, ref } from 'vue';
 
-// 1. Data Bucket
-const pageData = ref({});
+// 1. DATA STORAGE
+const pageData = ref({}); // Holds address, phone, and map code from DB
+const isSubmitting = ref(false); // Loading spinner state
+const statusMessage = ref(''); // Success/Error message text
+
+// 2. FORM DATA
+// We use 'reactive' for objects that change (like form inputs)
 const form = reactive({
     name: '',
     email: '',
@@ -11,7 +16,7 @@ const form = reactive({
     message: '',
 });
 
-// 2. Fetch Data (General Info + Map)
+// 3. FETCH CONTACT INFO (Address & Map)
 const fetchContactData = async () => {
     try {
         const response = await fetch('/api/layout');
@@ -22,22 +27,20 @@ const fetchContactData = async () => {
     }
 };
 
-const isSubmitting = ref(false); // To show a loading state
-const statusMessage = ref(''); // To show "Success!" message
-
+// 4. SUBMIT FORM
 const submitForm = async () => {
     isSubmitting.value = true;
     statusMessage.value = '';
 
     try {
-        // We send the data to the route we created in Step 3
-        const response = await axios.post('/api/contact-send', form.value);
+        // Send data to Laravel Controller
+        await axios.post('/api/contact-send', form);
 
-        // If successful
+        // Success State
         statusMessage.value = 'Merci ! Votre message a été envoyé.';
 
-        // Clear the form
-        form.value = { name: '', email: '', subject: '', message: '' };
+        // Reset Form
+        Object.assign(form, { name: '', email: '', subject: '', message: '' });
     } catch (error) {
         console.error(error);
         statusMessage.value = "Une erreur s'est produite. Veuillez réessayer.";
@@ -56,7 +59,7 @@ onMounted(() => {
         <div class="mx-auto max-w-7xl">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div v-if="pageData.general" class="space-y-6 lg:col-span-1">
-                    <div class="bg-white p-8 shadow-sm shadow-[#00000003]">
+                    <div class="bg-white p-8 shadow-sm">
                         <h3 class="mb-4 text-2xl font-bold text-black">
                             Adresse
                         </h3>
@@ -65,28 +68,28 @@ onMounted(() => {
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 shadow-sm shadow-[#00000003]">
+                    <div class="bg-white p-8 shadow-sm">
                         <h3 class="mb-4 text-2xl font-bold text-black">
                             Email
                         </h3>
                         <p class="text-sm font-bold text-black">
                             <a
                                 :href="'mailto:' + pageData.general.email"
-                                class="hover:text-blue-500"
+                                class="transition hover:text-blue-500"
                             >
                                 {{ pageData.general.email }}
                             </a>
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 shadow-sm shadow-[#00000003]">
+                    <div class="bg-white p-8 shadow-sm">
                         <h3 class="mb-4 text-2xl font-bold text-black">
                             Téléphone
                         </h3>
                         <p class="text-sm font-bold text-black">
                             <a
                                 :href="'tel:' + pageData.general.phone"
-                                class="hover:text-blue-500"
+                                class="transition hover:text-blue-500"
                             >
                                 {{ pageData.general.phone }}
                             </a>
@@ -106,9 +109,7 @@ onMounted(() => {
                     ></div>
                 </div>
 
-                <div
-                    class="bg-white p-8 shadow-sm shadow-[#00000003] lg:col-span-2"
-                >
+                <div class="bg-white p-8 shadow-sm lg:col-span-2">
                     <form @submit.prevent="submitForm" class="space-y-6">
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                             <div>
@@ -151,22 +152,9 @@ onMounted(() => {
                             ></textarea>
                         </div>
 
-                        <div>
-                            <button
-                                type="submit"
-                                :disabled="isSubmitting"
-                                class="bg-[#50aceb] px-8 py-3 font-medium text-white transition-colors duration-200 hover:bg-[#429ad6] disabled:opacity-50"
-                            >
-                                {{
-                                    isSubmitting
-                                        ? 'Envoi en cours...'
-                                        : 'Envoyer le message'
-                                }}
-                            </button>
-                        </div>
                         <div
                             v-if="statusMessage"
-                            class="mb-4 rounded p-3 text-center"
+                            class="rounded p-3 text-center font-semibold"
                             :class="
                                 statusMessage.includes('erreur')
                                     ? 'bg-red-100 text-red-700'
@@ -174,6 +162,42 @@ onMounted(() => {
                             "
                         >
                             {{ statusMessage }}
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                :disabled="isSubmitting"
+                                class="bg-[#50aceb] px-8 py-3 font-medium text-white transition-colors duration-200 hover:bg-[#429ad6] disabled:opacity-50"
+                            >
+                                <span
+                                    v-if="isSubmitting"
+                                    class="flex items-center gap-2"
+                                >
+                                    <svg
+                                        class="h-5 w-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                        ></circle>
+                                        <path
+                                            class="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                    Envoi...
+                                </span>
+                                <span v-else>Envoyer le message</span>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -185,7 +209,7 @@ onMounted(() => {
         class="map-container relative h-[450px] w-full overflow-hidden bg-gray-100 shadow-sm"
     >
         <div
-            v-if="pageData.contact_map"
+            v-if="pageData.contact_map && pageData.contact_map.iframe"
             v-html="pageData.contact_map.iframe"
             class="h-full w-full"
         ></div>
@@ -194,15 +218,17 @@ onMounted(() => {
             v-else
             class="flex h-full w-full items-center justify-center text-gray-400"
         >
-            Chargement de la carte...
+            <span class="animate-pulse">Chargement de la carte...</span>
         </div>
     </div>
 </template>
 
 <style scoped>
+/* Force the Google Map iframe to fill the container */
 .map-container :deep(iframe) {
     width: 100% !important;
     height: 100% !important;
     border: 0;
+    display: block;
 }
 </style>
