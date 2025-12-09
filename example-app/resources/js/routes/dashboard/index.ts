@@ -5,6 +5,7 @@ import timelapse94134e from './timelapse'
 import drone508586 from './drone'
 import portfolioE55e31 from './portfolio'
 import contact from './contact'
+import user from './user'
 /**
 * @see routes/dashboard.php:11
 * @route '/dashboard/general'
@@ -607,6 +608,7 @@ const dashboard = {
     drone: Object.assign(drone, drone508586),
     portfolio: Object.assign(portfolio, portfolioE55e31),
     contact: Object.assign(contact, contact),
+    user: Object.assign(user, user),
 }
 
 export default dashboard

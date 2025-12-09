@@ -134,4 +134,9 @@ Route::prefix('dashboard')->group(function () {
         })->name('dashboard.drone.pagemanager');
     });
 
+    // User Group
+    Route::get('/user', function () {
+    return Inertia::render('dashboard/user/User');
+})->name('dashboard.user.user');
+
 });

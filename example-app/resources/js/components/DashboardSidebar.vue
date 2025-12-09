@@ -121,6 +121,11 @@ const menuItems: MenuItem[] = [
             { name: 'Map', href: '/dashboard/contact/map' },
         ],
     },
+
+    {
+        name: 'User',
+        href: '/dashboard/user/',
+    },
 ];
 
 // Run on component mount

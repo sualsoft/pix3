@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServicePageController;
+use App\Http\Controllers\UserPageController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -86,4 +87,10 @@ Route::delete('/service-pages/{id}', [ServicePageController::class, 'destroy']);
 Route::post('/settings/timelapse-detail', [SettingsController::class, 'updateTimelapseDetail']);
 Route::post('/settings/timelapse-videos', [SettingsController::class, 'updateTimelapseVideos']);
 
-//
+// User Project CMS
+Route::get('/user-project', [UserPageController::class, 'getProjectData']);
+Route::post('/user-project/info', [UserPageController::class, 'updateProject']);
+Route::post('/user-project/file', [UserPageController::class, 'storeFile']);
+Route::delete('/user-project/file/{id}', [UserPageController::class, 'destroyFile']);
+
+Route::get('/dashboard', [UserPageController::class, 'index'])->name('user.dashboard');

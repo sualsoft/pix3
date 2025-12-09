@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
        
         $this->call(PortfolioItemSeeder::class);
         $this->call(SiteSettingSeeder::class);
+        $this->call(UserPageSeeder::class);
     }
 }
