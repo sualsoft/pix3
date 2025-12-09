@@ -21,7 +21,9 @@ onMounted(() => {
     <div
         v-if="InnerHero.contact_hero"
         class="hero-section"
-        style="background-image: url('/images/hero-bg-1765171683.png')"
+        :style="{
+            'background-image': `url(${InnerHero.contact_hero.bg_image})`,
+        }"
     >
         <div class="hero-overlay"></div>
 

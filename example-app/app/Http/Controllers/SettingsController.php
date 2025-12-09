@@ -320,7 +320,196 @@ class SettingsController extends Controller
                 $image = str_replace(' ', '+', $image);
                 
                 // Generate name and path
-                $imageName = 'hero-' . uniqid() . '.' . $extension;
+                $imageName = 'Contact-hero-' . uniqid() . '.' . $extension;
+                $path = public_path('images/hero');
+
+                // Create folder if not exists
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+
+                // Save File
+                file_put_contents($path . '/' . $imageName, base64_decode($image));
+                
+                // Set the public path for the database
+                $finalImage = '/images/hero/' . $imageName;
+            } else {
+                // If it's not base64, assume it's an existing URL or text
+                $finalImage = $img;
+            }
+        }
+
+        // Save structure
+        $setting->content = [
+            'title'    => $data['title'] ?? ($currentContent['title'] ?? 'Nous Contacter'),
+            'bg_image' => $finalImage
+        ];
+        
+        $setting->save();
+
+        return response()->json(['message' => 'Hero section updated!', 'data' => $setting->content]);
+    }
+
+    // 13. Update Portfolio Hero
+    public function updatePortfolioHero(Request $request)
+    {
+        $data = $request->all(); // Expects: { title: '...', bg_image: '...' }
+        
+        // Retrieve existing setting or create new
+        $setting = SiteSetting::where('key', 'portfolio_hero')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'portfolio_hero';
+            $setting->content = ['title' => '', 'bg_image' => '']; // Initialize to avoid null errors
+        }
+
+        $currentContent = $setting->content;
+        $finalImage = $currentContent['bg_image'] ?? null; // Default to existing image
+
+        // Handle Image Upload
+        if (isset($data['bg_image'])) {
+            $img = $data['bg_image'];
+
+            // Check if it is a Base64 string (New Upload)
+            if (str_contains($img, 'data:image')) {
+                $image_64 = $img;
+                
+                // Extract extension
+                $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                
+                // Clean the string
+                $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+                $image = str_replace($replace, '', $image_64);
+                $image = str_replace(' ', '+', $image);
+                
+                // Generate name and path
+                $imageName = 'portfolio-hero-' . uniqid() . '.' . $extension;
+                $path = public_path('images/hero');
+
+                // Create folder if not exists
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+
+                // Save File
+                file_put_contents($path . '/' . $imageName, base64_decode($image));
+                
+                // Set the public path for the database
+                $finalImage = '/images/hero/' . $imageName;
+            } else {
+                // If it's not base64, assume it's an existing URL or text
+                $finalImage = $img;
+            }
+        }
+
+        // Save structure
+        $setting->content = [
+            'title'    => $data['title'] ?? ($currentContent['title'] ?? 'Nous Contacter'),
+            'bg_image' => $finalImage
+        ];
+        
+        $setting->save();
+
+        return response()->json(['message' => 'Hero section updated!', 'data' => $setting->content]);
+    }
+
+    // 14. Update timelapse Hero
+    public function updateTimelapseHero(Request $request)
+    {
+        $data = $request->all(); // Expects: { title: '...', bg_image: '...' }
+        
+        // Retrieve existing setting or create new
+        $setting = SiteSetting::where('key', 'timelapse_hero')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'timelapse_hero';
+            $setting->content = ['title' => '', 'bg_image' => '']; // Initialize to avoid null errors
+        }
+
+        $currentContent = $setting->content;
+        $finalImage = $currentContent['bg_image'] ?? null; // Default to existing image
+
+        // Handle Image Upload
+        if (isset($data['bg_image'])) {
+            $img = $data['bg_image'];
+
+            // Check if it is a Base64 string (New Upload)
+            if (str_contains($img, 'data:image')) {
+                $image_64 = $img;
+                
+                // Extract extension
+                $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                
+                // Clean the string
+                $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+                $image = str_replace($replace, '', $image_64);
+                $image = str_replace(' ', '+', $image);
+                
+                // Generate name and path
+                $imageName = 'timelapse-hero-' . uniqid() . '.' . $extension;
+                $path = public_path('images/hero');
+
+                // Create folder if not exists
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+
+                // Save File
+                file_put_contents($path . '/' . $imageName, base64_decode($image));
+                
+                // Set the public path for the database
+                $finalImage = '/images/hero/' . $imageName;
+            } else {
+                // If it's not base64, assume it's an existing URL or text
+                $finalImage = $img;
+            }
+        }
+
+        // Save structure
+        $setting->content = [
+            'title'    => $data['title'] ?? ($currentContent['title'] ?? 'Nous Contacter'),
+            'bg_image' => $finalImage
+        ];
+        
+        $setting->save();
+
+        return response()->json(['message' => 'Hero section updated!', 'data' => $setting->content]);
+    }
+
+    // 15. Update drone Hero
+    public function updateDroneHero(Request $request)
+    {
+        $data = $request->all(); // Expects: { title: '...', bg_image: '...' }
+        
+        // Retrieve existing setting or create new
+        $setting = SiteSetting::where('key', 'drone_hero')->first();
+        if (!$setting) {
+            $setting = new SiteSetting();
+            $setting->key = 'drone_hero';
+            $setting->content = ['title' => '', 'bg_image' => '']; // Initialize to avoid null errors
+        }
+
+        $currentContent = $setting->content;
+        $finalImage = $currentContent['bg_image'] ?? null; // Default to existing image
+
+        // Handle Image Upload
+        if (isset($data['bg_image'])) {
+            $img = $data['bg_image'];
+
+            // Check if it is a Base64 string (New Upload)
+            if (str_contains($img, 'data:image')) {
+                $image_64 = $img;
+                
+                // Extract extension
+                $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+                
+                // Clean the string
+                $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+                $image = str_replace($replace, '', $image_64);
+                $image = str_replace(' ', '+', $image);
+                
+                // Generate name and path
+                $imageName = 'drone-hero-' . uniqid() . '.' . $extension;
                 $path = public_path('images/hero');
 
                 // Create folder if not exists

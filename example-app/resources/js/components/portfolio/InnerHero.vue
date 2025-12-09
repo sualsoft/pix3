@@ -19,14 +19,16 @@ onMounted(() => {
 
 <template>
     <div
-        v-if="InnerHero.contact_hero"
+        v-if="InnerHero.portfolio_hero"
         class="hero-section"
-        style="background-image: url('/images/hero-bg-1765171683.png')"
+        :style="{
+            'background-image': `url(${InnerHero.portfolio_hero.bg_image})`,
+        }"
     >
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h2 class="hero-title">{{ InnerHero.contact_hero.title }}</h2>
+            <h2 class="hero-title">{{ InnerHero.portfolio_hero.title }}</h2>
         </div>
     </div>
 </template>
