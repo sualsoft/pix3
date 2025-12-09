@@ -40,11 +40,21 @@
                             muted
                         >
                             <source :src="item.src" type="video/mp4" />
-                            Your browser does not support the video tag.
                         </video>
 
+                        <iframe
+                            v-else-if="item.type === 'youtube'"
+                            class="h-full w-full object-cover"
+                            :src="item.src"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+
                         <div
-                            class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            v-if="item.type !== 'youtube'"
+                            class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         >
                             <span
                                 class="border-2 border-white px-4 py-2 font-bold tracking-wider text-white uppercase"
@@ -60,91 +70,44 @@
                 v-if="filteredItems.length === 0"
                 class="py-12 text-center text-gray-500"
             >
-                Aucun résultat trouvé pour ces filtres.
+                Chargement... ou aucun résultat trouvé.
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
-// 1. Categories (Matching your screenshot)
-const categories = [
-    'Timelapse',
-    'Drone',
-    'Timelapse Suivi de Chantier',
-    'Timelapse Événementiel',
-    'Timelapse Touristique',
-];
-
-// 2. State for Active Filters
+const portfolioItems = ref([]);
 const activeFilters = ref([]);
 
-// 3. Dummy Data (Replace src with your real images)
-// I used unsplash images as placeholders for construction/drone shots
-const portfolioItems = [
-    {
-        id: 1,
-        type: 'image',
-        category: 'Drone',
-        src: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Aerial View',
-    },
-    {
-        id: 2,
-        type: 'image',
-        category: 'Timelapse Suivi de Chantier',
-        src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Construction Site',
-    },
-    {
-        id: 3,
-        type: 'image',
-        category: 'Timelapse Touristique',
-        src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Chateau',
-    },
-    {
-        id: 4,
-        type: 'image',
-        category: 'Timelapse',
-        src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'City Construction',
-    },
-    {
-        id: 5,
-        type: 'image',
-        category: 'Timelapse Événementiel',
-        src: 'https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Event Crowd',
-    },
-    {
-        id: 6,
-        type: 'image',
-        category: 'Drone',
-        src: 'https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Solar Panels',
-    },
-    {
-        id: 7,
-        type: 'image',
-        category: 'Timelapse Suivi de Chantier',
-        src: 'https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        title: 'Roof Work',
-    },
-    // Example of a video item
-    // { id: 8, type: 'video', category: 'Drone', src: 'path_to_video.mp4', title: 'Drone Video' },
-];
-
-// 4. Methods
-
-// Check if a category is currently active
-const isActive = (category) => {
-    return activeFilters.value.includes(category);
+// 1. Fetch Data from Laravel
+const fetchPortfolio = async () => {
+    try {
+        const response = await fetch('/api/portfolio'); // Ensure this matches your route
+        const data = await response.json();
+        portfolioItems.value = data;
+    } catch (error) {
+        console.error('Error fetching portfolio:', error);
+    }
 };
 
-// Toggle logic: Add to array if not present, remove if present
+onMounted(() => {
+    fetchPortfolio();
+});
+
+// 2. Compute Unique Categories from the Database items
+// This means you don't need to hardcode the list anymore!
+const categories = computed(() => {
+    const allCategories = portfolioItems.value.map((item) => item.category);
+    // This trick removes duplicates:
+    return [...new Set(allCategories)];
+});
+
+// 3. Filter Logic
+const isActive = (category) => activeFilters.value.includes(category);
+
 const toggleFilter = (category) => {
     if (isActive(category)) {
         activeFilters.value = activeFilters.value.filter((c) => c !== category);
@@ -153,22 +116,17 @@ const toggleFilter = (category) => {
     }
 };
 
-// 5. Computed Property for Filtering
 const filteredItems = computed(() => {
-    // If no filters are selected, show ALL items
     if (activeFilters.value.length === 0) {
-        return portfolioItems;
+        return portfolioItems.value;
     }
-
-    // If filters are selected, show items that match ANY of the selected categories
-    return portfolioItems.filter((item) =>
+    return portfolioItems.value.filter((item) =>
         activeFilters.value.includes(item.category),
     );
 });
 </script>
 
 <style scoped>
-/* Simple fade animation for the grid items */
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
@@ -181,7 +139,6 @@ const filteredItems = computed(() => {
     transform: scale(0.9);
 }
 
-/* Ensure items leaving happen absolutely so layout doesn't jump */
 .fade-leave-active {
     position: absolute;
 }

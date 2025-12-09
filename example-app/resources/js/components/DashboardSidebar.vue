@@ -95,9 +95,8 @@ const menuItems: MenuItem[] = [
         name: 'Portfolio',
         href: '/dashboard/portfolio',
         dropdown: [
+            { name: 'Inner Hero', href: '/dashboard/portfolio/innerhero' },
             { name: 'Portfolio Items', href: '/dashboard/portfolio/items' },
-            { name: 'Add New', href: '/dashboard/portfolio/new' },
-            { name: 'Categories', href: '/dashboard/portfolio/categories' },
         ],
     },
     {

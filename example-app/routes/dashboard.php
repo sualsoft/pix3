@@ -74,17 +74,26 @@ Route::prefix('dashboard')->group(function () {
         return Inertia::render('dashboard/Portfolio');
     })->name('dashboard.portfolio');
 
-    Route::get('/contact', function () {
-        return Inertia::render('dashboard/Contact');
-    })->name('dashboard.contact');
+    // Portfolio Group
+    Route::prefix('portfolio')->group(function () {
+        Route::get('/innerhero', function () {
+            return Inertia::render('dashboard/portfolio/InnerHero');
+        })->name('dashboard.portfolio.innerhero');
+        
+        Route::get('/items', function () {
+            return Inertia::render('dashboard/portfolio/Items');
+        })->name('dashboard.portfolio.items');
+    }); 
 
+    // Contact Group
     Route::prefix('contact')->group(function () {
-    Route::get('/innerhero', function () {
-        return Inertia::render('dashboard/contact/InnerHero');
-    })->name('dashboard.contact.innerhero');
-    
-    Route::get('/map', function () {
-        return Inertia::render('dashboard/contact/Map');
-    })->name('dashboard.contact.map');
-});
+        Route::get('/innerhero', function () {
+            return Inertia::render('dashboard/contact/InnerHero');
+        })->name('dashboard.contact.innerhero');
+        
+        Route::get('/map', function () {
+            return Inertia::render('dashboard/contact/Map');
+        })->name('dashboard.contact.map');
+    });
+
 });

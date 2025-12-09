@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PortfolioController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -48,3 +49,9 @@ Route::post('/settings/gallery', [SettingsController::class, 'updateGallery']);
 
 //Email
 Route::post('/contact-send', [ContactController::class, 'sendEmail']);
+
+
+// PORTFOLIO ITEMS MANAGER
+Route::get('/portfolio', [PortfolioController::class, 'index']);
+Route::post('/portfolio', [PortfolioController::class, 'store']);
+Route::delete('/portfolio/{id}', [PortfolioController::class, 'destroy']);

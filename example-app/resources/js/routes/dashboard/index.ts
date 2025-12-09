@@ -1,7 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
 import general5d934c from './general'
 import homeA31aa7 from './home'
-import contact50a660 from './contact'
+import portfolioE55e31 from './portfolio'
+import contact from './contact'
 /**
 * @see routes/dashboard.php:11
 * @route '/dashboard/general'
@@ -594,80 +595,6 @@ portfolioForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 
 portfolio.form = portfolioForm
 
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-export const contact = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: contact.url(options),
-    method: 'get',
-})
-
-contact.definition = {
-    methods: ["get","head"],
-    url: '/dashboard/contact',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-contact.url = (options?: RouteQueryOptions) => {
-    return contact.definition.url + queryParams(options)
-}
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-contact.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: contact.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-contact.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: contact.url(options),
-    method: 'head',
-})
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-const contactForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: contact.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-contactForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: contact.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/dashboard.php:77
-* @route '/dashboard/contact'
-*/
-contactForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: contact.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-contact.form = contactForm
-
 const dashboard = {
     general: Object.assign(general, general5d934c),
     socialLinks: Object.assign(socialLinks, socialLinks),
@@ -676,8 +603,8 @@ const dashboard = {
     home: Object.assign(home, homeA31aa7),
     timelapse: Object.assign(timelapse, timelapse),
     drone: Object.assign(drone, drone),
-    portfolio: Object.assign(portfolio, portfolio),
-    contact: Object.assign(contact, contact50a660),
+    portfolio: Object.assign(portfolio, portfolioE55e31),
+    contact: Object.assign(contact, contact),
 }
 
 export default dashboard
