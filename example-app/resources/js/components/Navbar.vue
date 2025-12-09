@@ -1,7 +1,12 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
-import { onMounted, ref } from 'vue';
+import { Link, router, usePage } from '@inertiajs/vue3';
+import { computed, onMounted, ref } from 'vue';
 
+// 1. Get User Data from Inertia
+const page = usePage();
+const user = computed(() => page.props.auth?.user);
+
+// 2. Data Storage
 const navbarLinks = ref([]);
 const generalInfo = ref({
     description: '',
@@ -11,7 +16,9 @@ const generalInfo = ref({
     logo_url: '',
 });
 const socialLinks = ref([]);
+const isMenuOpen = ref(false);
 
+// 3. Methods
 const fetchLayout = async () => {
     try {
         const response = await fetch('/api/layout');
@@ -25,19 +32,21 @@ const fetchLayout = async () => {
     }
 };
 
-onMounted(() => {
-    fetchLayout();
-});
-
-const isMenuOpen = ref(false);
-
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
+
+// Logout Function
+const logout = () => {
+    router.post('/logout');
+};
+
+onMounted(() => {
+    fetchLayout();
+});
 </script>
 
 <style scoped>
-/* Smooth transition for the mobile menu */
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
     transition: all 0.3s ease-in-out;
@@ -95,7 +104,6 @@ const toggleMenu = () => {
                         <span>{{ generalInfo.email }}</span>
                     </a>
                 </div>
-
                 <div class="hidden items-center space-x-4 md:flex">
                     <a
                         v-for="(item, index) in socialLinks"
@@ -128,18 +136,38 @@ const toggleMenu = () => {
             <div
                 class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse"
             >
-                <template
-                    v-for="(item, index) in navbarLinks"
-                    :key="'desk-btn-' + index"
-                >
+                <div v-if="user" class="hidden items-center gap-3 md:flex">
                     <Link
-                        v-if="item.is_button"
-                        :href="item.link"
-                        class="bg-brand hidden bg-white px-4 py-2 text-sm font-medium text-[#101114] shadow-xs transition-all duration-300 hover:scale-105 hover:bg-gray-100 focus:ring-4 focus:outline-none md:inline-block"
+                        href="/dashboard"
+                        class="flex items-center gap-2 rounded-sm bg-white px-4 py-2 text-sm font-bold text-[#101114] shadow-xs transition-all duration-300 hover:scale-105 hover:bg-gray-100"
                     >
-                        {{ item.name }}
+                        <i class="fa-solid fa-user"></i>
+                        {{ user.name }}
                     </Link>
-                </template>
+
+                    <button
+                        @click="logout"
+                        class="rounded-sm bg-gray-800 p-2 text-white transition-colors hover:bg-red-600"
+                        title="Se déconnecter"
+                    >
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+
+                <div v-else class="hidden md:block">
+                    <template
+                        v-for="(item, index) in navbarLinks"
+                        :key="'desk-btn-' + index"
+                    >
+                        <Link
+                            v-if="item.is_button"
+                            :href="item.link"
+                            class="bg-white px-4 py-2 text-sm font-medium text-[#101114] shadow-xs transition-all duration-300 hover:scale-105 hover:bg-gray-100"
+                        >
+                            {{ item.name }}
+                        </Link>
+                    </template>
+                </div>
 
                 <button
                     @click="toggleMenu"
@@ -150,25 +178,21 @@ const toggleMenu = () => {
                     <svg
                         class="h-6 w-6 transition-transform duration-300"
                         :class="{ 'rotate-90': isMenuOpen }"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
                         fill="none"
                         viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
                     >
                         <path
                             v-if="!isMenuOpen"
-                            stroke="currentColor"
                             stroke-linecap="round"
-                            stroke-width="2"
+                            stroke-linejoin="round"
                             d="M4 6h16M4 12h16M4 18h16"
                         />
                         <path
                             v-else
-                            stroke="currentColor"
                             stroke-linecap="round"
-                            stroke-width="2"
+                            stroke-linejoin="round"
                             d="M6 18L18 6M6 6l12 12"
                         />
                     </svg>
@@ -192,14 +216,40 @@ const toggleMenu = () => {
                             >
                                 {{ item.name }}
                             </Link>
+                        </li>
 
-                            <div v-else class="mt-4 md:hidden">
+                        <li
+                            class="mt-2 border-t border-gray-700 pt-2 md:hidden"
+                        >
+                            <div v-if="user" class="flex flex-col gap-2">
                                 <Link
-                                    :href="item.link"
-                                    class="block w-full rounded-md bg-white px-4 py-3 text-center text-sm font-bold text-[#101114] shadow-md transition-transform hover:scale-[1.02] hover:bg-gray-100"
+                                    href="/dashboard"
+                                    class="block w-full rounded-md bg-white px-4 py-2 text-center text-sm font-bold text-[#101114]"
                                 >
-                                    {{ item.name }}
+                                    <i class="fa-solid fa-user mr-2"></i>
+                                    {{ user.name }}
                                 </Link>
+                                <button
+                                    @click="logout"
+                                    class="block w-full rounded-md bg-red-600 px-4 py-2 text-center text-sm font-bold text-white"
+                                >
+                                    Se déconnecter
+                                </button>
+                            </div>
+
+                            <div v-else>
+                                <template
+                                    v-for="(item, index) in navbarLinks"
+                                    :key="'mob-btn-' + index"
+                                >
+                                    <Link
+                                        v-if="item.is_button"
+                                        :href="item.link"
+                                        class="block w-full rounded-md bg-white px-4 py-3 text-center text-sm font-bold text-[#101114] shadow-md transition-transform hover:scale-[1.02] hover:bg-gray-100"
+                                    >
+                                        {{ item.name }}
+                                    </Link>
+                                </template>
                             </div>
                         </li>
                     </ul>
