@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
     <div
-        v-if="InnerHero.drone_hero"
+        v-if="InnerHero.timelapse_hero"
         class="hero-section"
         :style="{
             'background-image': `url(${InnerHero.timelapse_hero.bg_image})`,

@@ -615,6 +615,230 @@ updateGalleryForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'pos
 
 updateGallery.form = updateGalleryForm
 
-const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery }
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactHero
+* @see app/Http/Controllers/SettingsController.php:291
+* @route '/api/settings/contact-hero'
+*/
+export const updateContactHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateContactHero.url(options),
+    method: 'post',
+})
+
+updateContactHero.definition = {
+    methods: ["post"],
+    url: '/api/settings/contact-hero',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactHero
+* @see app/Http/Controllers/SettingsController.php:291
+* @route '/api/settings/contact-hero'
+*/
+updateContactHero.url = (options?: RouteQueryOptions) => {
+    return updateContactHero.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactHero
+* @see app/Http/Controllers/SettingsController.php:291
+* @route '/api/settings/contact-hero'
+*/
+updateContactHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateContactHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactHero
+* @see app/Http/Controllers/SettingsController.php:291
+* @route '/api/settings/contact-hero'
+*/
+const updateContactHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateContactHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateContactHero
+* @see app/Http/Controllers/SettingsController.php:291
+* @route '/api/settings/contact-hero'
+*/
+updateContactHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateContactHero.url(options),
+    method: 'post',
+})
+
+updateContactHero.form = updateContactHeroForm
+
+/**
+* @see \App\Http\Controllers\SettingsController::updatePortfolioHero
+* @see app/Http/Controllers/SettingsController.php:354
+* @route '/api/settings/portfolio-hero'
+*/
+export const updatePortfolioHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updatePortfolioHero.url(options),
+    method: 'post',
+})
+
+updatePortfolioHero.definition = {
+    methods: ["post"],
+    url: '/api/settings/portfolio-hero',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updatePortfolioHero
+* @see app/Http/Controllers/SettingsController.php:354
+* @route '/api/settings/portfolio-hero'
+*/
+updatePortfolioHero.url = (options?: RouteQueryOptions) => {
+    return updatePortfolioHero.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updatePortfolioHero
+* @see app/Http/Controllers/SettingsController.php:354
+* @route '/api/settings/portfolio-hero'
+*/
+updatePortfolioHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updatePortfolioHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updatePortfolioHero
+* @see app/Http/Controllers/SettingsController.php:354
+* @route '/api/settings/portfolio-hero'
+*/
+const updatePortfolioHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatePortfolioHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updatePortfolioHero
+* @see app/Http/Controllers/SettingsController.php:354
+* @route '/api/settings/portfolio-hero'
+*/
+updatePortfolioHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatePortfolioHero.url(options),
+    method: 'post',
+})
+
+updatePortfolioHero.form = updatePortfolioHeroForm
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseHero
+* @see app/Http/Controllers/SettingsController.php:417
+* @route '/api/settings/timelapse-hero'
+*/
+export const updateTimelapseHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseHero.url(options),
+    method: 'post',
+})
+
+updateTimelapseHero.definition = {
+    methods: ["post"],
+    url: '/api/settings/timelapse-hero',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseHero
+* @see app/Http/Controllers/SettingsController.php:417
+* @route '/api/settings/timelapse-hero'
+*/
+updateTimelapseHero.url = (options?: RouteQueryOptions) => {
+    return updateTimelapseHero.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseHero
+* @see app/Http/Controllers/SettingsController.php:417
+* @route '/api/settings/timelapse-hero'
+*/
+updateTimelapseHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateTimelapseHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseHero
+* @see app/Http/Controllers/SettingsController.php:417
+* @route '/api/settings/timelapse-hero'
+*/
+const updateTimelapseHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateTimelapseHero
+* @see app/Http/Controllers/SettingsController.php:417
+* @route '/api/settings/timelapse-hero'
+*/
+updateTimelapseHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateTimelapseHero.url(options),
+    method: 'post',
+})
+
+updateTimelapseHero.form = updateTimelapseHeroForm
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateDroneHero
+* @see app/Http/Controllers/SettingsController.php:480
+* @route '/api/settings/drone-hero'
+*/
+export const updateDroneHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateDroneHero.url(options),
+    method: 'post',
+})
+
+updateDroneHero.definition = {
+    methods: ["post"],
+    url: '/api/settings/drone-hero',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateDroneHero
+* @see app/Http/Controllers/SettingsController.php:480
+* @route '/api/settings/drone-hero'
+*/
+updateDroneHero.url = (options?: RouteQueryOptions) => {
+    return updateDroneHero.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateDroneHero
+* @see app/Http/Controllers/SettingsController.php:480
+* @route '/api/settings/drone-hero'
+*/
+updateDroneHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateDroneHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateDroneHero
+* @see app/Http/Controllers/SettingsController.php:480
+* @route '/api/settings/drone-hero'
+*/
+const updateDroneHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateDroneHero.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\SettingsController::updateDroneHero
+* @see app/Http/Controllers/SettingsController.php:480
+* @route '/api/settings/drone-hero'
+*/
+updateDroneHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updateDroneHero.url(options),
+    method: 'post',
+})
+
+updateDroneHero.form = updateDroneHeroForm
+
+const SettingsController = { updateGeneral, uploadLogo, updateSocial, updateFooter, updateNavbar, updateCta, updateHero, updateServices, updateWhy, updateAbout, updateGallery, updateContactHero, updatePortfolioHero, updateTimelapseHero, updateDroneHero }
 
 export default SettingsController

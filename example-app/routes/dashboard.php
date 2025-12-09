@@ -96,4 +96,26 @@ Route::prefix('dashboard')->group(function () {
         })->name('dashboard.contact.map');
     });
 
+    // Timelapse Group
+    Route::prefix('timelapse')->group(function () {
+        Route::get('/innerhero', function () {
+            return Inertia::render('dashboard/timelapse/InnerHero');
+        })->name('dashboard.timelapse.innerhero');
+        
+        Route::get('/map', function () {
+            return Inertia::render('dashboard/contact/Map');
+        })->name('dashboard.contact.map');
+    });
+
+    // Drone Group
+    Route::prefix('drone')->group(function () {
+        Route::get('/innerhero', function () {
+            return Inertia::render('dashboard/drone/InnerHero');
+        })->name('dashboard.drone.innerhero');
+        
+        Route::get('/map', function () {
+            return Inertia::render('dashboard/contact/Map');
+        })->name('dashboard.contact.map');
+    });
+
 });

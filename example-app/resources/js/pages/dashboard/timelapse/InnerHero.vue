@@ -6,7 +6,7 @@ import { onMounted, ref } from 'vue';
 // 1. DATA
 const form = ref({
     title: '',
-    bg_image: '', // This will hold the URL or the Base64 string
+    bg_image: '',
 });
 const message = ref('');
 const isLoading = ref(false);
@@ -18,9 +18,9 @@ const loadData = async () => {
         const data = res.data;
 
         // Check if portfolio_hero exists in the response
-        if (data.contact_hero) {
-            form.value.title = data.contact_hero.title || '';
-            form.value.bg_image = data.contact_hero.bg_image || '';
+        if (data.timelapse_hero) {
+            form.value.title = data.timelapse_hero.title || '';
+            form.value.bg_image = data.timelapse_hero.bg_image || '';
         }
     } catch (error) {
         console.error('Error loading settings:', error);
@@ -48,7 +48,7 @@ const save = async () => {
     try {
         // We send JSON because we are sending Base64 strings, not raw files
         const response = await axios.post(
-            '/api/settings/contact-hero',
+            '/api/settings/timelapse-hero',
             form.value,
         );
 
@@ -79,11 +79,11 @@ onMounted(() => {
             <div class="mx-auto max-w-4xl">
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-bold text-gray-800 md:text-4xl">
-                        En-tête de contact
+                        En-tête du Portefeuille
                     </h1>
                     <p class="mt-2 text-gray-600">
                         Modifiez l'image de fond et le titre de la page
-                        "Contact".
+                        "Portefeuille".
                     </p>
                 </div>
 

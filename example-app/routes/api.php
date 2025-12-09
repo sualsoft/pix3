@@ -47,6 +47,9 @@ Route::post('/settings/about', [SettingsController::class, 'updateAbout']);
 // gallery section update
 Route::post('/settings/gallery', [SettingsController::class, 'updateGallery']);
 
+//Contact hero section update
+Route::post('/settings/contact-hero', [SettingsController::class, 'updateContactHero']);
+
 //Email
 Route::post('/contact-send', [ContactController::class, 'sendEmail']);
 
@@ -55,3 +58,13 @@ Route::post('/contact-send', [ContactController::class, 'sendEmail']);
 Route::get('/portfolio', [PortfolioController::class, 'index']);
 Route::post('/portfolio', [PortfolioController::class, 'store']);
 Route::delete('/portfolio/{id}', [PortfolioController::class, 'destroy']);
+
+
+//Portfolio hero section update
+Route::post('/settings/portfolio-hero', [SettingsController::class, 'updatePortfolioHero']);
+
+//Timelapse hero section update
+Route::post('/settings/timelapse-hero', [SettingsController::class, 'updateTimelapseHero']);
+
+//Drone hero section update
+Route::post('/settings/drone-hero', [SettingsController::class, 'updateDroneHero']);

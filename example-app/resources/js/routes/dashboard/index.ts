@@ -1,6 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
 import general5d934c from './general'
 import homeA31aa7 from './home'
+import timelapse94134e from './timelapse'
+import drone508586 from './drone'
 import portfolioE55e31 from './portfolio'
 import contact from './contact'
 /**
@@ -601,8 +603,8 @@ const dashboard = {
     footerMenu: Object.assign(footerMenu, footerMenu),
     navbarMenu: Object.assign(navbarMenu, navbarMenu),
     home: Object.assign(home, homeA31aa7),
-    timelapse: Object.assign(timelapse, timelapse),
-    drone: Object.assign(drone, drone),
+    timelapse: Object.assign(timelapse, timelapse94134e),
+    drone: Object.assign(drone, drone508586),
     portfolio: Object.assign(portfolio, portfolioE55e31),
     contact: Object.assign(contact, contact),
 }

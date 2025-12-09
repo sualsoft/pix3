@@ -77,7 +77,7 @@ const menuItems: MenuItem[] = [
         name: 'Timelapse',
         href: '/dashboard/timelapse',
         dropdown: [
-            { name: 'Projects List', href: '/dashboard/timelapse/list' },
+            { name: 'Inner Hero', href: '/dashboard/timelapse/innerhero' },
             { name: 'Add New', href: '/dashboard/timelapse/new' },
             { name: 'Categories', href: '/dashboard/timelapse/categories' },
         ],
@@ -86,7 +86,7 @@ const menuItems: MenuItem[] = [
         name: 'Drone',
         href: '/dashboard/drone',
         dropdown: [
-            { name: 'Drone List', href: '/dashboard/drone/list' },
+            { name: 'Inner Hero', href: '/dashboard/drone/innerhero' },
             { name: 'Add New', href: '/dashboard/drone/new' },
             { name: 'Specifications', href: '/dashboard/drone/specs' },
         ],
