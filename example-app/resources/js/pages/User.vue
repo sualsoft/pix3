@@ -1,19 +1,30 @@
 <script setup>
 import MainLayout from '@/layouts/MainLayout.vue';
-import { ref } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
 
-// 1. RECEIVE DATA (Props from Controller)
-// We add default values ({}) to prevent the "undefined" error if data is missing
+// 1. GET LOGGED-IN USER INFO
+const page = usePage();
+// This grabs the name of the person who is currently logged in (e.g. "Jean Client")
+const user = computed(() => page.props.auth?.user);
+
+// 2. RECEIVE DATA (Props from Controller)
 const props = defineProps({
-    project: { type: Object, default: () => ({}) },
-    files: { type: Array, default: () => [] },
+    project: {
+        type: Object,
+        default: () => ({ title: 'Projet' }),
+    },
+    files: {
+        type: Array,
+        default: () => [],
+    },
     stats: {
         type: Object,
         default: () => ({ total_files: 0, new_timelapses: 0 }),
     },
 });
 
-// 2. PREVIEW LOGIC (Standard Vue code)
+// 3. PREVIEW LOGIC
 const isPreviewOpen = ref(false);
 const selectedFile = ref(null);
 
@@ -37,7 +48,7 @@ const closePreview = () => {
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mb-10">
                         <h2 class="text-3xl font-bold text-gray-900">
-                            Bonjour, {{ project?.client_name || 'Client' }} !
+                            Bonjour, {{ user?.name || 'Client' }} !
                         </h2>
                         <p class="mt-2 text-sm text-gray-500">
                             Aperçu de votre projet "{{
@@ -69,7 +80,7 @@ const closePreview = () => {
                                             <dd
                                                 class="text-2xl font-bold text-gray-900"
                                             >
-                                                {{ stats.total_files }}
+                                                {{ stats?.total_files || 0 }}
                                             </dd>
                                         </dl>
                                     </div>
@@ -97,7 +108,7 @@ const closePreview = () => {
                                             <dd
                                                 class="text-2xl font-bold text-gray-900"
                                             >
-                                                {{ stats.new_timelapses }}
+                                                {{ stats?.new_timelapses || 0 }}
                                             </dd>
                                         </dl>
                                     </div>
@@ -114,7 +125,7 @@ const closePreview = () => {
                         </div>
 
                         <div
-                            v-if="files.length > 0"
+                            v-if="files && files.length > 0"
                             class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                         >
                             <div
@@ -130,7 +141,6 @@ const closePreview = () => {
                                         :src="file.thumbnail"
                                         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
-
                                     <div
                                         v-if="file.type === 'video'"
                                         class="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30"
@@ -143,12 +153,10 @@ const closePreview = () => {
                                             ></i>
                                         </div>
                                     </div>
-
                                     <span
                                         class="absolute top-2 left-2 rounded-sm bg-black/70 px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase"
+                                        >{{ file.badge }}</span
                                     >
-                                        {{ file.badge }}
-                                    </span>
                                 </div>
 
                                 <div class="flex flex-1 flex-col p-4">
@@ -163,7 +171,6 @@ const closePreview = () => {
                                             {{ file.date }} • {{ file.size }}
                                         </p>
                                     </div>
-
                                     <div class="mt-auto flex space-x-2 pt-3">
                                         <a
                                             :href="file.download_url"
@@ -175,7 +182,6 @@ const closePreview = () => {
                                             ></i>
                                             Télécharger
                                         </a>
-
                                         <button
                                             @click="openPreview(file)"
                                             class="cursor-pointer rounded-sm bg-gray-100 px-3 text-gray-600 transition-colors hover:bg-gray-200"
