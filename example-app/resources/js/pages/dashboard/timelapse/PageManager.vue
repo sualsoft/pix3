@@ -314,6 +314,263 @@ onMounted(() => loadData());
                             ></textarea>
                         </div>
 
+                        <!-- SEO Content Field -->
+                        <div>
+                            <label
+                                class="mb-2 block text-sm font-bold text-gray-800"
+                                >Contenu SEO (optionnel)</label
+                            >
+                            <textarea
+                                v-model="form.seo_content"
+                                rows="4"
+                                class="w-full rounded-lg border-2 border-gray-300 p-3 text-sm font-medium text-gray-900 focus:border-blue-600"
+                                placeholder="Ajoutez du contenu supplémentaire pour améliorer le référencement naturel (SEO)..."
+                            ></textarea>
+                            <p class="mt-1 text-xs text-gray-500">
+                                Ce contenu sera affiché en bas de page, avant le
+                                pied de page, pour améliorer le SEO.
+                            </p>
+                        </div>
+
+                        <!-- Advanced SEO Fields -->
+                        <div class="mt-6">
+                            <h3 class="mb-4 text-lg font-bold text-gray-800">
+                                Paramètres SEO Avancés
+                            </h3>
+
+                            <!-- Meta Tags -->
+                            <div
+                                class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2"
+                            >
+                                <div>
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Titre Meta</label
+                                    >
+                                    <input
+                                        v-model="form.meta_title"
+                                        type="text"
+                                        class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                        placeholder="Titre de la page pour les moteurs de recherche"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Mots-clés</label
+                                    >
+                                    <input
+                                        v-model="form.keywords"
+                                        type="text"
+                                        class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                        placeholder="Mots-clés séparés par des virgules"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label
+                                    class="mb-2 block text-sm font-semibold text-gray-700"
+                                    >Description Meta</label
+                                >
+                                <textarea
+                                    v-model="form.meta_description"
+                                    rows="3"
+                                    class="w-full rounded-lg border-2 border-gray-300 p-3 text-sm font-medium text-gray-900 focus:border-blue-600"
+                                    placeholder="Description de la page pour les moteurs de recherche"
+                                ></textarea>
+                            </div>
+
+                            <!-- Open Graph -->
+                            <div class="mt-4 border-t border-gray-200 pt-4">
+                                <h4
+                                    class="text-md mb-3 font-bold text-gray-700"
+                                >
+                                    Open Graph (Facebook)
+                                </h4>
+                                <div
+                                    class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2"
+                                >
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-semibold text-gray-700"
+                                            >Titre OG</label
+                                        >
+                                        <input
+                                            v-model="form.og_title"
+                                            type="text"
+                                            class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                            placeholder="Titre pour le partage sur Facebook"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-semibold text-gray-700"
+                                            >Type OG</label
+                                        >
+                                        <select
+                                            v-model="form.og_type"
+                                            class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                        >
+                                            <option value="website">
+                                                Website
+                                            </option>
+                                            <option value="article">
+                                                Article
+                                            </option>
+                                            <option value="video">Video</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Description OG</label
+                                    >
+                                    <textarea
+                                        v-model="form.og_description"
+                                        rows="2"
+                                        class="w-full rounded-lg border-2 border-gray-300 p-3 text-sm font-medium text-gray-900 focus:border-blue-600"
+                                        placeholder="Description pour le partage sur Facebook"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Image OG</label
+                                    >
+                                    <div
+                                        class="flex flex-col gap-4 md:flex-row"
+                                    >
+                                        <div
+                                            v-if="form.og_image_preview"
+                                            class="h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gray-300"
+                                        >
+                                            <img
+                                                :src="form.og_image_preview"
+                                                alt="OG Preview"
+                                                class="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <div class="flex-1">
+                                            <input
+                                                type="file"
+                                                @change="handleOgImageChange"
+                                                accept="image/*"
+                                                class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                            />
+                                            <p
+                                                class="mt-1 text-xs text-gray-500"
+                                            >
+                                                Image pour le partage sur
+                                                Facebook (PNG, JPG, GIF)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Twitter Card -->
+                            <div class="mt-4 border-t border-gray-200 pt-4">
+                                <h4
+                                    class="text-md mb-3 font-bold text-gray-700"
+                                >
+                                    Twitter Card
+                                </h4>
+                                <div
+                                    class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2"
+                                >
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-semibold text-gray-700"
+                                            >Type de carte</label
+                                        >
+                                        <select
+                                            v-model="form.twitter_card"
+                                            class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                        >
+                                            <option value="summary">
+                                                Summary
+                                            </option>
+                                            <option value="summary_large_image">
+                                                Summary with Large Image
+                                            </option>
+                                            <option value="app">App</option>
+                                            <option value="player">
+                                                Player
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-semibold text-gray-700"
+                                            >Titre Twitter</label
+                                        >
+                                        <input
+                                            v-model="form.twitter_title"
+                                            type="text"
+                                            class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                            placeholder="Titre pour le partage sur Twitter"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Description Twitter</label
+                                    >
+                                    <textarea
+                                        v-model="form.twitter_description"
+                                        rows="2"
+                                        class="w-full rounded-lg border-2 border-gray-300 p-3 text-sm font-medium text-gray-900 focus:border-blue-600"
+                                        placeholder="Description pour le partage sur Twitter"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="mb-2 block text-sm font-semibold text-gray-700"
+                                        >Image Twitter</label
+                                    >
+                                    <div
+                                        class="flex flex-col gap-4 md:flex-row"
+                                    >
+                                        <div
+                                            v-if="form.twitter_image_preview"
+                                            class="h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gray-300"
+                                        >
+                                            <img
+                                                :src="
+                                                    form.twitter_image_preview
+                                                "
+                                                alt="Twitter Preview"
+                                                class="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <div class="flex-1">
+                                            <input
+                                                type="file"
+                                                @change="
+                                                    handleTwitterImageChange
+                                                "
+                                                accept="image/*"
+                                                class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                            />
+                                            <p
+                                                class="mt-1 text-xs text-gray-500"
+                                            >
+                                                Image pour le partage sur
+                                                Twitter (PNG, JPG, GIF)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div
                             class="flex items-center justify-end gap-4 border-t border-gray-200 pt-6"
                         >
