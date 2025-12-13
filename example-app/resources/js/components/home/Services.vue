@@ -31,7 +31,7 @@ onMounted(() => {
             <div class="mb-6 flex items-center">
                 <div class="mr-4 h-8 w-1.5 bg-[#0CB1F1]"></div>
                 <h2 class="text-3xl font-bold text-gray-900">
-                    Voici nos services clés
+                    Nos prestations
                 </h2>
             </div>
 

@@ -16,6 +16,7 @@ Route::get('/timelapse', function () { return Inertia::render('Timelapse'); })->
 Route::get('/drone', function () { return Inertia::render('Drone'); })->name('drone');
 Route::get('/portfolio', function () { return Inertia::render('Portfolio'); })->name('portfolio');
 Route::get('/contact', function () { return Inertia::render('Contact'); })->name('contact');
+Route::get('/legal-privacy-policy', function () { return Inertia::render('LegalPrivacyPolicy'); })->name('legal-privacy-policy');
 
 // Dynamic Pages
 Route::get('/{category}/{slug}', [ServicePageController::class, 'show'])
