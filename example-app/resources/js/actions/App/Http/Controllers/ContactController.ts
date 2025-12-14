@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ContactController::sendEmail
-* @see app/Http/Controllers/ContactController.php:10
+* @see app/Http/Controllers/ContactController.php:11
 * @route '/api/contact-send'
 */
 export const sendEmail = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ sendEmail.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::sendEmail
-* @see app/Http/Controllers/ContactController.php:10
+* @see app/Http/Controllers/ContactController.php:11
 * @route '/api/contact-send'
 */
 sendEmail.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ sendEmail.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ContactController::sendEmail
-* @see app/Http/Controllers/ContactController.php:10
+* @see app/Http/Controllers/ContactController.php:11
 * @route '/api/contact-send'
 */
 sendEmail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ sendEmail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\ContactController::sendEmail
-* @see app/Http/Controllers/ContactController.php:10
+* @see app/Http/Controllers/ContactController.php:11
 * @route '/api/contact-send'
 */
 const sendEmailForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -45,7 +45,7 @@ const sendEmailForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\ContactController::sendEmail
-* @see app/Http/Controllers/ContactController.php:10
+* @see app/Http/Controllers/ContactController.php:11
 * @route '/api/contact-send'
 */
 sendEmailForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

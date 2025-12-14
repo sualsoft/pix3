@@ -4,6 +4,7 @@ import ContactController from './ContactController'
 import PortfolioController from './PortfolioController'
 import ServicePageController from './ServicePageController'
 import UserPageController from './UserPageController'
+import SitemapController from './SitemapController'
 
 const Controllers = {
     LayoutController: Object.assign(LayoutController, LayoutController),
@@ -12,6 +13,7 @@ const Controllers = {
     PortfolioController: Object.assign(PortfolioController, PortfolioController),
     ServicePageController: Object.assign(ServicePageController, ServicePageController),
     UserPageController: Object.assign(UserPageController, UserPageController),
+    SitemapController: Object.assign(SitemapController, SitemapController),
 }
 
 export default Controllers

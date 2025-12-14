@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\ServicePageController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,75 @@ Route::get('/drone', function () { return Inertia::render('Drone'); })->name('dr
 Route::get('/portfolio', function () { return Inertia::render('Portfolio'); })->name('portfolio');
 Route::get('/contact', function () { return Inertia::render('Contact'); })->name('contact');
 Route::get('/legal-privacy-policy', function () { return Inertia::render('LegalPrivacyPolicy'); })->name('legal-privacy-policy');
+
+// Sitemap route
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+
+// Robots.txt route
+Route::get('/robots.txt', function () {
+    $sitemapUrl = url('/sitemap.xml');
+    $content = "User-agent: *\nDisallow:\n\nSitemap: {$sitemapUrl}\n";
+    
+    return response($content, 200, [
+        'Content-Type' => 'text/plain'
+    ]);
+});
+
+// TEMPORARY: Route to clear caches in production
+Route::get('/clear-cache', function () {
+    // Clear config cache
+    if (file_exists(app()->bootstrapPath().'/cache/config.php')) {
+        unlink(app()->bootstrapPath().'/cache/config.php');
+    }
+    
+    // Clear route cache
+    $routeCacheFiles = glob(app()->bootstrapPath().'/cache/routes-*.php');
+    foreach ($routeCacheFiles as $file) {
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
+    
+    // Clear view cache
+    $viewCacheDir = app()->storagePath().'/framework/views';
+    if (is_dir($viewCacheDir)) {
+        $files = glob($viewCacheDir.'/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+    }
+    
+    return 'Caches cleared!';
+});
+
+// Add this to your routes/web.php file (temporary for testing)
+Route::get('/test-email', function () {
+    try {
+        // Fetch email from database like the contact controller does
+        $setting = \App\Models\SiteSetting::where('key', 'general')->first();
+        $adminEmail = 'agence.pix3i@pix3i.com'; // Default fallback
+        
+        if ($setting) {
+            // Since content is already cast to array in the model, we don't need to decode it
+            $content = $setting->content;
+            if (isset($content['email']) && !empty($content['email'])) {
+                $adminEmail = $content['email'];
+            }
+        }
+        
+        // Try to send a test email
+        \Illuminate\Support\Facades\Mail::raw('Test email from PIX3i website', function ($message) use ($adminEmail) {
+            $message->to($adminEmail)
+                    ->subject('Test Email from PIX3i');
+        });
+        
+        return 'Test email sent successfully to: ' . $adminEmail;
+    } catch (\Exception $e) {
+        return 'Error sending test email: ' . $e->getMessage();
+    }
+});
 
 // Dynamic Pages
 Route::get('/{category}/{slug}', [ServicePageController::class, 'show'])
