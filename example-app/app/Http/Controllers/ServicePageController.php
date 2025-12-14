@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ServicePage;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ServicePageController extends Controller
 {
@@ -18,6 +19,30 @@ class ServicePageController extends Controller
         }
         
         return ServicePage::latest()->get();
+    }
+
+    public function show($category, $slug)
+    {
+        // Find the service page by category and slug
+        $page = ServicePage::where('category', $category)
+                          ->where('slug', $slug)
+                          ->firstOrFail();
+        
+        // Get all timelapse and drone pages for the sidebar
+        $timelapseLinks = ServicePage::where('category', 'timelapse')
+                                   ->orderBy('title')
+                                   ->get(['id', 'title', 'slug']);
+        
+        $droneLinks = ServicePage::where('category', 'drone')
+                               ->orderBy('title')
+                               ->get(['id', 'title', 'slug']);
+        
+        // Return the Inertia view with the page data and sidebar links
+        return Inertia::render('Services/Single', [
+            'page' => $page,
+            'timelapseLinks' => $timelapseLinks,
+            'droneLinks' => $droneLinks,
+        ]);
     }
 
     public function store(Request $request)

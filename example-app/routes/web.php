@@ -88,9 +88,55 @@ Route::get('/test-email', function () {
     }
 });
 
-// Dynamic Pages
-Route::get('/{category}/{slug}', [ServicePageController::class, 'show'])
-    ->where('category', 'drone|timelapse');
+// Test route for service page
+Route::get('/test-service-page', function () {
+    try {
+        // Try to fetch a service page
+        $page = \App\Models\ServicePage::first();
+        if ($page) {
+            return response()->json([
+                'message' => 'Found service page',
+                'page' => $page,
+                'all_pages' => \App\Models\ServicePage::all()
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'No service pages found in database',
+                'all_pages' => \App\Models\ServicePage::all()
+            ]);
+        }
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+// Debug route for specific service page
+Route::get('/debug-service-page/{category}/{slug}', function ($category, $slug) {
+    try {
+        // Try to fetch the specific service page
+        $page = \App\Models\ServicePage::where('category', $category)
+                                     ->where('slug', $slug)
+                                     ->first();
+        
+        if ($page) {
+            return response()->json([
+                'message' => 'Found service page',
+                'page' => $page,
+                'category' => $category,
+                'slug' => $slug
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Service page not found',
+                'category' => $category,
+                'slug' => $slug,
+                'available_pages' => \App\Models\ServicePage::all(['id', 'title', 'category', 'slug'])
+            ]);
+        }
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -138,3 +184,7 @@ Route::middleware([
     Route::get('/user', [UserPageController::class, 'index'])->name('user.index');
 
 });
+
+// Dynamic Pages (Moved to the end to avoid conflicts)
+Route::get('/{category}/{slug}', [ServicePageController::class, 'show'])
+    ->where('category', 'drone|timelapse');
