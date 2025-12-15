@@ -571,9 +571,27 @@ class SettingsController extends Controller
 
         // Handle the 3 Images
         if (isset($data['images']) && is_array($data['images'])) {
-            foreach ($data['images'] as $img) {
-                // Check if New Image Upload (Base64)
-                if (str_contains($img, 'data:image')) {
+            foreach ($data['images'] as $index => $img) {
+                // Check if we have a file upload for this index
+                $fileKey = "images[{$index}]";
+                if ($request->hasFile($fileKey)) {
+                    // Handle file upload
+                    $file = $request->file($fileKey);
+                    $imageName = 'tl-detail-' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    
+                    // Create directory if it doesn't exist
+                    if (!file_exists(public_path('images/timelapse'))) {
+                        mkdir(public_path('images/timelapse'), 0755, true);
+                    }
+                    
+                    // Move the file
+                    $file->move(public_path('images/timelapse'), $imageName);
+                    $cleanImages[] = '/images/timelapse/' . $imageName;
+                } elseif (filter_var($img, FILTER_VALIDATE_URL)) {
+                    // Keep existing URL
+                    $cleanImages[] = $img;
+                } elseif (str_contains($img, 'data:image')) {
+                    // Handle base64 encoded image (backward compatibility)
                     $image_64 = $img; 
                     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
                     $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
@@ -588,8 +606,8 @@ class SettingsController extends Controller
                     
                     $cleanImages[] = '/images/timelapse/' . $imageName;
                 } else {
-                    // Keep existing URL
-                    $cleanImages[] = $img;
+                    // Keep existing value or empty
+                    $cleanImages[] = $img ?: '';
                 }
             }
         }
@@ -602,7 +620,7 @@ class SettingsController extends Controller
         ];
         $setting->save();
 
-        return response()->json(['message' => 'Détails mis à jour !']);
+        return response()->json(['message' => 'Détails Timelapse mis à jour !', 'data' => $setting->content]);
     }
 
     // 18. UPDATE TIMELAPSE VIDEOS (List of Videos)
@@ -650,8 +668,27 @@ class SettingsController extends Controller
         $cleanImages = [];
 
         if (isset($data['images']) && is_array($data['images'])) {
-            foreach ($data['images'] as $img) {
-                if (str_contains($img, 'data:image')) {
+            foreach ($data['images'] as $index => $img) {
+                // Check if we have a file upload for this index
+                $fileKey = "images[{$index}]";
+                if ($request->hasFile($fileKey)) {
+                    // Handle file upload
+                    $file = $request->file($fileKey);
+                    $imageName = 'drone-detail-' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    
+                    // Create directory if it doesn't exist
+                    if (!file_exists(public_path('images/drone'))) {
+                        mkdir(public_path('images/drone'), 0755, true);
+                    }
+                    
+                    // Move the file
+                    $file->move(public_path('images/drone'), $imageName);
+                    $cleanImages[] = '/images/drone/' . $imageName;
+                } elseif (filter_var($img, FILTER_VALIDATE_URL)) {
+                    // Keep existing URL
+                    $cleanImages[] = $img;
+                } elseif (str_contains($img, 'data:image')) {
+                    // Handle base64 encoded image (backward compatibility)
                     $image_64 = $img; 
                     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
                     $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
@@ -665,7 +702,8 @@ class SettingsController extends Controller
                     file_put_contents(public_path('images/drone/' . $imageName), base64_decode($image));
                     $cleanImages[] = '/images/drone/' . $imageName;
                 } else {
-                    $cleanImages[] = $img;
+                    // Keep existing value or empty
+                    $cleanImages[] = $img ?: '';
                 }
             }
         }
@@ -678,7 +716,7 @@ class SettingsController extends Controller
         ];
         $setting->save();
 
-        return response()->json(['message' => 'Détails Drone mis à jour !']);
+        return response()->json(['message' => 'Détails Drone mis à jour !', 'data' => $setting->content]);
     }
 
     // 20. UPDATE DRONE VIDEOS

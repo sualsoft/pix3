@@ -101,6 +101,7 @@ Route::delete('/service-pages/{id}', [ServicePageController::class, 'destroy']);
 //service
 Route::post('/settings/timelapse-detail', [SettingsController::class, 'updateTimelapseDetail']);
 Route::post('/settings/timelapse-videos', [SettingsController::class, 'updateTimelapseVideos']);
+Route::post('/settings/drone-detail', [SettingsController::class, 'updateDroneDetail']);
 
 // User Project CMS
 Route::get('/user-project', [UserPageController::class, 'getProjectData']);
