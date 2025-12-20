@@ -182,6 +182,7 @@ Route::middleware([
 
     // --- USER ROUTES ---
     Route::get('/user', [UserPageController::class, 'index'])->name('user.index');
+    Route::get('/user/{slug}', [UserPageController::class, 'show'])->name('user.show');
 
 });
 

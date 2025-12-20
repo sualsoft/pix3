@@ -10,7 +10,7 @@ class Project extends Model
     use HasFactory;
 
     // Allow these columns to be filled
-    protected $fillable = ['client_name', 'title'];
+    protected $fillable = ['client_name', 'title', 'slug'];
 
     // --- ADD THIS FUNCTION ---
     public function files()

@@ -27,6 +27,7 @@
         <meta property="og:locale" content="fr_FR">
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->full() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -123,6 +123,8 @@ const menuItems: MenuItem[] = [
     { name: 'User', href: '/dashboard/user/' },
     // ADDED SETTING HERE
     { name: 'Settings', href: '/dashboard/setting' },
+    { name: 'Projects', href: '/dashboard/projects' },
+    { name: 'Main Content', href: '/dashboard/main-content' },
 ];
 
 onMounted(() => {

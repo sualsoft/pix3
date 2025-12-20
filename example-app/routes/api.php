@@ -105,9 +105,22 @@ Route::post('/settings/drone-detail', [SettingsController::class, 'updateDroneDe
 
 // User Project CMS
 Route::get('/user-project', [UserPageController::class, 'getProjectData']);
+Route::get('/user-projects', [UserPageController::class, 'getAllProjects']);
+Route::get('/user-project/slug/{slug}', [UserPageController::class, 'getProjectBySlug']);
 Route::post('/user-project/info', [UserPageController::class, 'updateProject']);
 Route::post('/user-project/file', [UserPageController::class, 'storeFile']);
 Route::delete('/user-project/file/{id}', [UserPageController::class, 'destroyFile']);
+Route::post('/user-project/create', [UserPageController::class, 'createProject']);
+Route::put('/user-project/{id}', [UserPageController::class, 'updateProjectDetails']);
+Route::delete('/user-project/{id}', [UserPageController::class, 'deleteProject']);
+Route::get('/user-project/{id}', [UserPageController::class, 'getSingleProject']);
+Route::post('/user-project/{id}/refresh', [UserPageController::class, 'refreshProjectPage']);
+Route::post('/user-project/template', [UserPageController::class, 'createPageFromTemplate']);
+
+// Main Dashboard Content Management
+Route::get('/dashboard/main-content', [UserPageController::class, 'getMainDashboardContent']);
+Route::post('/dashboard/main-content', [UserPageController::class, 'updateMainDashboardContent']);
+Route::post('/dashboard/main-section', [UserPageController::class, 'addMainDashboardSection']);
 
 Route::get('/dashboard', [UserPageController::class, 'index'])->name('user.dashboard');
 

@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 import general5d934c from './general'
 import homeA31aa7 from './home'
 import timelapse94134e from './timelapse'
@@ -599,6 +599,246 @@ portfolioForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 
 portfolio.form = portfolioForm
 
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+export const projects = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: projects.url(options),
+    method: 'get',
+})
+
+projects.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/projects',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+projects.url = (options?: RouteQueryOptions) => {
+    return projects.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+projects.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: projects.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+projects.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: projects.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+const projectsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: projects.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+projectsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: projects.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:76
+* @route '/dashboard/projects'
+*/
+projectsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: projects.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+projects.form = projectsForm
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+export const mainContent = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: mainContent.url(options),
+    method: 'get',
+})
+
+mainContent.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/main-content',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+mainContent.url = (options?: RouteQueryOptions) => {
+    return mainContent.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+mainContent.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: mainContent.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+mainContent.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: mainContent.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+const mainContentForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: mainContent.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+mainContentForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: mainContent.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:81
+* @route '/dashboard/main-content'
+*/
+mainContentForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: mainContent.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+mainContent.form = mainContentForm
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+export const project = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: project.url(args, options),
+    method: 'get',
+})
+
+project.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/project/{id}',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+project.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { id: args }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            id: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        id: args.id,
+    }
+
+    return project.definition.url
+            .replace('{id}', parsedArgs.id.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+project.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: project.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+project.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: project.url(args, options),
+    method: 'head',
+})
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+const projectForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: project.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+projectForm.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: project.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:86
+* @route '/dashboard/project/{id}'
+*/
+projectForm.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: project.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+project.form = projectForm
+
 const dashboard = {
     general: Object.assign(general, general5d934c),
     socialLinks: Object.assign(socialLinks, socialLinks),
@@ -611,6 +851,9 @@ const dashboard = {
     contact: Object.assign(contact, contact),
     user: Object.assign(user, user),
     setting: Object.assign(setting, setting),
+    projects: Object.assign(projects, projects),
+    mainContent: Object.assign(mainContent, mainContent),
+    project: Object.assign(project, project),
 }
 
 export default dashboard

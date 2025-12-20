@@ -72,4 +72,23 @@ Route::prefix('dashboard')->group(function () {
         return Inertia::render('dashboard/setting/Setting');
     })->name('dashboard.setting.setting');
 
+    // Projects Management
+    Route::get('/projects', function () {
+        return Inertia::render('dashboard/Projects');
+    })->name('dashboard.projects');
+
+    // Main Dashboard Content Management
+    Route::get('/main-content', function () {
+        return Inertia::render('dashboard/MainContent');
+    })->name('dashboard.main-content');
+
+    // Individual Project Pages
+    Route::get('/project/{id}', function ($id) {
+        $project = \App\Models\Project::with('files')->findOrFail($id);
+        return Inertia::render('dashboard/ProjectPage', [
+            'projectId' => $id,
+            'project' => $project
+        ]);
+    })->name('dashboard.project');
+
 });
