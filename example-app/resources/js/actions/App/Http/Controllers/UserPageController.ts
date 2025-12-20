@@ -1107,12 +1107,12 @@ addMainDashboardSection.form = addMainDashboardSectionForm
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-const index79e8db78b7285f47b9383df06923ad39 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index79e8db78b7285f47b9383df06923ad39.url(options),
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: index.url(options),
     method: 'get',
 })
 
-index79e8db78b7285f47b9383df06923ad39.definition = {
+index.definition = {
     methods: ["get","head"],
     url: '/api/dashboard',
 } satisfies RouteDefinition<["get","head"]>
@@ -1122,8 +1122,8 @@ index79e8db78b7285f47b9383df06923ad39.definition = {
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-index79e8db78b7285f47b9383df06923ad39.url = (options?: RouteQueryOptions) => {
-    return index79e8db78b7285f47b9383df06923ad39.definition.url + queryParams(options)
+index.url = (options?: RouteQueryOptions) => {
+    return index.definition.url + queryParams(options)
 }
 
 /**
@@ -1131,8 +1131,8 @@ index79e8db78b7285f47b9383df06923ad39.url = (options?: RouteQueryOptions) => {
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-index79e8db78b7285f47b9383df06923ad39.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index79e8db78b7285f47b9383df06923ad39.url(options),
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: index.url(options),
     method: 'get',
 })
 
@@ -1141,8 +1141,8 @@ index79e8db78b7285f47b9383df06923ad39.get = (options?: RouteQueryOptions): Route
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-index79e8db78b7285f47b9383df06923ad39.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: index79e8db78b7285f47b9383df06923ad39.url(options),
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: index.url(options),
     method: 'head',
 })
 
@@ -1151,8 +1151,8 @@ index79e8db78b7285f47b9383df06923ad39.head = (options?: RouteQueryOptions): Rout
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-const index79e8db78b7285f47b9383df06923ad39Form = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index79e8db78b7285f47b9383df06923ad39.url(options),
+const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
     method: 'get',
 })
 
@@ -1161,8 +1161,8 @@ const index79e8db78b7285f47b9383df06923ad39Form = (options?: RouteQueryOptions):
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-index79e8db78b7285f47b9383df06923ad39Form.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index79e8db78b7285f47b9383df06923ad39.url(options),
+indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
     method: 'get',
 })
 
@@ -1171,8 +1171,8 @@ index79e8db78b7285f47b9383df06923ad39Form.get = (options?: RouteQueryOptions): R
 * @see app/Http/Controllers/UserPageController.php:13
 * @route '/api/dashboard'
 */
-index79e8db78b7285f47b9383df06923ad39Form.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index79e8db78b7285f47b9383df06923ad39.url({
+indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url({
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
             ...(options?.query ?? options?.mergeQuery ?? {}),
@@ -1181,92 +1181,7 @@ index79e8db78b7285f47b9383df06923ad39Form.head = (options?: RouteQueryOptions): 
     method: 'get',
 })
 
-index79e8db78b7285f47b9383df06923ad39.form = index79e8db78b7285f47b9383df06923ad39Form
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-const index4f74708015d25e186d2d80ed42af2d9a = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index4f74708015d25e186d2d80ed42af2d9a.url(options),
-    method: 'get',
-})
-
-index4f74708015d25e186d2d80ed42af2d9a.definition = {
-    methods: ["get","head"],
-    url: '/user',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-index4f74708015d25e186d2d80ed42af2d9a.url = (options?: RouteQueryOptions) => {
-    return index4f74708015d25e186d2d80ed42af2d9a.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-index4f74708015d25e186d2d80ed42af2d9a.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index4f74708015d25e186d2d80ed42af2d9a.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-index4f74708015d25e186d2d80ed42af2d9a.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: index4f74708015d25e186d2d80ed42af2d9a.url(options),
-    method: 'head',
-})
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-const index4f74708015d25e186d2d80ed42af2d9aForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index4f74708015d25e186d2d80ed42af2d9a.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-index4f74708015d25e186d2d80ed42af2d9aForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index4f74708015d25e186d2d80ed42af2d9a.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
-* @route '/user'
-*/
-index4f74708015d25e186d2d80ed42af2d9aForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index4f74708015d25e186d2d80ed42af2d9a.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index4f74708015d25e186d2d80ed42af2d9a.form = index4f74708015d25e186d2d80ed42af2d9aForm
-
-export const index = {
-    '/api/dashboard': index79e8db78b7285f47b9383df06923ad39,
-    '/user': index4f74708015d25e186d2d80ed42af2d9a,
-}
+index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::show

@@ -223,7 +223,7 @@ onMounted(() => {
                         >
                             <div v-if="user" class="flex flex-col gap-2">
                                 <Link
-                                    href="/dashboard"
+                                    :href="user.role === 'admin' ? '/dashboard' : (user.projects && user.projects.length > 0 ? '/user/' + user.projects[0].slug : '/')"
                                     class="block w-full rounded-md bg-white px-4 py-2 text-center text-sm font-bold text-[#101114]"
                                 >
                                     <i class="fa-solid fa-user mr-2"></i>

@@ -82,13 +82,6 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
             
             if ($user && Hash::check($request->password, $user->password)) {
-                // Check if user has an assigned project
-                $project = $user->projects()->first();
-                if ($project) {
-                    // Store the redirect URL in the session
-                    session(['auth.redirect' => '/user/' . $project->slug]);
-                }
-                
                 return $user;
             }
         });

@@ -5,6 +5,7 @@ namespace App\Http\Responses;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginResponse implements LoginResponseContract
 {
@@ -29,6 +30,13 @@ class LoginResponse implements LoginResponseContract
         }
         
         // Default redirect for regular users
+        // Check if user has an assigned project
+        $userWithProjects = User::with('projects')->find($user->id);
+        $project = $userWithProjects->projects->first();
+        if ($project) {
+            return redirect()->intended('/user/' . $project->slug);
+        }
+        
         return redirect()->intended('/');
     }
 }

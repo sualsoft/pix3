@@ -81,8 +81,7 @@ dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 dashboard.form = dashboardForm
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -96,8 +95,7 @@ index.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -105,8 +103,7 @@ index.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -115,8 +112,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -125,8 +121,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -135,8 +130,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 })
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -145,8 +139,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see routes/web.php:184
 * @route '/user'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

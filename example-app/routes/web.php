@@ -181,7 +181,21 @@ Route::middleware([
 
 
     // --- USER ROUTES ---
-    Route::get('/user', [UserPageController::class, 'index'])->name('user.index');
+    Route::get('/user', function (Request $request) {
+        // Redirect based on user role
+        if ($request->user()->role === 'admin') {
+            return redirect()->route('dashboard');
+        }
+        
+        // For regular users, check if they have an assigned project
+        $project = $request->user()->projects()->first();
+        if ($project) {
+            return redirect()->route('user.show', ['slug' => $project->slug]);
+        }
+        
+        // If no project assigned, redirect to homepage
+        return redirect('/');
+    })->name('user.index');
     Route::get('/user/{slug}', [UserPageController::class, 'show'])->name('user.show');
 
 });
