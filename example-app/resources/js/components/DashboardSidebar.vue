@@ -123,7 +123,14 @@ const menuItems: MenuItem[] = [
     { name: 'User', href: '/dashboard/user/' },
     // ADDED SETTING HERE
     { name: 'Settings', href: '/dashboard/setting' },
-    { name: 'Projects', href: '/dashboard/projects' },
+    {
+        name: 'Projects',
+        href: '/dashboard/projects',
+        dropdown: [
+            { name: 'All Projects', href: '/dashboard/projects' },
+            { name: 'Client Assign', href: '/dashboard/client-assign' },
+        ],
+    },
     { name: 'Main Content', href: '/dashboard/main-content' },
 ];
 

@@ -839,6 +839,80 @@ projectForm.head = (args: { id: string | number } | [id: string | number ] | str
 
 project.form = projectForm
 
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+export const clientAssign = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: clientAssign.url(options),
+    method: 'get',
+})
+
+clientAssign.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/client-assign',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+clientAssign.url = (options?: RouteQueryOptions) => {
+    return clientAssign.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+clientAssign.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: clientAssign.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+clientAssign.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: clientAssign.url(options),
+    method: 'head',
+})
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+const clientAssignForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: clientAssign.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+clientAssignForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: clientAssign.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/dashboard.php:95
+* @route '/dashboard/client-assign'
+*/
+clientAssignForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: clientAssign.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+clientAssign.form = clientAssignForm
+
 const dashboard = {
     general: Object.assign(general, general5d934c),
     socialLinks: Object.assign(socialLinks, socialLinks),
@@ -854,6 +928,7 @@ const dashboard = {
     projects: Object.assign(projects, projects),
     mainContent: Object.assign(mainContent, mainContent),
     project: Object.assign(project, project),
+    clientAssign: Object.assign(clientAssign, clientAssign),
 }
 
 export default dashboard

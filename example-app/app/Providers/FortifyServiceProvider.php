@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -20,7 +22,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Http\Responses\LoginResponse::class
+        );
     }
 
     /**
@@ -71,6 +76,22 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::twoFactorChallengeView(fn () => Inertia::render('auth/TwoFactorChallenge'));
 
         Fortify::confirmPasswordView(fn () => Inertia::render('auth/ConfirmPassword'));
+        
+        // Custom redirect after login
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->email)->first();
+            
+            if ($user && Hash::check($request->password, $user->password)) {
+                // Check if user has an assigned project
+                $project = $user->projects()->first();
+                if ($project) {
+                    // Store the redirect URL in the session
+                    session(['auth.redirect' => '/user/' . $project->slug]);
+                }
+                
+                return $user;
+            }
+        });
     }
 
     /**

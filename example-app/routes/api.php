@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ServicePageController;
 use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\ClientAssignController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -116,6 +117,15 @@ Route::delete('/user-project/{id}', [UserPageController::class, 'deleteProject']
 Route::get('/user-project/{id}', [UserPageController::class, 'getSingleProject']);
 Route::post('/user-project/{id}/refresh', [UserPageController::class, 'refreshProjectPage']);
 Route::post('/user-project/template', [UserPageController::class, 'createPageFromTemplate']);
+
+// Client Assignment
+Route::post('/client-assign/assign-user', [ClientAssignController::class, 'assignUserToProject']);
+Route::post('/client-assign/create-user', [ClientAssignController::class, 'createAndAssignUser']);
+Route::get('/client-assign/project/{projectId}/users', [ClientAssignController::class, 'getAssignedUsers']);
+Route::get('/users', function () {
+    $users = \App\Models\User::select('id', 'name', 'email')->get();
+    return response()->json(['users' => $users]);
+});
 
 // Main Dashboard Content Management
 Route::get('/dashboard/main-content', [UserPageController::class, 'getMainDashboardContent']);

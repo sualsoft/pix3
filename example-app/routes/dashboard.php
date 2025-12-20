@@ -91,4 +91,9 @@ Route::prefix('dashboard')->group(function () {
         ]);
     })->name('dashboard.project');
 
+    // Client Assignment
+    Route::get('/client-assign', function () {
+        return Inertia::render('dashboard/ClientAssign');
+    })->name('dashboard.client-assign');
+
 });
