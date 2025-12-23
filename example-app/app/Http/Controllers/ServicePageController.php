@@ -77,6 +77,18 @@ class ServicePageController extends Controller
         if (!isset($data['sort_order']) || $data['sort_order'] === null) {
             $data['sort_order'] = 0;
         }
+        
+        // Process content to preserve line breaks and paragraphs
+        if (isset($data['content'])) {
+            $data['content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['content']) . '</p>';
+            $data['content'] = str_replace('<p></p>', '', $data['content']); // Remove empty paragraphs
+        }
+        
+        if (isset($data['seo_content'])) {
+            $data['seo_content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['seo_content']) . '</p>';
+            $data['seo_content'] = str_replace('<p></p>', '', $data['seo_content']); // Remove empty paragraphs
+        }
+        
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
 
         // Handle thumbnail upload
@@ -129,6 +141,17 @@ class ServicePageController extends Controller
         // Set default sort_order if not provided
         if (!isset($data['sort_order']) || $data['sort_order'] === null) {
             $data['sort_order'] = 0;
+        }
+        
+        // Process content to preserve line breaks and paragraphs
+        if (isset($data['content'])) {
+            $data['content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['content']) . '</p>';
+            $data['content'] = str_replace('<p></p>', '', $data['content']); // Remove empty paragraphs
+        }
+        
+        if (isset($data['seo_content'])) {
+            $data['seo_content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['seo_content']) . '</p>';
+            $data['seo_content'] = str_replace('<p></p>', '', $data['seo_content']); // Remove empty paragraphs
         }
         
         // Only update slug if title changed

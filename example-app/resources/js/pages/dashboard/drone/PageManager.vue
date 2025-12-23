@@ -393,6 +393,7 @@ onMounted(() => loadData());
                                 rows="8"
                                 class="w-full rounded-lg border-2 border-gray-300 p-3 text-sm font-medium text-gray-900 focus:border-blue-600"
                                 placeholder="Écrivez votre texte ici..."
+                                style="white-space: pre-wrap"
                             ></textarea>
                         </div>
 
