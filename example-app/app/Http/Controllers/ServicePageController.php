@@ -78,15 +78,13 @@ class ServicePageController extends Controller
             $data['sort_order'] = 0;
         }
         
-        // Process content to preserve line breaks and paragraphs
+        // Process content to preserve line breaks
         if (isset($data['content'])) {
-            $data['content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['content']) . '</p>';
-            $data['content'] = str_replace('<p></p>', '', $data['content']); // Remove empty paragraphs
+            $data['content'] = preg_replace('/\r\n|\r|\n/', '<br>', $data['content']);
         }
         
         if (isset($data['seo_content'])) {
-            $data['seo_content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['seo_content']) . '</p>';
-            $data['seo_content'] = str_replace('<p></p>', '', $data['seo_content']); // Remove empty paragraphs
+            $data['seo_content'] = preg_replace('/\r\n|\r|\n/', '<br>', $data['seo_content']);
         }
         
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
@@ -143,15 +141,13 @@ class ServicePageController extends Controller
             $data['sort_order'] = 0;
         }
         
-        // Process content to preserve line breaks and paragraphs
+        // Process content to preserve line breaks
         if (isset($data['content'])) {
-            $data['content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['content']) . '</p>';
-            $data['content'] = str_replace('<p></p>', '', $data['content']); // Remove empty paragraphs
+            $data['content'] = preg_replace('/\r\n|\r|\n/', '<br>', $data['content']);
         }
         
         if (isset($data['seo_content'])) {
-            $data['seo_content'] = '<p>' . str_replace(array("\r\n", "\r", "\n"), '</p><p>', $data['seo_content']) . '</p>';
-            $data['seo_content'] = str_replace('<p></p>', '', $data['seo_content']); // Remove empty paragraphs
+            $data['seo_content'] = preg_replace('/\r\n|\r|\n/', '<br>', $data['seo_content']);
         }
         
         // Only update slug if title changed
