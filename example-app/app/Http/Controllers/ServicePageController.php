@@ -15,10 +15,15 @@ class ServicePageController extends Controller
         
         // If category is specified, filter by it; otherwise, return all
         if ($category) {
-            return ServicePage::where('category', $category)->latest()->get();
+            return ServicePage::where('category', $category)
+                           ->orderBy('sort_order')
+                           ->orderBy('title')
+                           ->get();
         }
         
-        return ServicePage::latest()->get();
+        return ServicePage::orderBy('sort_order')
+                           ->orderBy('title')
+                           ->get();
     }
 
     public function show($category, $slug)
@@ -28,12 +33,14 @@ class ServicePageController extends Controller
                           ->where('slug', $slug)
                           ->firstOrFail();
         
-        // Get all timelapse and drone pages for the sidebar
+        // Get all timelapse and drone pages for the sidebar, ordered by sort_order
         $timelapseLinks = ServicePage::where('category', 'timelapse')
+                                   ->orderBy('sort_order')
                                    ->orderBy('title')
                                    ->get(['id', 'title', 'slug']);
         
         $droneLinks = ServicePage::where('category', 'drone')
+                               ->orderBy('sort_order')
                                ->orderBy('title')
                                ->get(['id', 'title', 'slug']);
         
@@ -50,6 +57,7 @@ class ServicePageController extends Controller
         $request->validate([
             'title' => 'required',
             'category' => 'required',
+            'sort_order' => 'nullable|integer|min:0',
             'content' => 'required',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
@@ -65,6 +73,10 @@ class ServicePageController extends Controller
         ]);
 
         $data = $request->all();
+        // Set default sort_order if not provided
+        if (!isset($data['sort_order']) || $data['sort_order'] === null) {
+            $data['sort_order'] = 0;
+        }
         $data['slug'] = \Illuminate\Support\Str::slug($request->title);
 
         // Handle thumbnail upload
@@ -96,6 +108,7 @@ class ServicePageController extends Controller
         $request->validate([
             'title' => 'required',
             'category' => 'required',
+            'sort_order' => 'nullable|integer|min:0',
             'content' => 'required',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
@@ -113,6 +126,10 @@ class ServicePageController extends Controller
         $page = ServicePage::findOrFail($id);
 
         $data = $request->all();
+        // Set default sort_order if not provided
+        if (!isset($data['sort_order']) || $data['sort_order'] === null) {
+            $data['sort_order'] = 0;
+        }
         
         // Only update slug if title changed
         if ($request->title !== $page->title) {

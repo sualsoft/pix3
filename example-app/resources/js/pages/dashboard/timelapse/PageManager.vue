@@ -17,6 +17,7 @@ const formTop = ref(null);
 const form = ref({
     title: '',
     category: 'timelapse',
+    sort_order: 0,
     icon: 'fa-solid fa-camera',
     video_url: '',
     content: '',
@@ -46,6 +47,29 @@ const handleFileChange = (e) => {
     }
 };
 
+const handleOgImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        form.value.og_image = file;
+        // Create local preview immediately
+        const reader = new FileReader();
+        reader.onload = (e) => (form.value.og_image_preview = e.target.result);
+        reader.readAsDataURL(file);
+    }
+};
+
+const handleTwitterImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        form.value.twitter_image = file;
+        // Create local preview immediately
+        const reader = new FileReader();
+        reader.onload = (e) =>
+            (form.value.twitter_image_preview = e.target.result);
+        reader.readAsDataURL(file);
+    }
+};
+
 // 5. EDIT MODE (With Auto-Scroll and Image Preview)
 const editItem = (item) => {
     isEditing.value = true;
@@ -54,9 +78,24 @@ const editItem = (item) => {
     // Fill form with database data
     form.value.title = item.title;
     form.value.category = item.category;
+    form.value.sort_order = item.sort_order || 0;
     form.value.icon = item.icon || 'fa-solid fa-camera';
     form.value.video_url = item.video_url;
     form.value.content = item.content;
+    form.value.seo_content = item.seo_content || '';
+    form.value.meta_title = item.meta_title || '';
+    form.value.meta_description = item.meta_description || '';
+    form.value.keywords = item.keywords || '';
+    form.value.og_title = item.og_title || '';
+    form.value.og_description = item.og_description || '';
+    form.value.og_image = null;
+    form.value.og_image_preview = item.og_image;
+    form.value.og_type = item.og_type || 'website';
+    form.value.twitter_card = item.twitter_card || 'summary';
+    form.value.twitter_title = item.twitter_title || '';
+    form.value.twitter_description = item.twitter_description || '';
+    form.value.twitter_image = null;
+    form.value.twitter_image_preview = item.twitter_image;
 
     // SHOW EXISTING THUMBNAIL
     // We set the preview to the URL coming from the database
@@ -79,9 +118,24 @@ const resetForm = () => {
     form.value = {
         title: '',
         category: 'timelapse',
+        sort_order: 0,
         icon: 'fa-solid fa-camera',
         video_url: '',
         content: '',
+        seo_content: '',
+        meta_title: '',
+        meta_description: '',
+        keywords: '',
+        og_title: '',
+        og_description: '',
+        og_image: null,
+        og_image_preview: null,
+        og_type: 'website',
+        twitter_card: 'summary',
+        twitter_title: '',
+        twitter_description: '',
+        twitter_image: null,
+        twitter_image_preview: null,
         thumbnail: null,
         thumbnail_preview: null,
     };
@@ -95,6 +149,7 @@ const save = async () => {
     const formData = new FormData();
     formData.append('title', form.value.title);
     formData.append('category', form.value.category);
+    formData.append('sort_order', form.value.sort_order);
     formData.append('icon', form.value.icon);
     formData.append('content', form.value.content);
     if (form.value.video_url)
@@ -103,6 +158,16 @@ const save = async () => {
     // Only append file if user selected a NEW one
     if (form.value.thumbnail) {
         formData.append('thumbnail', form.value.thumbnail);
+    }
+
+    // Only append OG image if user selected a NEW one
+    if (form.value.og_image) {
+        formData.append('og_image', form.value.og_image);
+    }
+
+    // Only append Twitter image if user selected a NEW one
+    if (form.value.twitter_image) {
+        formData.append('twitter_image', form.value.twitter_image);
     }
 
     try {
@@ -217,6 +282,23 @@ onMounted(() => loadData());
                                     <option value="timelapse">Timelapse</option>
                                     <option value="drone">Drone</option>
                                 </select>
+                            </div>
+
+                            <div>
+                                <label
+                                    class="mb-2 block text-sm font-bold text-gray-800"
+                                    >Ordre d'affichage</label
+                                >
+                                <input
+                                    v-model="form.sort_order"
+                                    type="number"
+                                    min="0"
+                                    class="w-full rounded-lg border-2 border-gray-300 p-3 font-medium text-gray-900 transition focus:border-blue-600"
+                                    placeholder="0"
+                                />
+                                <p class="mt-1 text-xs text-gray-500">
+                                    Ordre d'affichage (0 = premier)
+                                </p>
                             </div>
 
                             <div>

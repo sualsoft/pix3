@@ -10,6 +10,7 @@ class ServicePage extends Model
         'title',
         'slug',
         'category',
+        'sort_order',
         'icon',
         'content',
         'thumbnail',

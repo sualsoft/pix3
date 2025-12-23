@@ -88,7 +88,7 @@ onMounted(() => {
                     <div
                         class="mt-auto flex items-center text-sm font-medium text-[#50aceb] transition-colors group-hover:text-sky-600"
                     >
-                        Apprendre encore plus
+                        En savoir plus
                         <i
                             class="fa-solid fa-arrow-right ml-3 transform transition-transform duration-300 group-hover:translate-x-2"
                         ></i>

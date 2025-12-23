@@ -82,7 +82,7 @@ index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\ServicePageController::store
-* @see app/Http/Controllers/ServicePageController.php:48
+* @see app/Http/Controllers/ServicePageController.php:55
 * @route '/api/service-pages'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -97,7 +97,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\ServicePageController::store
-* @see app/Http/Controllers/ServicePageController.php:48
+* @see app/Http/Controllers/ServicePageController.php:55
 * @route '/api/service-pages'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -106,7 +106,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ServicePageController::store
-* @see app/Http/Controllers/ServicePageController.php:48
+* @see app/Http/Controllers/ServicePageController.php:55
 * @route '/api/service-pages'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -116,7 +116,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\ServicePageController::store
-* @see app/Http/Controllers/ServicePageController.php:48
+* @see app/Http/Controllers/ServicePageController.php:55
 * @route '/api/service-pages'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -126,7 +126,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\ServicePageController::store
-* @see app/Http/Controllers/ServicePageController.php:48
+* @see app/Http/Controllers/ServicePageController.php:55
 * @route '/api/service-pages'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -138,7 +138,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\ServicePageController::update
-* @see app/Http/Controllers/ServicePageController.php:94
+* @see app/Http/Controllers/ServicePageController.php:106
 * @route '/api/service-pages/{id}'
 */
 export const update = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -153,7 +153,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\ServicePageController::update
-* @see app/Http/Controllers/ServicePageController.php:94
+* @see app/Http/Controllers/ServicePageController.php:106
 * @route '/api/service-pages/{id}'
 */
 update.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -180,7 +180,7 @@ update.url = (args: { id: string | number } | [id: string | number ] | string | 
 
 /**
 * @see \App\Http\Controllers\ServicePageController::update
-* @see app/Http/Controllers/ServicePageController.php:94
+* @see app/Http/Controllers/ServicePageController.php:106
 * @route '/api/service-pages/{id}'
 */
 update.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -190,7 +190,7 @@ update.post = (args: { id: string | number } | [id: string | number ] | string |
 
 /**
 * @see \App\Http\Controllers\ServicePageController::update
-* @see app/Http/Controllers/ServicePageController.php:94
+* @see app/Http/Controllers/ServicePageController.php:106
 * @route '/api/service-pages/{id}'
 */
 const updateForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -200,7 +200,7 @@ const updateForm = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\ServicePageController::update
-* @see app/Http/Controllers/ServicePageController.php:94
+* @see app/Http/Controllers/ServicePageController.php:106
 * @route '/api/service-pages/{id}'
 */
 updateForm.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -212,7 +212,7 @@ update.form = updateForm
 
 /**
 * @see \App\Http\Controllers\ServicePageController::destroy
-* @see app/Http/Controllers/ServicePageController.php:145
+* @see app/Http/Controllers/ServicePageController.php:162
 * @route '/api/service-pages/{id}'
 */
 export const destroy = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -227,7 +227,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\ServicePageController::destroy
-* @see app/Http/Controllers/ServicePageController.php:145
+* @see app/Http/Controllers/ServicePageController.php:162
 * @route '/api/service-pages/{id}'
 */
 destroy.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -254,7 +254,7 @@ destroy.url = (args: { id: string | number } | [id: string | number ] | string |
 
 /**
 * @see \App\Http\Controllers\ServicePageController::destroy
-* @see app/Http/Controllers/ServicePageController.php:145
+* @see app/Http/Controllers/ServicePageController.php:162
 * @route '/api/service-pages/{id}'
 */
 destroy.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -264,7 +264,7 @@ destroy.delete = (args: { id: string | number } | [id: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\ServicePageController::destroy
-* @see app/Http/Controllers/ServicePageController.php:145
+* @see app/Http/Controllers/ServicePageController.php:162
 * @route '/api/service-pages/{id}'
 */
 const destroyForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -279,7 +279,7 @@ const destroyForm = (args: { id: string | number } | [id: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\ServicePageController::destroy
-* @see app/Http/Controllers/ServicePageController.php:145
+* @see app/Http/Controllers/ServicePageController.php:162
 * @route '/api/service-pages/{id}'
 */
 destroyForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -296,7 +296,7 @@ destroy.form = destroyForm
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 export const show = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -311,7 +311,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 show.url = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -337,7 +337,7 @@ show.url = (args: { category: string | number, slug: string | number } | [catego
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 show.get = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -347,7 +347,7 @@ show.get = (args: { category: string | number, slug: string | number } | [catego
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 show.head = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -357,7 +357,7 @@ show.head = (args: { category: string | number, slug: string | number } | [categ
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 const showForm = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -367,7 +367,7 @@ const showForm = (args: { category: string | number, slug: string | number } | [
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 showForm.get = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -377,7 +377,7 @@ showForm.get = (args: { category: string | number, slug: string | number } | [ca
 
 /**
 * @see \App\Http\Controllers\ServicePageController::show
-* @see app/Http/Controllers/ServicePageController.php:24
+* @see app/Http/Controllers/ServicePageController.php:29
 * @route '/{category}/{slug}'
 */
 showForm.head = (args: { category: string | number, slug: string | number } | [category: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
