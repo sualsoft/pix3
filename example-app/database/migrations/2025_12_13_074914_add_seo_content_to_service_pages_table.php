@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('service_pages', function (Blueprint $table) {
-            //
+            $table->text('seo_content')->nullable()->after('video_url');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('service_pages', function (Blueprint $table) {
-            //
+            $table->dropColumn('seo_content');
         });
     }
 };

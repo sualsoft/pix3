@@ -46,6 +46,14 @@ const addImageSlot = () => {
         // Limit to 6 images
         form.value.images.push('');
         imageFiles.value.push(null);
+
+        // Trigger file selection for the new slot after a brief delay to ensure DOM is updated
+        setTimeout(() => {
+            const inputs = document.querySelectorAll('input[type="file"]');
+            if (inputs.length > 0) {
+                inputs[inputs.length - 1].click(); // Click the last (newest) input
+            }
+        }, 100);
     }
 };
 
@@ -55,6 +63,13 @@ const removeImageSlot = (index) => {
         // Keep at least one slot
         form.value.images.splice(index, 1);
         imageFiles.value.splice(index, 1);
+    }
+};
+
+const triggerFileSelect = (index) => {
+    const inputs = document.querySelectorAll('input[type="file"]');
+    if (inputs.length > 0) {
+        inputs[index].click(); // Click the input at the specified index
     }
 };
 
@@ -183,11 +198,13 @@ onMounted(() => loadData());
                                         <img
                                             v-if="img"
                                             :src="img"
-                                            class="h-full w-full object-cover"
+                                            class="h-full w-full cursor-pointer object-cover"
+                                            @click="triggerFileSelect(index)"
                                         />
                                         <div
                                             v-else
-                                            class="flex h-full items-center justify-center text-gray-400"
+                                            class="flex h-full cursor-pointer items-center justify-center text-gray-400"
+                                            @click="triggerFileSelect(index)"
                                         >
                                             Aucune image
                                         </div>

@@ -572,11 +572,24 @@ class SettingsController extends Controller
         // Handle the 3 Images
         if (isset($data['images']) && is_array($data['images'])) {
             foreach ($data['images'] as $index => $img) {
-                // Check if we have a file upload for this index
-                $fileKey = "images[{$index}]";
-                if ($request->hasFile($fileKey)) {
+                // Check if a file was uploaded for this specific index by trying different access methods
+                $file = null;
+                
+                // Try different ways to access the file
+                if ($request->hasFile("images.{$index}")) {
+                    $file = $request->file("images.{$index}");
+                } elseif ($request->hasFile("images[{$index}]")) {
+                    $file = $request->file("images[{$index}]");
+                } elseif ($request->hasFile('images')) {
+                    // If images is sent as an array
+                    $files = $request->file('images');
+                    if (isset($files[$index]) && $files[$index]) {
+                        $file = $files[$index];
+                    }
+                }
+                
+                if ($file) {
                     // Handle file upload
-                    $file = $request->file($fileKey);
                     $imageName = 'tl-detail-' . uniqid() . '.' . $file->getClientOriginalExtension();
                     
                     // Create directory if it doesn't exist
@@ -669,11 +682,24 @@ class SettingsController extends Controller
 
         if (isset($data['images']) && is_array($data['images'])) {
             foreach ($data['images'] as $index => $img) {
-                // Check if we have a file upload for this index
-                $fileKey = "images[{$index}]";
-                if ($request->hasFile($fileKey)) {
+                // Check if a file was uploaded for this specific index by trying different access methods
+                $file = null;
+                
+                // Try different ways to access the file
+                if ($request->hasFile("images.{$index}")) {
+                    $file = $request->file("images.{$index}");
+                } elseif ($request->hasFile("images[{$index}]")) {
+                    $file = $request->file("images[{$index}]");
+                } elseif ($request->hasFile('images')) {
+                    // If images is sent as an array
+                    $files = $request->file('images');
+                    if (isset($files[$index]) && $files[$index]) {
+                        $file = $files[$index];
+                    }
+                }
+                
+                if ($file) {
                     // Handle file upload
-                    $file = $request->file($fileKey);
                     $imageName = 'drone-detail-' . uniqid() . '.' . $file->getClientOriginalExtension();
                     
                     // Create directory if it doesn't exist
