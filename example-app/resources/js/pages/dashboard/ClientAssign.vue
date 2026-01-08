@@ -25,13 +25,51 @@ const loadData = async () => {
     try {
         // Load projects
         const projectsResponse = await fetch('/api/user-projects');
-        const projectsData = await projectsResponse.json();
-        projects.value = projectsData.projects || [];
+        let projectsData = {};
+        if (projectsResponse.ok) {
+            projectsData = await projectsResponse.json();
+            projects.value = projectsData.projects || [];
+        } else {
+            // Handle error response
+            const projectsResponseClone = projectsResponse.clone();
+            try {
+                const errorData = await projectsResponseClone.json();
+                console.error('Error loading projects:', errorData);
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await projectsResponseClone.text();
+                    console.error('Error loading projects:', textContent);
+                } catch (textError) {
+                    console.error('Response parsing error for projects');
+                }
+            }
+            projects.value = [];
+        }
 
         // Load users
         const usersResponse = await fetch('/api/users');
-        const usersData = await usersResponse.json();
-        users.value = usersData.users || [];
+        let usersData = {};
+        if (usersResponse.ok) {
+            usersData = await usersResponse.json();
+            users.value = usersData.users || [];
+        } else {
+            // Handle error response
+            const usersResponseClone = usersResponse.clone();
+            try {
+                const errorData = await usersResponseClone.json();
+                console.error('Error loading users:', errorData);
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await usersResponseClone.text();
+                    console.error('Error loading users:', textContent);
+                } catch (textError) {
+                    console.error('Response parsing error for users');
+                }
+            }
+            users.value = [];
+        }
     } catch (error) {
         console.error('Error loading data', error);
         message.value = '❌ Error loading data: ' + error.message;
@@ -57,11 +95,29 @@ const assignUserToProject = async () => {
             body: JSON.stringify(assignForm.value),
         });
 
+        // Check response status first and clone the response if needed
         let result = {};
-        try {
+        if (response.ok) {
             result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
+        } else {
+            // Clone the response to read it multiple times if needed
+            const responseClone = response.clone();
+            try {
+                result = await responseClone.json();
+            } catch (e) {
+                // If JSON parsing fails (e.g., server returned HTML error page), try to get text content
+                try {
+                    const textContent = await responseClone.text();
+                    // Check if the content looks like HTML (starts with <!DOCTYPE or <html>)
+                    if (textContent.trim().startsWith('<!DOCTYPE') || textContent.trim().startsWith('<html')) {
+                        result.message = 'Server error occurred';
+                    } else {
+                        result.message = textContent;
+                    }
+                } catch (textError) {
+                    result.message = 'Response parsing error';
+                }
+            }
         }
 
         if (response.ok) {
@@ -109,11 +165,29 @@ const createAndAssignUser = async () => {
             body: JSON.stringify(assignForm.value),
         });
 
+        // Check response status first and clone the response if needed
         let result = {};
-        try {
+        if (response.ok) {
             result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
+        } else {
+            // Clone the response to read it multiple times if needed
+            const responseClone = response.clone();
+            try {
+                result = await responseClone.json();
+            } catch (e) {
+                // If JSON parsing fails (e.g., server returned HTML error page), try to get text content
+                try {
+                    const textContent = await responseClone.text();
+                    // Check if the content looks like HTML (starts with <!DOCTYPE or <html>)
+                    if (textContent.trim().startsWith('<!DOCTYPE') || textContent.trim().startsWith('<html')) {
+                        result.message = 'Server error occurred';
+                    } else {
+                        result.message = textContent;
+                    }
+                } catch (textError) {
+                    result.message = 'Response parsing error';
+                }
+            }
         }
 
         if (response.ok) {
@@ -157,10 +231,34 @@ const loadAssignedUsers = async (projectId) => {
         const response = await fetch(
             `/api/client-assign/project/${projectId}/users`,
         );
-        const data = await response.json();
-        assignedUsers.value = data.users || [];
+        
+        // Check if response is ok before trying to parse JSON
+        if (response.ok) {
+            const data = await response.json();
+            assignedUsers.value = data.users || [];
+        } else {
+            // Handle error response
+            const responseClone = response.clone();
+            try {
+                const errorData = await responseClone.json();
+                console.error('Error loading assigned users:', errorData);
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await responseClone.text();
+                    // Check if the content looks like HTML (starts with <!DOCTYPE or <html>)
+                    if (textContent.trim().startsWith('<!DOCTYPE') || textContent.trim().startsWith('<html')) {
+                        console.error('Server error occurred while loading assigned users');
+                    } else {
+                        console.error('Error loading assigned users:', textContent);
+                    }
+                } catch (textError) {
+                    console.error('Response parsing error while loading assigned users');
+                }
+            }
+        }
     } catch (error) {
-        console.error('Error loading assigned users', error);
+        console.error('Network error loading assigned users', error);
     }
 };
 

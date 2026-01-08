@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ClientAssignController::assignUserToProject
-* @see app/Http/Controllers/ClientAssignController.php:16
+* @see app/Http/Controllers/ClientAssignController.php:17
 * @route '/api/client-assign/assign-user'
 */
 export const assignUserToProject = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ assignUserToProject.definition = {
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::assignUserToProject
-* @see app/Http/Controllers/ClientAssignController.php:16
+* @see app/Http/Controllers/ClientAssignController.php:17
 * @route '/api/client-assign/assign-user'
 */
 assignUserToProject.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ assignUserToProject.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::assignUserToProject
-* @see app/Http/Controllers/ClientAssignController.php:16
+* @see app/Http/Controllers/ClientAssignController.php:17
 * @route '/api/client-assign/assign-user'
 */
 assignUserToProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ assignUserToProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::assignUserToProject
-* @see app/Http/Controllers/ClientAssignController.php:16
+* @see app/Http/Controllers/ClientAssignController.php:17
 * @route '/api/client-assign/assign-user'
 */
 const assignUserToProjectForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -45,7 +45,7 @@ const assignUserToProjectForm = (options?: RouteQueryOptions): RouteFormDefiniti
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::assignUserToProject
-* @see app/Http/Controllers/ClientAssignController.php:16
+* @see app/Http/Controllers/ClientAssignController.php:17
 * @route '/api/client-assign/assign-user'
 */
 assignUserToProjectForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -57,7 +57,7 @@ assignUserToProject.form = assignUserToProjectForm
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::createAndAssignUser
-* @see app/Http/Controllers/ClientAssignController.php:40
+* @see app/Http/Controllers/ClientAssignController.php:49
 * @route '/api/client-assign/create-user'
 */
 export const createAndAssignUser = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -72,7 +72,7 @@ createAndAssignUser.definition = {
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::createAndAssignUser
-* @see app/Http/Controllers/ClientAssignController.php:40
+* @see app/Http/Controllers/ClientAssignController.php:49
 * @route '/api/client-assign/create-user'
 */
 createAndAssignUser.url = (options?: RouteQueryOptions) => {
@@ -81,7 +81,7 @@ createAndAssignUser.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::createAndAssignUser
-* @see app/Http/Controllers/ClientAssignController.php:40
+* @see app/Http/Controllers/ClientAssignController.php:49
 * @route '/api/client-assign/create-user'
 */
 createAndAssignUser.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -91,7 +91,7 @@ createAndAssignUser.post = (options?: RouteQueryOptions): RouteDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::createAndAssignUser
-* @see app/Http/Controllers/ClientAssignController.php:40
+* @see app/Http/Controllers/ClientAssignController.php:49
 * @route '/api/client-assign/create-user'
 */
 const createAndAssignUserForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -101,7 +101,7 @@ const createAndAssignUserForm = (options?: RouteQueryOptions): RouteFormDefiniti
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::createAndAssignUser
-* @see app/Http/Controllers/ClientAssignController.php:40
+* @see app/Http/Controllers/ClientAssignController.php:49
 * @route '/api/client-assign/create-user'
 */
 createAndAssignUserForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -113,7 +113,7 @@ createAndAssignUser.form = createAndAssignUserForm
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 export const getAssignedUsers = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -128,7 +128,7 @@ getAssignedUsers.definition = {
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 getAssignedUsers.url = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -155,7 +155,7 @@ getAssignedUsers.url = (args: { projectId: string | number } | [projectId: strin
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 getAssignedUsers.get = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -165,7 +165,7 @@ getAssignedUsers.get = (args: { projectId: string | number } | [projectId: strin
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 getAssignedUsers.head = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -175,7 +175,7 @@ getAssignedUsers.head = (args: { projectId: string | number } | [projectId: stri
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 const getAssignedUsersForm = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -185,7 +185,7 @@ const getAssignedUsersForm = (args: { projectId: string | number } | [projectId:
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 getAssignedUsersForm.get = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -195,7 +195,7 @@ getAssignedUsersForm.get = (args: { projectId: string | number } | [projectId: s
 
 /**
 * @see \App\Http\Controllers\ClientAssignController::getAssignedUsers
-* @see app/Http/Controllers/ClientAssignController.php:72
+* @see app/Http/Controllers/ClientAssignController.php:90
 * @route '/api/client-assign/project/{projectId}/users'
 */
 getAssignedUsersForm.head = (args: { projectId: string | number } | [projectId: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Password;
 
 class ClientAssignController extends Controller
@@ -15,23 +16,31 @@ class ClientAssignController extends Controller
      */
     public function assignUserToProject(Request $request)
     {
-        $validatedData = $request->validate([
-            'project_id' => 'required|exists:projects,id',
-            'user_id' => 'required|exists:users,id'
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'project_id' => 'required|exists:projects,id',
+                'user_id' => 'required|exists:users,id'
+            ]);
 
-        // Get the project and user
-        $project = Project::findOrFail($validatedData['project_id']);
-        $user = User::findOrFail($validatedData['user_id']);
+            // Get the project and user
+            $project = Project::findOrFail($validatedData['project_id']);
+            $user = User::findOrFail($validatedData['user_id']);
 
-        // Associate the user with the project
-        $project->users()->attach($user->id);
-        
-        return response()->json([
-            'message' => 'User assigned to project successfully!',
-            'project' => $project,
-            'user' => $user
-        ]);
+            // Associate the user with the project
+            $project->users()->attach($user->id);
+            
+            return response()->json([
+                'message' => 'User assigned to project successfully!',
+                'project' => $project,
+                'user' => $user
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Assign User to Project Error: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Failed to assign user to project',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -39,31 +48,40 @@ class ClientAssignController extends Controller
      */
     public function createAndAssignUser(Request $request)
     {
-        $validatedData = $request->validate([
-            'project_id' => 'required|exists:projects,id',
-            'new_user_name' => 'required|string|max:255',
-            'new_user_email' => 'required|email|unique:users,email',
-            'new_user_password' => ['required', Password::min(8)]
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'project_id' => 'required|exists:projects,id',
+                'new_user_name' => 'required|string|max:255',
+                'new_user_email' => 'required|email|unique:users,email',
+                'new_user_password' => ['required', Password::min(8)]
+            ]);
 
-        // Create the new user
-        $user = User::create([
-            'name' => $validatedData['new_user_name'],
-            'email' => $validatedData['new_user_email'],
-            'password' => Hash::make($validatedData['new_user_password'])
-        ]);
+            // Create the new user
+            $user = User::create([
+                'name' => $validatedData['new_user_name'],
+                'email' => $validatedData['new_user_email'],
+                'password' => Hash::make($validatedData['new_user_password']),
+                'role' => 'user' // Explicitly set the role as user
+            ]);
 
-        // Get the project
-        $project = Project::findOrFail($validatedData['project_id']);
+            // Get the project
+            $project = Project::findOrFail($validatedData['project_id']);
 
-        // Associate the user with the project
-        $project->users()->attach($user->id);
-        
-        return response()->json([
-            'message' => 'New user created and assigned to project successfully!',
-            'project' => $project,
-            'user' => $user
-        ]);
+            // Associate the user with the project
+            $project->users()->attach($user->id);
+            
+            return response()->json([
+                'message' => 'New user created and assigned to project successfully!',
+                'project' => $project,
+                'user' => $user
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Create and Assign User Error: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Failed to create and assign user',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -71,10 +89,18 @@ class ClientAssignController extends Controller
      */
     public function getAssignedUsers($projectId)
     {
-        $project = Project::with('users')->findOrFail($projectId);
-        
-        return response()->json([
-            'users' => $project->users
-        ]);
+        try {
+            $project = Project::with('users')->findOrFail($projectId);
+            
+            return response()->json([
+                'users' => $project->users
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Get Assigned Users Error: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Failed to get assigned users',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
