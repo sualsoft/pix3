@@ -91,20 +91,50 @@ class ServicePageController extends Controller
 
         // Handle thumbnail upload
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('services', 'public');
-            $data['thumbnail'] = '/storage/' . $path;
+            $file = $request->file('thumbnail');
+            $fileName = 'service-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/services';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['thumbnail'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         // Handle OG image upload
         if ($request->hasFile('og_image')) {
-            $path = $request->file('og_image')->store('seo', 'public');
-            $data['og_image'] = '/storage/' . $path;
+            $file = $request->file('og_image');
+            $fileName = 'og-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/seo';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['og_image'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         // Handle Twitter image upload
         if ($request->hasFile('twitter_image')) {
-            $path = $request->file('twitter_image')->store('seo', 'public');
-            $data['twitter_image'] = '/storage/' . $path;
+            $file = $request->file('twitter_image');
+            $fileName = 'twitter-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/seo';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['twitter_image'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         ServicePage::create($data);
@@ -157,20 +187,50 @@ class ServicePageController extends Controller
 
         // Handle thumbnail update
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('services', 'public');
-            $data['thumbnail'] = '/storage/' . $path;
+            $file = $request->file('thumbnail');
+            $fileName = 'service-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/services';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['thumbnail'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         // Handle OG image update
         if ($request->hasFile('og_image')) {
-            $path = $request->file('og_image')->store('seo', 'public');
-            $data['og_image'] = '/storage/' . $path;
+            $file = $request->file('og_image');
+            $fileName = 'og-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/seo';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['og_image'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         // Handle Twitter image update
         if ($request->hasFile('twitter_image')) {
-            $path = $request->file('twitter_image')->store('seo', 'public');
-            $data['twitter_image'] = '/storage/' . $path;
+            $file = $request->file('twitter_image');
+            $fileName = 'twitter-' . time() . '-' . $file->getClientOriginalName();
+            
+            // Create directory if it doesn't exist - follow the same pattern as other images
+            $uploadPath = 'images/seo';
+            if (!file_exists(public_path($uploadPath))) {
+                mkdir(public_path($uploadPath), 0755, true);
+            }
+            
+            // Move the file to the images directory
+            $file->move(public_path($uploadPath), $fileName);
+            $data['twitter_image'] = '/' . $uploadPath . '/' . $fileName;
         }
 
         $page->update($data);
