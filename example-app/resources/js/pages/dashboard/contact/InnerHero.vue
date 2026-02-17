@@ -3,6 +3,49 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
+// VERSION IDENTIFIER - Force cache busting
+const VERSION = '2026-02-04-fix-1';
+
+// Helper function to check if object is a File (more robust version)
+const isFileObject = (obj) => {
+    try {
+        // Check if it's a File object
+        if (obj instanceof File) return true;
+        
+        // Check constructor name for Vue Proxy objects
+        if (obj && typeof obj === 'object') {
+            // Handle Vue reactive objects
+            if (obj.constructor && obj.constructor.name === 'File') return true;
+            
+            // Check for Proxy wrapping
+            if (obj.__v_raw && obj.__v_raw instanceof File) return true;
+        }
+        
+        return false;
+    } catch (error) {
+        console.warn('Error checking if object is File:', error);
+        return false;
+    }
+};
+
+// Helper function to get image source (handles both File objects and URLs)
+const getImageSource = (imageData) => {
+    console.log('getImageSource called with:', typeof imageData, imageData);
+    
+    if (isFileObject(imageData)) {
+        console.log('Creating object URL for File object');
+        return URL.createObjectURL(imageData);
+    } else if (typeof imageData === 'string') {
+        console.log('Using string URL directly:', imageData);
+        return imageData;
+    } else {
+        console.log('Unknown image data type:', typeof imageData, imageData);
+        return '';
+    }
+};
+
+console.log('InnerHero component loaded - Version:', VERSION);
+
 // 1. DATA
 const form = ref({
     title: '',
@@ -13,56 +56,115 @@ const isLoading = ref(false);
 
 // 2. LOAD DATA
 const loadData = async () => {
+    console.log('=== LOAD DATA FUNCTION STARTED ===');
     try {
-        const res = await axios.get('/api/layout');
+        console.log('Loading contact hero data...');
+        const res = await axios.get('/api/layout', {
+            headers: {
+                'Cache-Control': 'no-cache',
+                'Pragma': 'no-cache'
+            }
+        });
         const data = res.data;
+        console.log('API Response:', data);
 
-        // Check if portfolio_hero exists in the response
+        // Check if contact_hero exists in the response
         if (data.contact_hero) {
+            console.log('Contact hero data found:', data.contact_hero);
             form.value.title = data.contact_hero.title || '';
             form.value.bg_image = data.contact_hero.bg_image || '';
+            console.log('Form updated with:', form.value);
+            console.log('bg_image type after update:', typeof form.value.bg_image);
+            console.log('bg_image value after update:', form.value.bg_image);
+            console.log('Is File object after update?', isFileObject(form.value.bg_image));
+        } else {
+            console.log('No contact_hero data found in response');
         }
     } catch (error) {
         console.error('Error loading settings:', error);
     }
+    console.log('=== LOAD DATA FUNCTION FINISHED ===');
 };
 
-// 3. HANDLE IMAGE UPLOAD (Convert to Base64)
-// Your controller expects Base64 for the Hero section settings
+// 3. HANDLE IMAGE UPLOAD (Direct file upload)
 const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        form.value.bg_image = e.target.result; // This sets the preview AND the data to send
-    };
-    reader.readAsDataURL(file);
+    
+    console.log('File selected:', file.name, file.size, file.type);
+    
+    // Store the file object directly (not base64)
+    form.value.bg_image = file;
+    console.log('File stored for upload:', file);
 };
 
 // 4. SAVE SETTINGS
 const save = async () => {
+    console.log('=== SAVE FUNCTION STARTED ===');
+    console.log('Current form state:', form.value);
+    console.log('bg_image type:', typeof form.value.bg_image);
+    console.log('bg_image value:', form.value.bg_image);
+    console.log('Is File object?', isFileObject(form.value.bg_image));
+    
     isLoading.value = true;
     message.value = '';
-
+    
     try {
-        // We send JSON because we are sending Base64 strings, not raw files
+        // Prepare form data for file upload
+        const formData = new FormData();
+        formData.append('title', form.value.title);
+        
+        console.log('Preparing image data for upload...');
+        
+        // Handle image upload
+        if (isFileObject(form.value.bg_image)) {
+            console.log('Appending File object to form data');
+            formData.append('bg_image', form.value.bg_image);
+        } else if (form.value.bg_image) {
+            console.log('Appending image string to form data:', form.value.bg_image);
+            formData.append('bg_image', form.value.bg_image);
+        } else {
+            console.log('No image data to append');
+        }
+        
+        console.log('Sending request to server...');
+        
+        // Send as multipart form data for file uploads
         const response = await axios.post(
             '/api/settings/contact-hero',
-            form.value,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
         );
+        
+        console.log('Server response received:', response);
+        console.log('Response data:', response.data);
 
         if (response.data.data) {
-            // Update form with the clean URL returned from server
-            form.value = response.data.data;
+            console.log('Updating form with server response...');
+            // Update individual fields instead of replacing entire object
+            form.value.title = response.data.data.title || form.value.title;
+            form.value.bg_image = response.data.data.bg_image || form.value.bg_image;
+            console.log('Form after update:', form.value);
+            
+            // Reload data to ensure consistency
+            console.log('Reloading data from server...');
+            await loadData();
         }
 
         message.value = '✅ Header mis à jour avec succès !';
+        console.log('=== SAVE FUNCTION COMPLETED SUCCESSFULLY ===');
     } catch (error) {
-        console.error(error);
+        console.error('=== SAVE FUNCTION ERROR ===');
+        console.error('Error details:', error);
+        console.error('Error response:', error.response?.data);
         message.value = '❌ Erreur lors de la sauvegarde.';
     } finally {
         isLoading.value = false;
+        console.log('=== SAVE FUNCTION FINISHED ===');
     }
 };
 
@@ -122,7 +224,7 @@ onMounted(() => {
                             >
                                 <img
                                     v-if="form.bg_image"
-                                    :src="form.bg_image"
+                                    :src="getImageSource(form.bg_image)"
                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                 />
                                 <div

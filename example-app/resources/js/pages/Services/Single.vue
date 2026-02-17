@@ -19,7 +19,16 @@ const props = defineProps({
     },
 });
 
-// 2. YouTube Logic
+// 2. Hero background - ensure we always have a valid URL (backend now provides asset() URLs for production)
+const FALLBACK_HERO = '/images/hero-bg-1765171683.png';
+
+const heroBackgroundUrl = computed(() => {
+    if (!props.page) return FALLBACK_HERO;
+    const thumb = props.page.thumbnail;
+    return thumb && String(thumb).trim() ? thumb : FALLBACK_HERO;
+});
+
+// 3. YouTube Logic
 const isModalOpen = ref(false);
 
 const getYoutubeId = (url) => {
@@ -70,7 +79,7 @@ const closeModal = () => {
                 <div
                     class="hero-section"
                     :style="{
-                        backgroundImage: `url(${page.thumbnail || '/images/hero-bg-1765171683.png'})`,
+                        backgroundImage: `url(${heroBackgroundUrl})`,
                     }"
                 >
                     <div class="hero-overlay"></div>
@@ -88,10 +97,7 @@ const closeModal = () => {
                             class="group relative h-80 w-full cursor-pointer overflow-hidden rounded-sm shadow-md md:h-96"
                         >
                             <img
-                                :src="
-                                    page.thumbnail ||
-                                    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1600'
-                                "
+                                :src="heroBackgroundUrl"
                                 alt="Video Cover"
                                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
@@ -273,7 +279,7 @@ const closeModal = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 .hero-content {

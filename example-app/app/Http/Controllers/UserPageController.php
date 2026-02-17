@@ -7,9 +7,16 @@ use App\Models\ProjectFile; // Import this!
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use App\Services\ImageService;
 
 class UserPageController extends Controller
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
     public function index()
     {
         $project = Project::with('files')->first();
@@ -88,7 +95,13 @@ class UserPageController extends Controller
     // 3. UPDATE PROJECT INFO (Name/Title)
     public function updateProject(Request $request)
     {
-        $project = Project::first();
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+            'client_name' => 'required',
+            'title' => 'required'
+        ]);
+        
+        $project = Project::findOrFail($request->project_id);
         $project->update([
             'client_name' => $request->client_name,
             'title' => $request->title
@@ -100,18 +113,29 @@ class UserPageController extends Controller
     public function storeFile(Request $request)
     {
         $request->validate([
+            'project_id' => 'required|exists:projects,id',
             'name' => 'required',
             'type' => 'required',
             'date' => 'required'
         ]);
 
-        $project = Project::first();
+        $project = Project::findOrFail($request->project_id);
         $data = $request->all();
 
         // 1. Handle Thumbnail (Always an image upload)
         if ($request->hasFile('thumbnail_file')) {
-            $path = $request->file('thumbnail_file')->store('projects', 'public');
-            $data['thumbnail'] = '/storage/' . $path;
+            try {
+                $result = $this->imageService->processImage(
+                    $request->file('thumbnail_file'),
+                    'images/projects',
+                    'project-thumb-',
+                    ['width' => 400, 'height' => 300, 'quality' => 80]
+                );
+                $data['thumbnail'] = $result['path'];
+                $data['thumbnail_meta_description'] = $result['meta_description'];
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Thumbnail processing failed: ' . $e->getMessage()], 500);
+            }
         }
 
         // 2. Handle Main File: UPLOAD vs LINK
@@ -122,12 +146,29 @@ class UserPageController extends Controller
         } 
         elseif ($request->hasFile('download_file')) {
             // Case B: It is a Local Upload
-            $path = $request->file('download_file')->store('projects', 'public');
-            $data['download_url'] = '/storage/' . $path;
+            $file = $request->file('download_file');
             
-            // Calculate size (MB)
-            $size = $request->file('download_file')->getSize();
-            $data['size'] = round($size / 1048576, 2) . ' MB';
+            // Check if it's an image file
+            if (in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])) {
+                try {
+                    $result = $this->imageService->processImage(
+                        $file,
+                        'images/projects',
+                        'project-image-',
+                        ['width' => 1200, 'height' => 800, 'quality' => 85]
+                    );
+                    $data['download_url'] = $result['path'];
+                    $data['size'] = round($result['size'] / 1048576, 2) . ' MB';
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Image processing failed: ' . $e->getMessage()], 500);
+                }
+            } else {
+                // For non-image files, store normally
+                $path = $file->store('projects', 'public');
+                $data['download_url'] = '/storage/' . $path;
+                $size = $file->getSize();
+                $data['size'] = round($size / 1048576, 2) . ' MB';
+            }
         }
 
         $project->files()->create($data);

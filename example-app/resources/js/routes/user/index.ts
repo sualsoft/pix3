@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ dashboard.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -55,7 +55,7 @@ const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> 
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -65,7 +65,7 @@ dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =>
 
 /**
 * @see \App\Http\Controllers\UserPageController::dashboard
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -156,7 +156,7 @@ index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 export const show = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -171,7 +171,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.url = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -198,7 +198,7 @@ show.url = (args: { slug: string | number } | [slug: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -208,7 +208,7 @@ show.get = (args: { slug: string | number } | [slug: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -218,7 +218,7 @@ show.head = (args: { slug: string | number } | [slug: string | number ] | string
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 const showForm = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -228,7 +228,7 @@ const showForm = (args: { slug: string | number } | [slug: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 showForm.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -238,7 +238,7 @@ showForm.get = (args: { slug: string | number } | [slug: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 showForm.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

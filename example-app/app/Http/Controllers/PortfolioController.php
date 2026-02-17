@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\PortfolioItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Important for deleting files
+use App\Services\ImageService;
 
 class PortfolioController extends Controller
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
     // 1. GET ALL ITEMS
     public function index()
     {
@@ -53,10 +60,24 @@ class PortfolioController extends Controller
         
         // --- LOGIC: HANDLE FILE UPLOAD (Image/Video) ---
         else if ($request->hasFile('file')) {
-            // Save file to "storage/app/public/portfolio"
-            $path = $request->file('file')->store('portfolio', 'public');
-            // Add '/storage/' so the frontend can read it
-            $finalPath = '/storage/' . $path;
+            try {
+                // Determine appropriate dimensions based on file type
+                $options = ['quality' => 85];
+                if ($request->type === 'image') {
+                    $options['width'] = 1200;
+                    $options['height'] = 800;
+                }
+                
+                $result = $this->imageService->processImage(
+                    $request->file('file'),
+                    'images/portfolio',
+                    'portfolio-',
+                    $options
+                );
+                $finalPath = $result['path'];
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'File processing failed: ' . $e->getMessage()], 500);
+            }
         } 
         
         // --- LOGIC: ERROR (No file and No URL) ---
@@ -67,15 +88,35 @@ class PortfolioController extends Controller
         // Handle OG image upload
         $ogImagePath = null;
         if ($request->hasFile('og_image')) {
-            $path = $request->file('og_image')->store('seo', 'public');
-            $ogImagePath = '/storage/' . $path;
+            try {
+                $result = $this->imageService->processImage(
+                    $request->file('og_image'),
+                    'images/seo',
+                    'portfolio-og-',
+                    ['width' => 1200, 'height' => 630, 'quality' => 85]
+                );
+                $ogImagePath = $result['path'];
+                $data['og_image_meta_description'] = $result['meta_description'];
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'OG image processing failed: ' . $e->getMessage()], 500);
+            }
         }
 
         // Handle Twitter image upload
         $twitterImagePath = null;
         if ($request->hasFile('twitter_image')) {
-            $path = $request->file('twitter_image')->store('seo', 'public');
-            $twitterImagePath = '/storage/' . $path;
+            try {
+                $result = $this->imageService->processImage(
+                    $request->file('twitter_image'),
+                    'images/seo',
+                    'portfolio-twitter-',
+                    ['width' => 1200, 'height' => 600, 'quality' => 85]
+                );
+                $twitterImagePath = $result['path'];
+                $data['twitter_image_meta_description'] = $result['meta_description'];
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Twitter image processing failed: ' . $e->getMessage()], 500);
+            }
         }
 
         // Save to Database

@@ -141,7 +141,7 @@ const page = {
         0,
         0,
         0,
-        0.7
+        0.2
     ); /* Slightly darker for better text readability */
     z-index: 1;
 }

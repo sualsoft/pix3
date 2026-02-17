@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 export const getProjectData = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ getProjectData.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 getProjectData.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ getProjectData.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 getProjectData.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ getProjectData.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 getProjectData.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ getProjectData.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => 
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 const getProjectDataForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -55,7 +55,7 @@ const getProjectDataForm = (options?: RouteQueryOptions): RouteFormDefinition<'g
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 getProjectDataForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -65,7 +65,7 @@ getProjectDataForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectData
-* @see app/Http/Controllers/UserPageController.php:79
+* @see app/Http/Controllers/UserPageController.php:86
 * @route '/api/user-project'
 */
 getProjectDataForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -82,7 +82,7 @@ getProjectData.form = getProjectDataForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 export const getAllProjects = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -97,7 +97,7 @@ getAllProjects.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 getAllProjects.url = (options?: RouteQueryOptions) => {
@@ -106,7 +106,7 @@ getAllProjects.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 getAllProjects.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -116,7 +116,7 @@ getAllProjects.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 getAllProjects.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -126,7 +126,7 @@ getAllProjects.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => 
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 const getAllProjectsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -136,7 +136,7 @@ const getAllProjectsForm = (options?: RouteQueryOptions): RouteFormDefinition<'g
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 getAllProjectsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -146,7 +146,7 @@ getAllProjectsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get
 
 /**
 * @see \App\Http\Controllers\UserPageController::getAllProjects
-* @see app/Http/Controllers/UserPageController.php:67
+* @see app/Http/Controllers/UserPageController.php:74
 * @route '/api/user-projects'
 */
 getAllProjectsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -163,7 +163,7 @@ getAllProjects.form = getAllProjectsForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 export const getProjectBySlug = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -178,7 +178,7 @@ getProjectBySlug.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 getProjectBySlug.url = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -205,7 +205,7 @@ getProjectBySlug.url = (args: { slug: string | number } | [slug: string | number
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 getProjectBySlug.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -215,7 +215,7 @@ getProjectBySlug.get = (args: { slug: string | number } | [slug: string | number
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 getProjectBySlug.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -225,7 +225,7 @@ getProjectBySlug.head = (args: { slug: string | number } | [slug: string | numbe
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 const getProjectBySlugForm = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -235,7 +235,7 @@ const getProjectBySlugForm = (args: { slug: string | number } | [slug: string | 
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 getProjectBySlugForm.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -245,7 +245,7 @@ getProjectBySlugForm.get = (args: { slug: string | number } | [slug: string | nu
 
 /**
 * @see \App\Http\Controllers\UserPageController::getProjectBySlug
-* @see app/Http/Controllers/UserPageController.php:210
+* @see app/Http/Controllers/UserPageController.php:251
 * @route '/api/user-project/slug/{slug}'
 */
 getProjectBySlugForm.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -262,7 +262,7 @@ getProjectBySlug.form = getProjectBySlugForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProject
-* @see app/Http/Controllers/UserPageController.php:89
+* @see app/Http/Controllers/UserPageController.php:96
 * @route '/api/user-project/info'
 */
 export const updateProject = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -277,7 +277,7 @@ updateProject.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProject
-* @see app/Http/Controllers/UserPageController.php:89
+* @see app/Http/Controllers/UserPageController.php:96
 * @route '/api/user-project/info'
 */
 updateProject.url = (options?: RouteQueryOptions) => {
@@ -286,7 +286,7 @@ updateProject.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProject
-* @see app/Http/Controllers/UserPageController.php:89
+* @see app/Http/Controllers/UserPageController.php:96
 * @route '/api/user-project/info'
 */
 updateProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -296,7 +296,7 @@ updateProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProject
-* @see app/Http/Controllers/UserPageController.php:89
+* @see app/Http/Controllers/UserPageController.php:96
 * @route '/api/user-project/info'
 */
 const updateProjectForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -306,7 +306,7 @@ const updateProjectForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProject
-* @see app/Http/Controllers/UserPageController.php:89
+* @see app/Http/Controllers/UserPageController.php:96
 * @route '/api/user-project/info'
 */
 updateProjectForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -318,7 +318,7 @@ updateProject.form = updateProjectForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::storeFile
-* @see app/Http/Controllers/UserPageController.php:100
+* @see app/Http/Controllers/UserPageController.php:113
 * @route '/api/user-project/file'
 */
 export const storeFile = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -333,7 +333,7 @@ storeFile.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::storeFile
-* @see app/Http/Controllers/UserPageController.php:100
+* @see app/Http/Controllers/UserPageController.php:113
 * @route '/api/user-project/file'
 */
 storeFile.url = (options?: RouteQueryOptions) => {
@@ -342,7 +342,7 @@ storeFile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::storeFile
-* @see app/Http/Controllers/UserPageController.php:100
+* @see app/Http/Controllers/UserPageController.php:113
 * @route '/api/user-project/file'
 */
 storeFile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -352,7 +352,7 @@ storeFile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::storeFile
-* @see app/Http/Controllers/UserPageController.php:100
+* @see app/Http/Controllers/UserPageController.php:113
 * @route '/api/user-project/file'
 */
 const storeFileForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -362,7 +362,7 @@ const storeFileForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\UserPageController::storeFile
-* @see app/Http/Controllers/UserPageController.php:100
+* @see app/Http/Controllers/UserPageController.php:113
 * @route '/api/user-project/file'
 */
 storeFileForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -374,7 +374,7 @@ storeFile.form = storeFileForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::destroyFile
-* @see app/Http/Controllers/UserPageController.php:139
+* @see app/Http/Controllers/UserPageController.php:180
 * @route '/api/user-project/file/{id}'
 */
 export const destroyFile = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -389,7 +389,7 @@ destroyFile.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::destroyFile
-* @see app/Http/Controllers/UserPageController.php:139
+* @see app/Http/Controllers/UserPageController.php:180
 * @route '/api/user-project/file/{id}'
 */
 destroyFile.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -416,7 +416,7 @@ destroyFile.url = (args: { id: string | number } | [id: string | number ] | stri
 
 /**
 * @see \App\Http\Controllers\UserPageController::destroyFile
-* @see app/Http/Controllers/UserPageController.php:139
+* @see app/Http/Controllers/UserPageController.php:180
 * @route '/api/user-project/file/{id}'
 */
 destroyFile.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -426,7 +426,7 @@ destroyFile.delete = (args: { id: string | number } | [id: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\UserPageController::destroyFile
-* @see app/Http/Controllers/UserPageController.php:139
+* @see app/Http/Controllers/UserPageController.php:180
 * @route '/api/user-project/file/{id}'
 */
 const destroyFileForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -441,7 +441,7 @@ const destroyFileForm = (args: { id: string | number } | [id: string | number ] 
 
 /**
 * @see \App\Http\Controllers\UserPageController::destroyFile
-* @see app/Http/Controllers/UserPageController.php:139
+* @see app/Http/Controllers/UserPageController.php:180
 * @route '/api/user-project/file/{id}'
 */
 destroyFileForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -458,7 +458,7 @@ destroyFile.form = destroyFileForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::createProject
-* @see app/Http/Controllers/UserPageController.php:150
+* @see app/Http/Controllers/UserPageController.php:191
 * @route '/api/user-project/create'
 */
 export const createProject = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -473,7 +473,7 @@ createProject.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::createProject
-* @see app/Http/Controllers/UserPageController.php:150
+* @see app/Http/Controllers/UserPageController.php:191
 * @route '/api/user-project/create'
 */
 createProject.url = (options?: RouteQueryOptions) => {
@@ -482,7 +482,7 @@ createProject.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::createProject
-* @see app/Http/Controllers/UserPageController.php:150
+* @see app/Http/Controllers/UserPageController.php:191
 * @route '/api/user-project/create'
 */
 createProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -492,7 +492,7 @@ createProject.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\UserPageController::createProject
-* @see app/Http/Controllers/UserPageController.php:150
+* @see app/Http/Controllers/UserPageController.php:191
 * @route '/api/user-project/create'
 */
 const createProjectForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -502,7 +502,7 @@ const createProjectForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\UserPageController::createProject
-* @see app/Http/Controllers/UserPageController.php:150
+* @see app/Http/Controllers/UserPageController.php:191
 * @route '/api/user-project/create'
 */
 createProjectForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -514,7 +514,7 @@ createProject.form = createProjectForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProjectDetails
-* @see app/Http/Controllers/UserPageController.php:167
+* @see app/Http/Controllers/UserPageController.php:208
 * @route '/api/user-project/{id}'
 */
 export const updateProjectDetails = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -529,7 +529,7 @@ updateProjectDetails.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProjectDetails
-* @see app/Http/Controllers/UserPageController.php:167
+* @see app/Http/Controllers/UserPageController.php:208
 * @route '/api/user-project/{id}'
 */
 updateProjectDetails.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -556,7 +556,7 @@ updateProjectDetails.url = (args: { id: string | number } | [id: string | number
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProjectDetails
-* @see app/Http/Controllers/UserPageController.php:167
+* @see app/Http/Controllers/UserPageController.php:208
 * @route '/api/user-project/{id}'
 */
 updateProjectDetails.put = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -566,7 +566,7 @@ updateProjectDetails.put = (args: { id: string | number } | [id: string | number
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProjectDetails
-* @see app/Http/Controllers/UserPageController.php:167
+* @see app/Http/Controllers/UserPageController.php:208
 * @route '/api/user-project/{id}'
 */
 const updateProjectDetailsForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -581,7 +581,7 @@ const updateProjectDetailsForm = (args: { id: string | number } | [id: string | 
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateProjectDetails
-* @see app/Http/Controllers/UserPageController.php:167
+* @see app/Http/Controllers/UserPageController.php:208
 * @route '/api/user-project/{id}'
 */
 updateProjectDetailsForm.put = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -598,7 +598,7 @@ updateProjectDetails.form = updateProjectDetailsForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::deleteProject
-* @see app/Http/Controllers/UserPageController.php:186
+* @see app/Http/Controllers/UserPageController.php:227
 * @route '/api/user-project/{id}'
 */
 export const deleteProject = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -613,7 +613,7 @@ deleteProject.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::deleteProject
-* @see app/Http/Controllers/UserPageController.php:186
+* @see app/Http/Controllers/UserPageController.php:227
 * @route '/api/user-project/{id}'
 */
 deleteProject.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -640,7 +640,7 @@ deleteProject.url = (args: { id: string | number } | [id: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\UserPageController::deleteProject
-* @see app/Http/Controllers/UserPageController.php:186
+* @see app/Http/Controllers/UserPageController.php:227
 * @route '/api/user-project/{id}'
 */
 deleteProject.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -650,7 +650,7 @@ deleteProject.delete = (args: { id: string | number } | [id: string | number ] |
 
 /**
 * @see \App\Http\Controllers\UserPageController::deleteProject
-* @see app/Http/Controllers/UserPageController.php:186
+* @see app/Http/Controllers/UserPageController.php:227
 * @route '/api/user-project/{id}'
 */
 const deleteProjectForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -665,7 +665,7 @@ const deleteProjectForm = (args: { id: string | number } | [id: string | number 
 
 /**
 * @see \App\Http\Controllers\UserPageController::deleteProject
-* @see app/Http/Controllers/UserPageController.php:186
+* @see app/Http/Controllers/UserPageController.php:227
 * @route '/api/user-project/{id}'
 */
 deleteProjectForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -682,7 +682,7 @@ deleteProject.form = deleteProjectForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 export const getSingleProject = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -697,7 +697,7 @@ getSingleProject.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 getSingleProject.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -724,7 +724,7 @@ getSingleProject.url = (args: { id: string | number } | [id: string | number ] |
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 getSingleProject.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -734,7 +734,7 @@ getSingleProject.get = (args: { id: string | number } | [id: string | number ] |
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 getSingleProject.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -744,7 +744,7 @@ getSingleProject.head = (args: { id: string | number } | [id: string | number ] 
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 const getSingleProjectForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -754,7 +754,7 @@ const getSingleProjectForm = (args: { id: string | number } | [id: string | numb
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 getSingleProjectForm.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -764,7 +764,7 @@ getSingleProjectForm.get = (args: { id: string | number } | [id: string | number
 
 /**
 * @see \App\Http\Controllers\UserPageController::getSingleProject
-* @see app/Http/Controllers/UserPageController.php:202
+* @see app/Http/Controllers/UserPageController.php:243
 * @route '/api/user-project/{id}'
 */
 getSingleProjectForm.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -781,7 +781,7 @@ getSingleProject.form = getSingleProjectForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::refreshProjectPage
-* @see app/Http/Controllers/UserPageController.php:324
+* @see app/Http/Controllers/UserPageController.php:365
 * @route '/api/user-project/{id}/refresh'
 */
 export const refreshProjectPage = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -796,7 +796,7 @@ refreshProjectPage.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::refreshProjectPage
-* @see app/Http/Controllers/UserPageController.php:324
+* @see app/Http/Controllers/UserPageController.php:365
 * @route '/api/user-project/{id}/refresh'
 */
 refreshProjectPage.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -823,7 +823,7 @@ refreshProjectPage.url = (args: { id: string | number } | [id: string | number ]
 
 /**
 * @see \App\Http\Controllers\UserPageController::refreshProjectPage
-* @see app/Http/Controllers/UserPageController.php:324
+* @see app/Http/Controllers/UserPageController.php:365
 * @route '/api/user-project/{id}/refresh'
 */
 refreshProjectPage.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -833,7 +833,7 @@ refreshProjectPage.post = (args: { id: string | number } | [id: string | number 
 
 /**
 * @see \App\Http\Controllers\UserPageController::refreshProjectPage
-* @see app/Http/Controllers/UserPageController.php:324
+* @see app/Http/Controllers/UserPageController.php:365
 * @route '/api/user-project/{id}/refresh'
 */
 const refreshProjectPageForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -843,7 +843,7 @@ const refreshProjectPageForm = (args: { id: string | number } | [id: string | nu
 
 /**
 * @see \App\Http\Controllers\UserPageController::refreshProjectPage
-* @see app/Http/Controllers/UserPageController.php:324
+* @see app/Http/Controllers/UserPageController.php:365
 * @route '/api/user-project/{id}/refresh'
 */
 refreshProjectPageForm.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -855,7 +855,7 @@ refreshProjectPage.form = refreshProjectPageForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::createPageFromTemplate
-* @see app/Http/Controllers/UserPageController.php:355
+* @see app/Http/Controllers/UserPageController.php:396
 * @route '/api/user-project/template'
 */
 export const createPageFromTemplate = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -870,7 +870,7 @@ createPageFromTemplate.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::createPageFromTemplate
-* @see app/Http/Controllers/UserPageController.php:355
+* @see app/Http/Controllers/UserPageController.php:396
 * @route '/api/user-project/template'
 */
 createPageFromTemplate.url = (options?: RouteQueryOptions) => {
@@ -879,7 +879,7 @@ createPageFromTemplate.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::createPageFromTemplate
-* @see app/Http/Controllers/UserPageController.php:355
+* @see app/Http/Controllers/UserPageController.php:396
 * @route '/api/user-project/template'
 */
 createPageFromTemplate.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -889,7 +889,7 @@ createPageFromTemplate.post = (options?: RouteQueryOptions): RouteDefinition<'po
 
 /**
 * @see \App\Http\Controllers\UserPageController::createPageFromTemplate
-* @see app/Http/Controllers/UserPageController.php:355
+* @see app/Http/Controllers/UserPageController.php:396
 * @route '/api/user-project/template'
 */
 const createPageFromTemplateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -899,7 +899,7 @@ const createPageFromTemplateForm = (options?: RouteQueryOptions): RouteFormDefin
 
 /**
 * @see \App\Http\Controllers\UserPageController::createPageFromTemplate
-* @see app/Http/Controllers/UserPageController.php:355
+* @see app/Http/Controllers/UserPageController.php:396
 * @route '/api/user-project/template'
 */
 createPageFromTemplateForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -911,7 +911,7 @@ createPageFromTemplate.form = createPageFromTemplateForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 export const getMainDashboardContent = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -926,7 +926,7 @@ getMainDashboardContent.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 getMainDashboardContent.url = (options?: RouteQueryOptions) => {
@@ -935,7 +935,7 @@ getMainDashboardContent.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 getMainDashboardContent.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -945,7 +945,7 @@ getMainDashboardContent.get = (options?: RouteQueryOptions): RouteDefinition<'ge
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 getMainDashboardContent.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -955,7 +955,7 @@ getMainDashboardContent.head = (options?: RouteQueryOptions): RouteDefinition<'h
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 const getMainDashboardContentForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -965,7 +965,7 @@ const getMainDashboardContentForm = (options?: RouteQueryOptions): RouteFormDefi
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 getMainDashboardContentForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -975,7 +975,7 @@ getMainDashboardContentForm.get = (options?: RouteQueryOptions): RouteFormDefini
 
 /**
 * @see \App\Http\Controllers\UserPageController::getMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:218
+* @see app/Http/Controllers/UserPageController.php:259
 * @route '/api/dashboard/main-content'
 */
 getMainDashboardContentForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -992,7 +992,7 @@ getMainDashboardContent.form = getMainDashboardContentForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:235
+* @see app/Http/Controllers/UserPageController.php:276
 * @route '/api/dashboard/main-content'
 */
 export const updateMainDashboardContent = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1007,7 +1007,7 @@ updateMainDashboardContent.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:235
+* @see app/Http/Controllers/UserPageController.php:276
 * @route '/api/dashboard/main-content'
 */
 updateMainDashboardContent.url = (options?: RouteQueryOptions) => {
@@ -1016,7 +1016,7 @@ updateMainDashboardContent.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:235
+* @see app/Http/Controllers/UserPageController.php:276
 * @route '/api/dashboard/main-content'
 */
 updateMainDashboardContent.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1026,7 +1026,7 @@ updateMainDashboardContent.post = (options?: RouteQueryOptions): RouteDefinition
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:235
+* @see app/Http/Controllers/UserPageController.php:276
 * @route '/api/dashboard/main-content'
 */
 const updateMainDashboardContentForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1036,7 +1036,7 @@ const updateMainDashboardContentForm = (options?: RouteQueryOptions): RouteFormD
 
 /**
 * @see \App\Http\Controllers\UserPageController::updateMainDashboardContent
-* @see app/Http/Controllers/UserPageController.php:235
+* @see app/Http/Controllers/UserPageController.php:276
 * @route '/api/dashboard/main-content'
 */
 updateMainDashboardContentForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1048,7 +1048,7 @@ updateMainDashboardContent.form = updateMainDashboardContentForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::addMainDashboardSection
-* @see app/Http/Controllers/UserPageController.php:261
+* @see app/Http/Controllers/UserPageController.php:302
 * @route '/api/dashboard/main-section'
 */
 export const addMainDashboardSection = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1063,7 +1063,7 @@ addMainDashboardSection.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::addMainDashboardSection
-* @see app/Http/Controllers/UserPageController.php:261
+* @see app/Http/Controllers/UserPageController.php:302
 * @route '/api/dashboard/main-section'
 */
 addMainDashboardSection.url = (options?: RouteQueryOptions) => {
@@ -1072,7 +1072,7 @@ addMainDashboardSection.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::addMainDashboardSection
-* @see app/Http/Controllers/UserPageController.php:261
+* @see app/Http/Controllers/UserPageController.php:302
 * @route '/api/dashboard/main-section'
 */
 addMainDashboardSection.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1082,7 +1082,7 @@ addMainDashboardSection.post = (options?: RouteQueryOptions): RouteDefinition<'p
 
 /**
 * @see \App\Http\Controllers\UserPageController::addMainDashboardSection
-* @see app/Http/Controllers/UserPageController.php:261
+* @see app/Http/Controllers/UserPageController.php:302
 * @route '/api/dashboard/main-section'
 */
 const addMainDashboardSectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1092,7 +1092,7 @@ const addMainDashboardSectionForm = (options?: RouteQueryOptions): RouteFormDefi
 
 /**
 * @see \App\Http\Controllers\UserPageController::addMainDashboardSection
-* @see app/Http/Controllers/UserPageController.php:261
+* @see app/Http/Controllers/UserPageController.php:302
 * @route '/api/dashboard/main-section'
 */
 addMainDashboardSectionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1104,7 +1104,7 @@ addMainDashboardSection.form = addMainDashboardSectionForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1119,7 +1119,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -1128,7 +1128,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1138,7 +1138,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1148,7 +1148,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1158,7 +1158,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1168,7 +1168,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\UserPageController::index
-* @see app/Http/Controllers/UserPageController.php:13
+* @see app/Http/Controllers/UserPageController.php:20
 * @route '/api/dashboard'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1185,7 +1185,7 @@ index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 export const show = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1200,7 +1200,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.url = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -1227,7 +1227,7 @@ show.url = (args: { slug: string | number } | [slug: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1237,7 +1237,7 @@ show.get = (args: { slug: string | number } | [slug: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 show.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1247,7 +1247,7 @@ show.head = (args: { slug: string | number } | [slug: string | number ] | string
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 const showForm = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1257,7 +1257,7 @@ const showForm = (args: { slug: string | number } | [slug: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 showForm.get = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1267,7 +1267,7 @@ showForm.get = (args: { slug: string | number } | [slug: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\UserPageController::show
-* @see app/Http/Controllers/UserPageController.php:45
+* @see app/Http/Controllers/UserPageController.php:52
 * @route '/user/{slug}'
 */
 showForm.head = (args: { slug: string | number } | [slug: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

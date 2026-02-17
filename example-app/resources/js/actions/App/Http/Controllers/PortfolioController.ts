@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -55,7 +55,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -65,7 +65,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\PortfolioController::index
-* @see app/Http/Controllers/PortfolioController.php:12
+* @see app/Http/Controllers/PortfolioController.php:19
 * @route '/api/portfolio'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -82,7 +82,7 @@ index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\PortfolioController::store
-* @see app/Http/Controllers/PortfolioController.php:18
+* @see app/Http/Controllers/PortfolioController.php:25
 * @route '/api/portfolio'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -97,7 +97,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::store
-* @see app/Http/Controllers/PortfolioController.php:18
+* @see app/Http/Controllers/PortfolioController.php:25
 * @route '/api/portfolio'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -106,7 +106,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::store
-* @see app/Http/Controllers/PortfolioController.php:18
+* @see app/Http/Controllers/PortfolioController.php:25
 * @route '/api/portfolio'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -116,7 +116,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\PortfolioController::store
-* @see app/Http/Controllers/PortfolioController.php:18
+* @see app/Http/Controllers/PortfolioController.php:25
 * @route '/api/portfolio'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -126,7 +126,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\PortfolioController::store
-* @see app/Http/Controllers/PortfolioController.php:18
+* @see app/Http/Controllers/PortfolioController.php:25
 * @route '/api/portfolio'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -138,7 +138,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\PortfolioController::update
-* @see app/Http/Controllers/PortfolioController.php:136
+* @see app/Http/Controllers/PortfolioController.php:177
 * @route '/api/portfolio/{id}'
 */
 export const update = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -153,7 +153,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::update
-* @see app/Http/Controllers/PortfolioController.php:136
+* @see app/Http/Controllers/PortfolioController.php:177
 * @route '/api/portfolio/{id}'
 */
 update.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -180,7 +180,7 @@ update.url = (args: { id: string | number } | [id: string | number ] | string | 
 
 /**
 * @see \App\Http\Controllers\PortfolioController::update
-* @see app/Http/Controllers/PortfolioController.php:136
+* @see app/Http/Controllers/PortfolioController.php:177
 * @route '/api/portfolio/{id}'
 */
 update.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -190,7 +190,7 @@ update.post = (args: { id: string | number } | [id: string | number ] | string |
 
 /**
 * @see \App\Http\Controllers\PortfolioController::update
-* @see app/Http/Controllers/PortfolioController.php:136
+* @see app/Http/Controllers/PortfolioController.php:177
 * @route '/api/portfolio/{id}'
 */
 const updateForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -200,7 +200,7 @@ const updateForm = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\PortfolioController::update
-* @see app/Http/Controllers/PortfolioController.php:136
+* @see app/Http/Controllers/PortfolioController.php:177
 * @route '/api/portfolio/{id}'
 */
 updateForm.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -212,7 +212,7 @@ update.form = updateForm
 
 /**
 * @see \App\Http\Controllers\PortfolioController::destroy
-* @see app/Http/Controllers/PortfolioController.php:105
+* @see app/Http/Controllers/PortfolioController.php:146
 * @route '/api/portfolio/{id}'
 */
 export const destroy = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -227,7 +227,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\PortfolioController::destroy
-* @see app/Http/Controllers/PortfolioController.php:105
+* @see app/Http/Controllers/PortfolioController.php:146
 * @route '/api/portfolio/{id}'
 */
 destroy.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -254,7 +254,7 @@ destroy.url = (args: { id: string | number } | [id: string | number ] | string |
 
 /**
 * @see \App\Http\Controllers\PortfolioController::destroy
-* @see app/Http/Controllers/PortfolioController.php:105
+* @see app/Http/Controllers/PortfolioController.php:146
 * @route '/api/portfolio/{id}'
 */
 destroy.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -264,7 +264,7 @@ destroy.delete = (args: { id: string | number } | [id: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\PortfolioController::destroy
-* @see app/Http/Controllers/PortfolioController.php:105
+* @see app/Http/Controllers/PortfolioController.php:146
 * @route '/api/portfolio/{id}'
 */
 const destroyForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -279,7 +279,7 @@ const destroyForm = (args: { id: string | number } | [id: string | number ] | st
 
 /**
 * @see \App\Http\Controllers\PortfolioController::destroy
-* @see app/Http/Controllers/PortfolioController.php:105
+* @see app/Http/Controllers/PortfolioController.php:146
 * @route '/api/portfolio/{id}'
 */
 destroyForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

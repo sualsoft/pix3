@@ -18,6 +18,7 @@ class ProjectFile extends Model
         'type', 
         'badge', 
         'thumbnail', 
+        'thumbnail_meta_description',
         'youtube_id', 
         'download_url'
     ];

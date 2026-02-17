@@ -26,11 +26,13 @@ class PortfolioItem extends Model
         'og_title',
         'og_description',
         'og_image',
+        'og_image_meta_description',
         'og_type',
         'twitter_card',
         'twitter_title',
         'twitter_description',
-        'twitter_image'
+        'twitter_image',
+        'twitter_image_meta_description'
     ];
 
     /**

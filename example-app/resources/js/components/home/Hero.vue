@@ -39,7 +39,7 @@ onMounted(() => {
         class="relative flex h-[100vh] w-full items-center justify-center bg-cover bg-center"
         :style="{ 'background-image': `url(${pageData.home_hero.bg_image})` }"
     >
-        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 bg-black/10"></div>
 
         <div class="relative z-10 mx-auto max-w-screen-xl px-4 text-center">
             <h1
@@ -108,7 +108,14 @@ onMounted(() => {
                         :src="`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`"
                         title="YouTube video player"
                         frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="
+                            accelerometer;
+                            autoplay;
+                            clipboard-write;
+                            encrypted-media;
+                            gyroscope;
+                            picture-in-picture;
+                        "
                         allowfullscreen
                     ></iframe>
                 </div>

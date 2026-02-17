@@ -39,29 +39,85 @@ const message = ref('');
 const isLoading = ref(false);
 const isEditing = ref(false);
 
-// 2. Load Data from Database
+// 2. Load projects
 const loadProjects = async () => {
     try {
-        // Use the new endpoint to get all projects
         const response = await fetch('/api/user-projects');
-        const data = await response.json();
 
-        if (data.projects) {
-            projects.value = data.projects;
+        if (response.ok) {
+            try {
+                const data = await response.json();
+                projects.value = data.projects || data;
+            } catch (jsonError) {
+                console.error('Error parsing projects data:', jsonError);
+                projects.value = [];
+            }
+        } else {
+            // Handle error response
+            try {
+                const errorResult = await response.json();
+                console.error('Error loading projects:', errorResult);
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    console.error('Error loading projects:', textContent);
+                } catch (textError) {
+                    console.error('Response parsing error for projects');
+                }
+            }
+            projects.value = [];
         }
     } catch (error) {
-        console.error('Error loading projects', error);
+        console.error('Network error loading projects', error);
+        projects.value = [];
+    }
 
-        // Fallback to old method if new endpoint doesn't work
-        try {
-            const fallbackResponse = await fetch('/api/user-project');
-            const fallbackData = await fallbackResponse.json();
-            if (fallbackData.project) {
-                projects.value = [fallbackData.project];
+    // Fallback to old method if new endpoint doesn't work
+    try {
+        const fallbackResponse = await fetch('/api/user-project');
+
+        if (fallbackResponse.ok) {
+            try {
+                const fallbackData = await fallbackResponse.json();
+
+                if (fallbackData.project) {
+                    // Add to projects if not already present
+                    const existingProjectIndex = projects.value.findIndex(
+                        (p) => p.id === fallbackData.project.id,
+                    );
+                    if (existingProjectIndex === -1) {
+                        projects.value.push(fallbackData.project);
+                    }
+                }
+            } catch (jsonError) {
+                console.error(
+                    'Error parsing fallback project data:',
+                    jsonError,
+                );
             }
-        } catch (fallbackError) {
-            console.error('Fallback error', fallbackError);
+        } else {
+            // Handle error response
+            try {
+                const errorResult = await fallbackResponse.json();
+                console.error('Error loading fallback project:', errorResult);
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await fallbackResponse.text();
+                    console.error(
+                        'Error loading fallback project:',
+                        textContent,
+                    );
+                } catch (textError) {
+                    console.error(
+                        'Response parsing error for fallback project',
+                    );
+                }
+            }
         }
+    } catch (fallbackError) {
+        console.error('Fallback error', fallbackError);
     }
 };
 
@@ -84,34 +140,56 @@ const createProject = async () => {
             body: JSON.stringify(form.value),
         });
 
-        let result = {};
-        try {
-            result = await response.json();
-        } catch (e) {
-            // If JSON parsing fails, use the response text
-            result.message = await response.text();
-        }
-
+        // Process response based on status
         if (response.ok) {
-            message.value = '✅ Project created successfully!';
-            // Reset form
-            form.value.client_name = '';
-            form.value.title = '';
-            form.value.slug = '';
-            // Reload projects
-            loadProjects();
-        } else {
-            // Handle validation errors
-            if (result.errors) {
-                const errorMessages = Object.values(result.errors)
-                    .flat()
-                    .join(', ');
-                message.value = '❌ Validation Error: ' + errorMessages;
-            } else {
+            try {
+                const result = await response.json();
+                message.value = '✅ Project created successfully!';
+                // Reset form
+                form.value.client_name = '';
+                form.value.title = '';
+                form.value.slug = '';
+                // Reload projects
+                loadProjects();
+            } catch (jsonError) {
                 message.value =
-                    '❌ Error: ' +
-                    (result.message || 'Failed to create project');
+                    '✅ Project created successfully, but there was an issue processing the response.';
+                loadProjects();
             }
+        } else {
+            // Handle error response
+            let errorMessage = 'Failed to create project';
+
+            // Try to get error details from response
+            try {
+                const errorResult = await response.json();
+                if (errorResult.errors) {
+                    const errorMessages = Object.values(errorResult.errors)
+                        .flat()
+                        .join(', ');
+                    errorMessage = errorMessages;
+                } else if (errorResult.message) {
+                    errorMessage = errorResult.message;
+                }
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    // Check if it's an HTML error page
+                    if (
+                        textContent.trim().startsWith('<!DOCTYPE') ||
+                        textContent.trim().startsWith('<html')
+                    ) {
+                        errorMessage = 'Server error occurred';
+                    } else {
+                        errorMessage = textContent.substring(0, 100) + '...'; // Truncate long error messages
+                    }
+                } catch (textError) {
+                    errorMessage = 'Unable to process error response';
+                }
+            }
+
+            message.value = '❌ Error: ' + errorMessage;
         }
     } catch (error) {
         message.value = '❌ Network error: ' + error.message;
@@ -206,28 +284,53 @@ const updateProject = async () => {
             body: JSON.stringify(editForm.value),
         });
 
-        let result = {};
-        try {
-            result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
-        }
-
+        // Process response based on status
         if (response.ok) {
-            message.value = '✅ Project updated successfully!';
-            cancelEditing();
-            loadProjects();
-        } else {
-            if (result.errors) {
-                const errorMessages = Object.values(result.errors)
-                    .flat()
-                    .join(', ');
-                message.value = '❌ Validation Error: ' + errorMessages;
-            } else {
+            try {
+                const result = await response.json();
+                message.value = '✅ Project updated successfully!';
+                cancelEditing();
+                loadProjects();
+            } catch (jsonError) {
                 message.value =
-                    '❌ Error: ' +
-                    (result.message || 'Failed to update project');
+                    '✅ Project updated successfully, but there was an issue processing the response.';
+                cancelEditing();
+                loadProjects();
             }
+        } else {
+            // Handle error response
+            let errorMessage = 'Failed to update project';
+
+            // Try to get error details from response
+            try {
+                const errorResult = await response.json();
+                if (errorResult.errors) {
+                    const errorMessages = Object.values(errorResult.errors)
+                        .flat()
+                        .join(', ');
+                    errorMessage = errorMessages;
+                } else if (errorResult.message) {
+                    errorMessage = errorResult.message;
+                }
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    // Check if it's an HTML error page
+                    if (
+                        textContent.trim().startsWith('<!DOCTYPE') ||
+                        textContent.trim().startsWith('<html')
+                    ) {
+                        errorMessage = 'Server error occurred';
+                    } else {
+                        errorMessage = textContent.substring(0, 100) + '...'; // Truncate long error messages
+                    }
+                } catch (textError) {
+                    errorMessage = 'Unable to process error response';
+                }
+            }
+
+            message.value = '❌ Error: ' + errorMessage;
         }
     } catch (error) {
         message.value = '❌ Network error: ' + error.message;
@@ -262,19 +365,51 @@ const deleteProject = async (projectId) => {
             },
         });
 
-        let result = {};
-        try {
-            result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
-        }
-
+        // Process response based on status
         if (response.ok) {
-            message.value = '✅ Project deleted successfully!';
-            loadProjects();
+            try {
+                const result = await response.json();
+                message.value = '✅ Project deleted successfully!';
+                loadProjects();
+            } catch (jsonError) {
+                message.value =
+                    '✅ Project deleted successfully, but there was an issue processing the response.';
+                loadProjects();
+            }
         } else {
-            message.value =
-                '❌ Error: ' + (result.message || 'Failed to delete project');
+            // Handle error response
+            let errorMessage = 'Failed to delete project';
+
+            // Try to get error details from response
+            try {
+                const errorResult = await response.json();
+                if (errorResult.errors) {
+                    const errorMessages = Object.values(errorResult.errors)
+                        .flat()
+                        .join(', ');
+                    errorMessage = errorMessages;
+                } else if (errorResult.message) {
+                    errorMessage = errorResult.message;
+                }
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    // Check if it's an HTML error page
+                    if (
+                        textContent.trim().startsWith('<!DOCTYPE') ||
+                        textContent.trim().startsWith('<html')
+                    ) {
+                        errorMessage = 'Server error occurred';
+                    } else {
+                        errorMessage = textContent.substring(0, 100) + '...'; // Truncate long error messages
+                    }
+                } catch (textError) {
+                    errorMessage = 'Unable to process error response';
+                }
+            }
+
+            message.value = '❌ Error: ' + errorMessage;
         }
     } catch (error) {
         message.value = '❌ Network error: ' + error.message;
@@ -306,28 +441,53 @@ const refreshProject = async () => {
             },
         );
 
-        let result = {};
-        try {
-            result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
-        }
-
+        // Process response based on status
         if (response.ok) {
-            message.value = '✅ Project refreshed successfully!';
-            cancelRefresh();
-            loadProjects();
-        } else {
-            if (result.errors) {
-                const errorMessages = Object.values(result.errors)
-                    .flat()
-                    .join(', ');
-                message.value = '❌ Validation Error: ' + errorMessages;
-            } else {
+            try {
+                const result = await response.json();
+                message.value = '✅ Project refreshed successfully!';
+                cancelRefresh();
+                loadProjects();
+            } catch (jsonError) {
                 message.value =
-                    '❌ Error: ' +
-                    (result.message || 'Failed to refresh project');
+                    '✅ Project refreshed successfully, but there was an issue processing the response.';
+                cancelRefresh();
+                loadProjects();
             }
+        } else {
+            // Handle error response
+            let errorMessage = 'Failed to refresh project';
+
+            // Try to get error details from response
+            try {
+                const errorResult = await response.json();
+                if (errorResult.errors) {
+                    const errorMessages = Object.values(errorResult.errors)
+                        .flat()
+                        .join(', ');
+                    errorMessage = errorMessages;
+                } else if (errorResult.message) {
+                    errorMessage = errorResult.message;
+                }
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    // Check if it's an HTML error page
+                    if (
+                        textContent.trim().startsWith('<!DOCTYPE') ||
+                        textContent.trim().startsWith('<html')
+                    ) {
+                        errorMessage = 'Server error occurred';
+                    } else {
+                        errorMessage = textContent.substring(0, 100) + '...'; // Truncate long error messages
+                    }
+                } catch (textError) {
+                    errorMessage = 'Unable to process error response';
+                }
+            }
+
+            message.value = '❌ Error: ' + errorMessage;
         }
     } catch (error) {
         message.value = '❌ Network error: ' + error.message;
@@ -356,33 +516,59 @@ const createFromTemplate = async () => {
             body: JSON.stringify(templateForm.value),
         });
 
-        let result = {};
-        try {
-            result = await response.json();
-        } catch (e) {
-            result.message = await response.text();
-        }
-
+        // Process response based on status
         if (response.ok) {
-            message.value = '✅ New page created successfully from template!';
-            cancelCreateFromTemplate();
-            loadProjects();
+            try {
+                const result = await response.json();
+                message.value =
+                    '✅ New page created successfully from template!';
+                cancelCreateFromTemplate();
+                loadProjects();
 
-            // Redirect to the new project page
-            if (result.project && result.project.id) {
-                window.location.href = `/dashboard/project/${result.project.id}`;
+                // Redirect to the new project page
+                if (result.project && result.project.id) {
+                    window.location.href = `/dashboard/project/${result.project.id}`;
+                }
+            } catch (jsonError) {
+                message.value =
+                    '✅ New page created successfully from template, but there was an issue processing the response.';
+                cancelCreateFromTemplate();
+                loadProjects();
             }
         } else {
-            if (result.errors) {
-                const errorMessages = Object.values(result.errors)
-                    .flat()
-                    .join(', ');
-                message.value = '❌ Validation Error: ' + errorMessages;
-            } else {
-                message.value =
-                    '❌ Error: ' +
-                    (result.message || 'Failed to create page from template');
+            // Handle error response
+            let errorMessage = 'Failed to create page from template';
+
+            // Try to get error details from response
+            try {
+                const errorResult = await response.json();
+                if (errorResult.errors) {
+                    const errorMessages = Object.values(errorResult.errors)
+                        .flat()
+                        .join(', ');
+                    errorMessage = errorMessages;
+                } else if (errorResult.message) {
+                    errorMessage = errorResult.message;
+                }
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get text content
+                try {
+                    const textContent = await response.text();
+                    // Check if it's an HTML error page
+                    if (
+                        textContent.trim().startsWith('<!DOCTYPE') ||
+                        textContent.trim().startsWith('<html')
+                    ) {
+                        errorMessage = 'Server error occurred';
+                    } else {
+                        errorMessage = textContent.substring(0, 100) + '...'; // Truncate long error messages
+                    }
+                } catch (textError) {
+                    errorMessage = 'Unable to process error response';
+                }
             }
+
+            message.value = '❌ Error: ' + errorMessage;
         }
     } catch (error) {
         message.value = '❌ Network error: ' + error.message;
@@ -795,9 +981,7 @@ onMounted(() => {
                                             <span
                                                 class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"
                                             >
-                                                {{
-                                                    project.files_count || 0
-                                                }}
+                                                {{ project.files_count || 0 }}
                                                 files
                                             </span>
                                             <div class="mt-2 flex space-x-2">

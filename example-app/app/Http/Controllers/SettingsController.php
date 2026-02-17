@@ -8,10 +8,17 @@ use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Services\ImageService;
 
 class SettingsController extends Controller
 {
-    
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     // 1. UPDATE GENERAL SETTINGS (Without CTA)
     public function updateGeneral(Request $request)
@@ -293,6 +300,7 @@ class SettingsController extends Controller
     // 12. UPDATE CONTACT HERO SECTION
     public function updateContactHero(Request $request)
     {
+        Log::info('updateContactHero called with data: ', $request->all());
         $data = $request->all(); // Expects: { title: '...', bg_image: '...' }
         
         // Retrieve existing setting or create new
@@ -305,50 +313,76 @@ class SettingsController extends Controller
 
         $currentContent = $setting->content;
         $finalImage = $currentContent['bg_image'] ?? null; // Default to existing image
-
-        // Handle Image Upload
-        if (isset($data['bg_image'])) {
+        Log::info('Current content: ', $currentContent);
+        // Handle Image Upload - Check for direct file upload first
+        if ($request->hasFile('bg_image')) {
+            Log::info('Processing direct file upload');
+            try {
+                $result = $this->imageService->processImage(
+                    $request->file('bg_image'),
+                    'images/hero',
+                    'Contact-hero-',
+                    ['width' => 1920, 'height' => 1080, 'quality' => 85]
+                );
+                $finalImage = $result['path'];
+                Log::info('Image processed successfully: ' . $finalImage);
+            } catch (\Exception $e) {
+                Log::error('Image processing failed: ' . $e->getMessage());
+                return response()->json(['message' => 'Image processing failed'], 500);
+            }
+            
+        } 
+        // Handle Base64 fallback (for backward compatibility)
+        else if (isset($data['bg_image'])) {
             $img = $data['bg_image'];
+            Log::info('Image data present, length: ' . strlen($img));
 
             // Check if it is a Base64 string (New Upload)
             if (str_contains($img, 'data:image')) {
-                $image_64 = $img;
-                
-                // Extract extension
-                $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-                
-                // Clean the string
-                $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-                $image = str_replace($replace, '', $image_64);
-                $image = str_replace(' ', '+', $image);
-                
-                // Generate name and path
-                $imageName = 'Contact-hero-' . uniqid() . '.' . $extension;
-                $path = public_path('images/hero');
-
-                // Create folder if not exists
-                if (!file_exists($path)) {
-                    mkdir($path, 0755, true);
+                Log::info('Processing base64 image');
+                try {
+                    $result = $this->imageService->processImage(
+                        $img,
+                        'images/hero',
+                        'Contact-hero-',
+                        ['width' => 1920, 'height' => 1080, 'quality' => 85]
+                    );
+                    $finalImage = $result['path'];
+                    Log::info('Base64 image processed: ' . $finalImage);
+                } catch (\Exception $e) {
+                    Log::error('Base64 image processing failed: ' . $e->getMessage());
+                    return response()->json(['message' => 'Image processing failed'], 500);
                 }
-
-                // Save File
-                file_put_contents($path . '/' . $imageName, base64_decode($image));
-                
-                // Set the public path for the database
-                $finalImage = '/images/hero/' . $imageName;
             } else {
                 // If it's not base64, assume it's an existing URL or text
                 $finalImage = $img;
+                Log::info('Using existing image path: ' . $finalImage);
             }
+        } else {
+            Log::info('No image data provided');
         }
 
         // Save structure
-        $setting->content = [
-            'title'    => $data['title'] ?? ($currentContent['title'] ?? 'Nous Contacter'),
-            'bg_image' => $finalImage
-        ];
+        $content = $setting->content;
+        $content['title'] = $data['title'] ?? ($currentContent['title'] ?? 'Nous Contacter');
+        
+        // Handle bg_image preservation logic
+        if (!empty($finalImage)) {
+            // We have a new image, use it
+            $content['bg_image'] = $finalImage;
+        } else {
+            // No new image, preserve existing (but convert empty arrays to empty strings)
+            if (is_array($currentContent['bg_image']) && count($currentContent['bg_image']) === 0) {
+                $content['bg_image'] = '';
+            } else {
+                $content['bg_image'] = $currentContent['bg_image'] ?? '';
+            }
+        }
+        
+        $setting->content = $content;
         
         $setting->save();
+        Log::info('Setting saved with content: ', $setting->content);
 
         return response()->json(['message' => 'Hero section updated!', 'data' => $setting->content]);
     }

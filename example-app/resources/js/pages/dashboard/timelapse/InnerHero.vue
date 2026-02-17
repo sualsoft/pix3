@@ -146,7 +146,7 @@ onMounted(() => {
                                 </div>
 
                                 <div
-                                    class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100"
+                                    class="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 transition group-hover:opacity-100"
                                 >
                                     <label
                                         class="cursor-pointer rounded-lg bg-white px-6 py-2 font-semibold text-gray-800 shadow hover:bg-gray-100"

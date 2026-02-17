@@ -52,6 +52,7 @@ const updateProjectInfo = async () => {
                 'X-CSRF-TOKEN': csrfToken,
             },
             body: JSON.stringify({
+                project_id: props.projectId,
                 client_name: projectData.value.client_name,
                 title: projectData.value.title,
             }),

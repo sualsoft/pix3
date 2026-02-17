@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\SettingsController::updateGeneral
-* @see app/Http/Controllers/SettingsController.php:17
+* @see app/Http/Controllers/SettingsController.php:24
 * @route '/api/settings/general'
 */
 export const updateGeneral = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ updateGeneral.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGeneral
-* @see app/Http/Controllers/SettingsController.php:17
+* @see app/Http/Controllers/SettingsController.php:24
 * @route '/api/settings/general'
 */
 updateGeneral.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ updateGeneral.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGeneral
-* @see app/Http/Controllers/SettingsController.php:17
+* @see app/Http/Controllers/SettingsController.php:24
 * @route '/api/settings/general'
 */
 updateGeneral.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ updateGeneral.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGeneral
-* @see app/Http/Controllers/SettingsController.php:17
+* @see app/Http/Controllers/SettingsController.php:24
 * @route '/api/settings/general'
 */
 const updateGeneralForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -45,7 +45,7 @@ const updateGeneralForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGeneral
-* @see app/Http/Controllers/SettingsController.php:17
+* @see app/Http/Controllers/SettingsController.php:24
 * @route '/api/settings/general'
 */
 updateGeneralForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -57,7 +57,7 @@ updateGeneral.form = updateGeneralForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::uploadLogo
-* @see app/Http/Controllers/SettingsController.php:34
+* @see app/Http/Controllers/SettingsController.php:41
 * @route '/api/settings/upload-logo'
 */
 export const uploadLogo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -72,7 +72,7 @@ uploadLogo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::uploadLogo
-* @see app/Http/Controllers/SettingsController.php:34
+* @see app/Http/Controllers/SettingsController.php:41
 * @route '/api/settings/upload-logo'
 */
 uploadLogo.url = (options?: RouteQueryOptions) => {
@@ -81,7 +81,7 @@ uploadLogo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::uploadLogo
-* @see app/Http/Controllers/SettingsController.php:34
+* @see app/Http/Controllers/SettingsController.php:41
 * @route '/api/settings/upload-logo'
 */
 uploadLogo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -91,7 +91,7 @@ uploadLogo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::uploadLogo
-* @see app/Http/Controllers/SettingsController.php:34
+* @see app/Http/Controllers/SettingsController.php:41
 * @route '/api/settings/upload-logo'
 */
 const uploadLogoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -101,7 +101,7 @@ const uploadLogoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\SettingsController::uploadLogo
-* @see app/Http/Controllers/SettingsController.php:34
+* @see app/Http/Controllers/SettingsController.php:41
 * @route '/api/settings/upload-logo'
 */
 uploadLogoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -113,7 +113,7 @@ uploadLogo.form = uploadLogoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateSocial
-* @see app/Http/Controllers/SettingsController.php:55
+* @see app/Http/Controllers/SettingsController.php:62
 * @route '/api/settings/social'
 */
 export const updateSocial = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -128,7 +128,7 @@ updateSocial.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateSocial
-* @see app/Http/Controllers/SettingsController.php:55
+* @see app/Http/Controllers/SettingsController.php:62
 * @route '/api/settings/social'
 */
 updateSocial.url = (options?: RouteQueryOptions) => {
@@ -137,7 +137,7 @@ updateSocial.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateSocial
-* @see app/Http/Controllers/SettingsController.php:55
+* @see app/Http/Controllers/SettingsController.php:62
 * @route '/api/settings/social'
 */
 updateSocial.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -147,7 +147,7 @@ updateSocial.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateSocial
-* @see app/Http/Controllers/SettingsController.php:55
+* @see app/Http/Controllers/SettingsController.php:62
 * @route '/api/settings/social'
 */
 const updateSocialForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -157,7 +157,7 @@ const updateSocialForm = (options?: RouteQueryOptions): RouteFormDefinition<'pos
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateSocial
-* @see app/Http/Controllers/SettingsController.php:55
+* @see app/Http/Controllers/SettingsController.php:62
 * @route '/api/settings/social'
 */
 updateSocialForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -169,7 +169,7 @@ updateSocial.form = updateSocialForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateFooter
-* @see app/Http/Controllers/SettingsController.php:74
+* @see app/Http/Controllers/SettingsController.php:81
 * @route '/api/settings/footer'
 */
 export const updateFooter = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -184,7 +184,7 @@ updateFooter.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateFooter
-* @see app/Http/Controllers/SettingsController.php:74
+* @see app/Http/Controllers/SettingsController.php:81
 * @route '/api/settings/footer'
 */
 updateFooter.url = (options?: RouteQueryOptions) => {
@@ -193,7 +193,7 @@ updateFooter.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateFooter
-* @see app/Http/Controllers/SettingsController.php:74
+* @see app/Http/Controllers/SettingsController.php:81
 * @route '/api/settings/footer'
 */
 updateFooter.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -203,7 +203,7 @@ updateFooter.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateFooter
-* @see app/Http/Controllers/SettingsController.php:74
+* @see app/Http/Controllers/SettingsController.php:81
 * @route '/api/settings/footer'
 */
 const updateFooterForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -213,7 +213,7 @@ const updateFooterForm = (options?: RouteQueryOptions): RouteFormDefinition<'pos
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateFooter
-* @see app/Http/Controllers/SettingsController.php:74
+* @see app/Http/Controllers/SettingsController.php:81
 * @route '/api/settings/footer'
 */
 updateFooterForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -225,7 +225,7 @@ updateFooter.form = updateFooterForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateNavbar
-* @see app/Http/Controllers/SettingsController.php:93
+* @see app/Http/Controllers/SettingsController.php:100
 * @route '/api/settings/navbar'
 */
 export const updateNavbar = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -240,7 +240,7 @@ updateNavbar.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateNavbar
-* @see app/Http/Controllers/SettingsController.php:93
+* @see app/Http/Controllers/SettingsController.php:100
 * @route '/api/settings/navbar'
 */
 updateNavbar.url = (options?: RouteQueryOptions) => {
@@ -249,7 +249,7 @@ updateNavbar.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateNavbar
-* @see app/Http/Controllers/SettingsController.php:93
+* @see app/Http/Controllers/SettingsController.php:100
 * @route '/api/settings/navbar'
 */
 updateNavbar.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -259,7 +259,7 @@ updateNavbar.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateNavbar
-* @see app/Http/Controllers/SettingsController.php:93
+* @see app/Http/Controllers/SettingsController.php:100
 * @route '/api/settings/navbar'
 */
 const updateNavbarForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -269,7 +269,7 @@ const updateNavbarForm = (options?: RouteQueryOptions): RouteFormDefinition<'pos
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateNavbar
-* @see app/Http/Controllers/SettingsController.php:93
+* @see app/Http/Controllers/SettingsController.php:100
 * @route '/api/settings/navbar'
 */
 updateNavbarForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -281,7 +281,7 @@ updateNavbar.form = updateNavbarForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateCta
-* @see app/Http/Controllers/SettingsController.php:112
+* @see app/Http/Controllers/SettingsController.php:119
 * @route '/api/settings/cta'
 */
 export const updateCta = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -296,7 +296,7 @@ updateCta.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateCta
-* @see app/Http/Controllers/SettingsController.php:112
+* @see app/Http/Controllers/SettingsController.php:119
 * @route '/api/settings/cta'
 */
 updateCta.url = (options?: RouteQueryOptions) => {
@@ -305,7 +305,7 @@ updateCta.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateCta
-* @see app/Http/Controllers/SettingsController.php:112
+* @see app/Http/Controllers/SettingsController.php:119
 * @route '/api/settings/cta'
 */
 updateCta.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -315,7 +315,7 @@ updateCta.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateCta
-* @see app/Http/Controllers/SettingsController.php:112
+* @see app/Http/Controllers/SettingsController.php:119
 * @route '/api/settings/cta'
 */
 const updateCtaForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -325,7 +325,7 @@ const updateCtaForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateCta
-* @see app/Http/Controllers/SettingsController.php:112
+* @see app/Http/Controllers/SettingsController.php:119
 * @route '/api/settings/cta'
 */
 updateCtaForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -337,7 +337,7 @@ updateCta.form = updateCtaForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHero
-* @see app/Http/Controllers/SettingsController.php:129
+* @see app/Http/Controllers/SettingsController.php:136
 * @route '/api/settings/hero'
 */
 export const updateHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -352,7 +352,7 @@ updateHero.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHero
-* @see app/Http/Controllers/SettingsController.php:129
+* @see app/Http/Controllers/SettingsController.php:136
 * @route '/api/settings/hero'
 */
 updateHero.url = (options?: RouteQueryOptions) => {
@@ -361,7 +361,7 @@ updateHero.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHero
-* @see app/Http/Controllers/SettingsController.php:129
+* @see app/Http/Controllers/SettingsController.php:136
 * @route '/api/settings/hero'
 */
 updateHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -371,7 +371,7 @@ updateHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHero
-* @see app/Http/Controllers/SettingsController.php:129
+* @see app/Http/Controllers/SettingsController.php:136
 * @route '/api/settings/hero'
 */
 const updateHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -381,7 +381,7 @@ const updateHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHero
-* @see app/Http/Controllers/SettingsController.php:129
+* @see app/Http/Controllers/SettingsController.php:136
 * @route '/api/settings/hero'
 */
 updateHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -393,7 +393,7 @@ updateHero.form = updateHeroForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateServices
-* @see app/Http/Controllers/SettingsController.php:166
+* @see app/Http/Controllers/SettingsController.php:173
 * @route '/api/settings/services'
 */
 export const updateServices = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -408,7 +408,7 @@ updateServices.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateServices
-* @see app/Http/Controllers/SettingsController.php:166
+* @see app/Http/Controllers/SettingsController.php:173
 * @route '/api/settings/services'
 */
 updateServices.url = (options?: RouteQueryOptions) => {
@@ -417,7 +417,7 @@ updateServices.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateServices
-* @see app/Http/Controllers/SettingsController.php:166
+* @see app/Http/Controllers/SettingsController.php:173
 * @route '/api/settings/services'
 */
 updateServices.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -427,7 +427,7 @@ updateServices.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateServices
-* @see app/Http/Controllers/SettingsController.php:166
+* @see app/Http/Controllers/SettingsController.php:173
 * @route '/api/settings/services'
 */
 const updateServicesForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -437,7 +437,7 @@ const updateServicesForm = (options?: RouteQueryOptions): RouteFormDefinition<'p
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateServices
-* @see app/Http/Controllers/SettingsController.php:166
+* @see app/Http/Controllers/SettingsController.php:173
 * @route '/api/settings/services'
 */
 updateServicesForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -449,7 +449,7 @@ updateServices.form = updateServicesForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateWhy
-* @see app/Http/Controllers/SettingsController.php:214
+* @see app/Http/Controllers/SettingsController.php:221
 * @route '/api/settings/why'
 */
 export const updateWhy = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -464,7 +464,7 @@ updateWhy.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateWhy
-* @see app/Http/Controllers/SettingsController.php:214
+* @see app/Http/Controllers/SettingsController.php:221
 * @route '/api/settings/why'
 */
 updateWhy.url = (options?: RouteQueryOptions) => {
@@ -473,7 +473,7 @@ updateWhy.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateWhy
-* @see app/Http/Controllers/SettingsController.php:214
+* @see app/Http/Controllers/SettingsController.php:221
 * @route '/api/settings/why'
 */
 updateWhy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -483,7 +483,7 @@ updateWhy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateWhy
-* @see app/Http/Controllers/SettingsController.php:214
+* @see app/Http/Controllers/SettingsController.php:221
 * @route '/api/settings/why'
 */
 const updateWhyForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -493,7 +493,7 @@ const updateWhyForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateWhy
-* @see app/Http/Controllers/SettingsController.php:214
+* @see app/Http/Controllers/SettingsController.php:221
 * @route '/api/settings/why'
 */
 updateWhyForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -505,7 +505,7 @@ updateWhy.form = updateWhyForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateAbout
-* @see app/Http/Controllers/SettingsController.php:233
+* @see app/Http/Controllers/SettingsController.php:240
 * @route '/api/settings/about'
 */
 export const updateAbout = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -520,7 +520,7 @@ updateAbout.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateAbout
-* @see app/Http/Controllers/SettingsController.php:233
+* @see app/Http/Controllers/SettingsController.php:240
 * @route '/api/settings/about'
 */
 updateAbout.url = (options?: RouteQueryOptions) => {
@@ -529,7 +529,7 @@ updateAbout.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateAbout
-* @see app/Http/Controllers/SettingsController.php:233
+* @see app/Http/Controllers/SettingsController.php:240
 * @route '/api/settings/about'
 */
 updateAbout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -539,7 +539,7 @@ updateAbout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateAbout
-* @see app/Http/Controllers/SettingsController.php:233
+* @see app/Http/Controllers/SettingsController.php:240
 * @route '/api/settings/about'
 */
 const updateAboutForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -549,7 +549,7 @@ const updateAboutForm = (options?: RouteQueryOptions): RouteFormDefinition<'post
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateAbout
-* @see app/Http/Controllers/SettingsController.php:233
+* @see app/Http/Controllers/SettingsController.php:240
 * @route '/api/settings/about'
 */
 updateAboutForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -561,7 +561,7 @@ updateAbout.form = updateAboutForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGallery
-* @see app/Http/Controllers/SettingsController.php:246
+* @see app/Http/Controllers/SettingsController.php:253
 * @route '/api/settings/gallery'
 */
 export const updateGallery = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -576,7 +576,7 @@ updateGallery.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGallery
-* @see app/Http/Controllers/SettingsController.php:246
+* @see app/Http/Controllers/SettingsController.php:253
 * @route '/api/settings/gallery'
 */
 updateGallery.url = (options?: RouteQueryOptions) => {
@@ -585,7 +585,7 @@ updateGallery.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGallery
-* @see app/Http/Controllers/SettingsController.php:246
+* @see app/Http/Controllers/SettingsController.php:253
 * @route '/api/settings/gallery'
 */
 updateGallery.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -595,7 +595,7 @@ updateGallery.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGallery
-* @see app/Http/Controllers/SettingsController.php:246
+* @see app/Http/Controllers/SettingsController.php:253
 * @route '/api/settings/gallery'
 */
 const updateGalleryForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -605,7 +605,7 @@ const updateGalleryForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateGallery
-* @see app/Http/Controllers/SettingsController.php:246
+* @see app/Http/Controllers/SettingsController.php:253
 * @route '/api/settings/gallery'
 */
 updateGalleryForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -617,7 +617,7 @@ updateGallery.form = updateGalleryForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHomeSeo
-* @see app/Http/Controllers/SettingsController.php:1106
+* @see app/Http/Controllers/SettingsController.php:1140
 * @route '/api/settings/home-seo'
 */
 export const updateHomeSeo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -632,7 +632,7 @@ updateHomeSeo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHomeSeo
-* @see app/Http/Controllers/SettingsController.php:1106
+* @see app/Http/Controllers/SettingsController.php:1140
 * @route '/api/settings/home-seo'
 */
 updateHomeSeo.url = (options?: RouteQueryOptions) => {
@@ -641,7 +641,7 @@ updateHomeSeo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHomeSeo
-* @see app/Http/Controllers/SettingsController.php:1106
+* @see app/Http/Controllers/SettingsController.php:1140
 * @route '/api/settings/home-seo'
 */
 updateHomeSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -651,7 +651,7 @@ updateHomeSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHomeSeo
-* @see app/Http/Controllers/SettingsController.php:1106
+* @see app/Http/Controllers/SettingsController.php:1140
 * @route '/api/settings/home-seo'
 */
 const updateHomeSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -661,7 +661,7 @@ const updateHomeSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateHomeSeo
-* @see app/Http/Controllers/SettingsController.php:1106
+* @see app/Http/Controllers/SettingsController.php:1140
 * @route '/api/settings/home-seo'
 */
 updateHomeSeoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -673,7 +673,7 @@ updateHomeSeo.form = updateHomeSeoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactHero
-* @see app/Http/Controllers/SettingsController.php:294
+* @see app/Http/Controllers/SettingsController.php:301
 * @route '/api/settings/contact-hero'
 */
 export const updateContactHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -688,7 +688,7 @@ updateContactHero.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactHero
-* @see app/Http/Controllers/SettingsController.php:294
+* @see app/Http/Controllers/SettingsController.php:301
 * @route '/api/settings/contact-hero'
 */
 updateContactHero.url = (options?: RouteQueryOptions) => {
@@ -697,7 +697,7 @@ updateContactHero.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactHero
-* @see app/Http/Controllers/SettingsController.php:294
+* @see app/Http/Controllers/SettingsController.php:301
 * @route '/api/settings/contact-hero'
 */
 updateContactHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -707,7 +707,7 @@ updateContactHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> 
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactHero
-* @see app/Http/Controllers/SettingsController.php:294
+* @see app/Http/Controllers/SettingsController.php:301
 * @route '/api/settings/contact-hero'
 */
 const updateContactHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -717,7 +717,7 @@ const updateContactHeroForm = (options?: RouteQueryOptions): RouteFormDefinition
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactHero
-* @see app/Http/Controllers/SettingsController.php:294
+* @see app/Http/Controllers/SettingsController.php:301
 * @route '/api/settings/contact-hero'
 */
 updateContactHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -729,7 +729,7 @@ updateContactHero.form = updateContactHeroForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactMap
-* @see app/Http/Controllers/SettingsController.php:546
+* @see app/Http/Controllers/SettingsController.php:580
 * @route '/api/settings/contact-map'
 */
 export const updateContactMap = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -744,7 +744,7 @@ updateContactMap.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactMap
-* @see app/Http/Controllers/SettingsController.php:546
+* @see app/Http/Controllers/SettingsController.php:580
 * @route '/api/settings/contact-map'
 */
 updateContactMap.url = (options?: RouteQueryOptions) => {
@@ -753,7 +753,7 @@ updateContactMap.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactMap
-* @see app/Http/Controllers/SettingsController.php:546
+* @see app/Http/Controllers/SettingsController.php:580
 * @route '/api/settings/contact-map'
 */
 updateContactMap.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -763,7 +763,7 @@ updateContactMap.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactMap
-* @see app/Http/Controllers/SettingsController.php:546
+* @see app/Http/Controllers/SettingsController.php:580
 * @route '/api/settings/contact-map'
 */
 const updateContactMapForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -773,7 +773,7 @@ const updateContactMapForm = (options?: RouteQueryOptions): RouteFormDefinition<
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactMap
-* @see app/Http/Controllers/SettingsController.php:546
+* @see app/Http/Controllers/SettingsController.php:580
 * @route '/api/settings/contact-map'
 */
 updateContactMapForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -785,7 +785,7 @@ updateContactMap.form = updateContactMapForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactSeo
-* @see app/Http/Controllers/SettingsController.php:830
+* @see app/Http/Controllers/SettingsController.php:864
 * @route '/api/settings/contact-seo'
 */
 export const updateContactSeo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -800,7 +800,7 @@ updateContactSeo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactSeo
-* @see app/Http/Controllers/SettingsController.php:830
+* @see app/Http/Controllers/SettingsController.php:864
 * @route '/api/settings/contact-seo'
 */
 updateContactSeo.url = (options?: RouteQueryOptions) => {
@@ -809,7 +809,7 @@ updateContactSeo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactSeo
-* @see app/Http/Controllers/SettingsController.php:830
+* @see app/Http/Controllers/SettingsController.php:864
 * @route '/api/settings/contact-seo'
 */
 updateContactSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -819,7 +819,7 @@ updateContactSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactSeo
-* @see app/Http/Controllers/SettingsController.php:830
+* @see app/Http/Controllers/SettingsController.php:864
 * @route '/api/settings/contact-seo'
 */
 const updateContactSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -829,7 +829,7 @@ const updateContactSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateContactSeo
-* @see app/Http/Controllers/SettingsController.php:830
+* @see app/Http/Controllers/SettingsController.php:864
 * @route '/api/settings/contact-seo'
 */
 updateContactSeoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -841,7 +841,7 @@ updateContactSeo.form = updateContactSeoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioSeo
-* @see app/Http/Controllers/SettingsController.php:899
+* @see app/Http/Controllers/SettingsController.php:933
 * @route '/api/settings/portfolio-seo'
 */
 export const updatePortfolioSeo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -856,7 +856,7 @@ updatePortfolioSeo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioSeo
-* @see app/Http/Controllers/SettingsController.php:899
+* @see app/Http/Controllers/SettingsController.php:933
 * @route '/api/settings/portfolio-seo'
 */
 updatePortfolioSeo.url = (options?: RouteQueryOptions) => {
@@ -865,7 +865,7 @@ updatePortfolioSeo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioSeo
-* @see app/Http/Controllers/SettingsController.php:899
+* @see app/Http/Controllers/SettingsController.php:933
 * @route '/api/settings/portfolio-seo'
 */
 updatePortfolioSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -875,7 +875,7 @@ updatePortfolioSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioSeo
-* @see app/Http/Controllers/SettingsController.php:899
+* @see app/Http/Controllers/SettingsController.php:933
 * @route '/api/settings/portfolio-seo'
 */
 const updatePortfolioSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -885,7 +885,7 @@ const updatePortfolioSeoForm = (options?: RouteQueryOptions): RouteFormDefinitio
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioSeo
-* @see app/Http/Controllers/SettingsController.php:899
+* @see app/Http/Controllers/SettingsController.php:933
 * @route '/api/settings/portfolio-seo'
 */
 updatePortfolioSeoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -897,7 +897,7 @@ updatePortfolioSeo.form = updatePortfolioSeoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneSeo
-* @see app/Http/Controllers/SettingsController.php:968
+* @see app/Http/Controllers/SettingsController.php:1002
 * @route '/api/settings/drone-seo'
 */
 export const updateDroneSeo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -912,7 +912,7 @@ updateDroneSeo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneSeo
-* @see app/Http/Controllers/SettingsController.php:968
+* @see app/Http/Controllers/SettingsController.php:1002
 * @route '/api/settings/drone-seo'
 */
 updateDroneSeo.url = (options?: RouteQueryOptions) => {
@@ -921,7 +921,7 @@ updateDroneSeo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneSeo
-* @see app/Http/Controllers/SettingsController.php:968
+* @see app/Http/Controllers/SettingsController.php:1002
 * @route '/api/settings/drone-seo'
 */
 updateDroneSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -931,7 +931,7 @@ updateDroneSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneSeo
-* @see app/Http/Controllers/SettingsController.php:968
+* @see app/Http/Controllers/SettingsController.php:1002
 * @route '/api/settings/drone-seo'
 */
 const updateDroneSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -941,7 +941,7 @@ const updateDroneSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'p
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneSeo
-* @see app/Http/Controllers/SettingsController.php:968
+* @see app/Http/Controllers/SettingsController.php:1002
 * @route '/api/settings/drone-seo'
 */
 updateDroneSeoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -953,7 +953,7 @@ updateDroneSeo.form = updateDroneSeoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseSeo
-* @see app/Http/Controllers/SettingsController.php:1037
+* @see app/Http/Controllers/SettingsController.php:1071
 * @route '/api/settings/timelapse-seo'
 */
 export const updateTimelapseSeo = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -968,7 +968,7 @@ updateTimelapseSeo.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseSeo
-* @see app/Http/Controllers/SettingsController.php:1037
+* @see app/Http/Controllers/SettingsController.php:1071
 * @route '/api/settings/timelapse-seo'
 */
 updateTimelapseSeo.url = (options?: RouteQueryOptions) => {
@@ -977,7 +977,7 @@ updateTimelapseSeo.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseSeo
-* @see app/Http/Controllers/SettingsController.php:1037
+* @see app/Http/Controllers/SettingsController.php:1071
 * @route '/api/settings/timelapse-seo'
 */
 updateTimelapseSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -987,7 +987,7 @@ updateTimelapseSeo.post = (options?: RouteQueryOptions): RouteDefinition<'post'>
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseSeo
-* @see app/Http/Controllers/SettingsController.php:1037
+* @see app/Http/Controllers/SettingsController.php:1071
 * @route '/api/settings/timelapse-seo'
 */
 const updateTimelapseSeoForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -997,7 +997,7 @@ const updateTimelapseSeoForm = (options?: RouteQueryOptions): RouteFormDefinitio
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseSeo
-* @see app/Http/Controllers/SettingsController.php:1037
+* @see app/Http/Controllers/SettingsController.php:1071
 * @route '/api/settings/timelapse-seo'
 */
 updateTimelapseSeoForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1009,7 +1009,7 @@ updateTimelapseSeo.form = updateTimelapseSeoForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
-* @see app/Http/Controllers/SettingsController.php:357
+* @see app/Http/Controllers/SettingsController.php:391
 * @route '/api/settings/portfolio-hero'
 */
 export const updatePortfolioHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1024,7 +1024,7 @@ updatePortfolioHero.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
-* @see app/Http/Controllers/SettingsController.php:357
+* @see app/Http/Controllers/SettingsController.php:391
 * @route '/api/settings/portfolio-hero'
 */
 updatePortfolioHero.url = (options?: RouteQueryOptions) => {
@@ -1033,7 +1033,7 @@ updatePortfolioHero.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
-* @see app/Http/Controllers/SettingsController.php:357
+* @see app/Http/Controllers/SettingsController.php:391
 * @route '/api/settings/portfolio-hero'
 */
 updatePortfolioHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1043,7 +1043,7 @@ updatePortfolioHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
-* @see app/Http/Controllers/SettingsController.php:357
+* @see app/Http/Controllers/SettingsController.php:391
 * @route '/api/settings/portfolio-hero'
 */
 const updatePortfolioHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1053,7 +1053,7 @@ const updatePortfolioHeroForm = (options?: RouteQueryOptions): RouteFormDefiniti
 
 /**
 * @see \App\Http\Controllers\SettingsController::updatePortfolioHero
-* @see app/Http/Controllers/SettingsController.php:357
+* @see app/Http/Controllers/SettingsController.php:391
 * @route '/api/settings/portfolio-hero'
 */
 updatePortfolioHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1065,7 +1065,7 @@ updatePortfolioHero.form = updatePortfolioHeroForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseHero
-* @see app/Http/Controllers/SettingsController.php:420
+* @see app/Http/Controllers/SettingsController.php:454
 * @route '/api/settings/timelapse-hero'
 */
 export const updateTimelapseHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1080,7 +1080,7 @@ updateTimelapseHero.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseHero
-* @see app/Http/Controllers/SettingsController.php:420
+* @see app/Http/Controllers/SettingsController.php:454
 * @route '/api/settings/timelapse-hero'
 */
 updateTimelapseHero.url = (options?: RouteQueryOptions) => {
@@ -1089,7 +1089,7 @@ updateTimelapseHero.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseHero
-* @see app/Http/Controllers/SettingsController.php:420
+* @see app/Http/Controllers/SettingsController.php:454
 * @route '/api/settings/timelapse-hero'
 */
 updateTimelapseHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1099,7 +1099,7 @@ updateTimelapseHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseHero
-* @see app/Http/Controllers/SettingsController.php:420
+* @see app/Http/Controllers/SettingsController.php:454
 * @route '/api/settings/timelapse-hero'
 */
 const updateTimelapseHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1109,7 +1109,7 @@ const updateTimelapseHeroForm = (options?: RouteQueryOptions): RouteFormDefiniti
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseHero
-* @see app/Http/Controllers/SettingsController.php:420
+* @see app/Http/Controllers/SettingsController.php:454
 * @route '/api/settings/timelapse-hero'
 */
 updateTimelapseHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1121,7 +1121,7 @@ updateTimelapseHero.form = updateTimelapseHeroForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneHero
-* @see app/Http/Controllers/SettingsController.php:483
+* @see app/Http/Controllers/SettingsController.php:517
 * @route '/api/settings/drone-hero'
 */
 export const updateDroneHero = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1136,7 +1136,7 @@ updateDroneHero.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneHero
-* @see app/Http/Controllers/SettingsController.php:483
+* @see app/Http/Controllers/SettingsController.php:517
 * @route '/api/settings/drone-hero'
 */
 updateDroneHero.url = (options?: RouteQueryOptions) => {
@@ -1145,7 +1145,7 @@ updateDroneHero.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneHero
-* @see app/Http/Controllers/SettingsController.php:483
+* @see app/Http/Controllers/SettingsController.php:517
 * @route '/api/settings/drone-hero'
 */
 updateDroneHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1155,7 +1155,7 @@ updateDroneHero.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =>
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneHero
-* @see app/Http/Controllers/SettingsController.php:483
+* @see app/Http/Controllers/SettingsController.php:517
 * @route '/api/settings/drone-hero'
 */
 const updateDroneHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1165,7 +1165,7 @@ const updateDroneHeroForm = (options?: RouteQueryOptions): RouteFormDefinition<'
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneHero
-* @see app/Http/Controllers/SettingsController.php:483
+* @see app/Http/Controllers/SettingsController.php:517
 * @route '/api/settings/drone-hero'
 */
 updateDroneHeroForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1177,7 +1177,7 @@ updateDroneHero.form = updateDroneHeroForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
-* @see app/Http/Controllers/SettingsController.php:567
+* @see app/Http/Controllers/SettingsController.php:601
 * @route '/api/settings/timelapse-detail'
 */
 export const updateTimelapseDetail = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1192,7 +1192,7 @@ updateTimelapseDetail.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
-* @see app/Http/Controllers/SettingsController.php:567
+* @see app/Http/Controllers/SettingsController.php:601
 * @route '/api/settings/timelapse-detail'
 */
 updateTimelapseDetail.url = (options?: RouteQueryOptions) => {
@@ -1201,7 +1201,7 @@ updateTimelapseDetail.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
-* @see app/Http/Controllers/SettingsController.php:567
+* @see app/Http/Controllers/SettingsController.php:601
 * @route '/api/settings/timelapse-detail'
 */
 updateTimelapseDetail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1211,7 +1211,7 @@ updateTimelapseDetail.post = (options?: RouteQueryOptions): RouteDefinition<'pos
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
-* @see app/Http/Controllers/SettingsController.php:567
+* @see app/Http/Controllers/SettingsController.php:601
 * @route '/api/settings/timelapse-detail'
 */
 const updateTimelapseDetailForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1221,7 +1221,7 @@ const updateTimelapseDetailForm = (options?: RouteQueryOptions): RouteFormDefini
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseDetail
-* @see app/Http/Controllers/SettingsController.php:567
+* @see app/Http/Controllers/SettingsController.php:601
 * @route '/api/settings/timelapse-detail'
 */
 updateTimelapseDetailForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1233,7 +1233,7 @@ updateTimelapseDetail.form = updateTimelapseDetailForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
-* @see app/Http/Controllers/SettingsController.php:640
+* @see app/Http/Controllers/SettingsController.php:674
 * @route '/api/settings/timelapse-videos'
 */
 export const updateTimelapseVideos = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1248,7 +1248,7 @@ updateTimelapseVideos.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
-* @see app/Http/Controllers/SettingsController.php:640
+* @see app/Http/Controllers/SettingsController.php:674
 * @route '/api/settings/timelapse-videos'
 */
 updateTimelapseVideos.url = (options?: RouteQueryOptions) => {
@@ -1257,7 +1257,7 @@ updateTimelapseVideos.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
-* @see app/Http/Controllers/SettingsController.php:640
+* @see app/Http/Controllers/SettingsController.php:674
 * @route '/api/settings/timelapse-videos'
 */
 updateTimelapseVideos.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1267,7 +1267,7 @@ updateTimelapseVideos.post = (options?: RouteQueryOptions): RouteDefinition<'pos
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
-* @see app/Http/Controllers/SettingsController.php:640
+* @see app/Http/Controllers/SettingsController.php:674
 * @route '/api/settings/timelapse-videos'
 */
 const updateTimelapseVideosForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1277,7 +1277,7 @@ const updateTimelapseVideosForm = (options?: RouteQueryOptions): RouteFormDefini
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateTimelapseVideos
-* @see app/Http/Controllers/SettingsController.php:640
+* @see app/Http/Controllers/SettingsController.php:674
 * @route '/api/settings/timelapse-videos'
 */
 updateTimelapseVideosForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1289,7 +1289,7 @@ updateTimelapseVideos.form = updateTimelapseVideosForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneDetail
-* @see app/Http/Controllers/SettingsController.php:678
+* @see app/Http/Controllers/SettingsController.php:712
 * @route '/api/settings/drone-detail'
 */
 export const updateDroneDetail = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1304,7 +1304,7 @@ updateDroneDetail.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneDetail
-* @see app/Http/Controllers/SettingsController.php:678
+* @see app/Http/Controllers/SettingsController.php:712
 * @route '/api/settings/drone-detail'
 */
 updateDroneDetail.url = (options?: RouteQueryOptions) => {
@@ -1313,7 +1313,7 @@ updateDroneDetail.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneDetail
-* @see app/Http/Controllers/SettingsController.php:678
+* @see app/Http/Controllers/SettingsController.php:712
 * @route '/api/settings/drone-detail'
 */
 updateDroneDetail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1323,7 +1323,7 @@ updateDroneDetail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> 
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneDetail
-* @see app/Http/Controllers/SettingsController.php:678
+* @see app/Http/Controllers/SettingsController.php:712
 * @route '/api/settings/drone-detail'
 */
 const updateDroneDetailForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1333,7 +1333,7 @@ const updateDroneDetailForm = (options?: RouteQueryOptions): RouteFormDefinition
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateDroneDetail
-* @see app/Http/Controllers/SettingsController.php:678
+* @see app/Http/Controllers/SettingsController.php:712
 * @route '/api/settings/drone-detail'
 */
 updateDroneDetailForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1345,7 +1345,7 @@ updateDroneDetail.form = updateDroneDetailForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateProfile
-* @see app/Http/Controllers/SettingsController.php:786
+* @see app/Http/Controllers/SettingsController.php:820
 * @route '/api/settings/profile'
 */
 export const updateProfile = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1360,7 +1360,7 @@ updateProfile.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateProfile
-* @see app/Http/Controllers/SettingsController.php:786
+* @see app/Http/Controllers/SettingsController.php:820
 * @route '/api/settings/profile'
 */
 updateProfile.url = (options?: RouteQueryOptions) => {
@@ -1369,7 +1369,7 @@ updateProfile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateProfile
-* @see app/Http/Controllers/SettingsController.php:786
+* @see app/Http/Controllers/SettingsController.php:820
 * @route '/api/settings/profile'
 */
 updateProfile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1379,7 +1379,7 @@ updateProfile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateProfile
-* @see app/Http/Controllers/SettingsController.php:786
+* @see app/Http/Controllers/SettingsController.php:820
 * @route '/api/settings/profile'
 */
 const updateProfileForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1389,7 +1389,7 @@ const updateProfileForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \App\Http\Controllers\SettingsController::updateProfile
-* @see app/Http/Controllers/SettingsController.php:786
+* @see app/Http/Controllers/SettingsController.php:820
 * @route '/api/settings/profile'
 */
 updateProfileForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1401,7 +1401,7 @@ updateProfile.form = updateProfileForm
 
 /**
 * @see \App\Http\Controllers\SettingsController::storeAdmin
-* @see app/Http/Controllers/SettingsController.php:811
+* @see app/Http/Controllers/SettingsController.php:845
 * @route '/api/settings/new-admin'
 */
 export const storeAdmin = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1416,7 +1416,7 @@ storeAdmin.definition = {
 
 /**
 * @see \App\Http\Controllers\SettingsController::storeAdmin
-* @see app/Http/Controllers/SettingsController.php:811
+* @see app/Http/Controllers/SettingsController.php:845
 * @route '/api/settings/new-admin'
 */
 storeAdmin.url = (options?: RouteQueryOptions) => {
@@ -1425,7 +1425,7 @@ storeAdmin.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\SettingsController::storeAdmin
-* @see app/Http/Controllers/SettingsController.php:811
+* @see app/Http/Controllers/SettingsController.php:845
 * @route '/api/settings/new-admin'
 */
 storeAdmin.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1435,7 +1435,7 @@ storeAdmin.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\SettingsController::storeAdmin
-* @see app/Http/Controllers/SettingsController.php:811
+* @see app/Http/Controllers/SettingsController.php:845
 * @route '/api/settings/new-admin'
 */
 const storeAdminForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1445,7 +1445,7 @@ const storeAdminForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'
 
 /**
 * @see \App\Http\Controllers\SettingsController::storeAdmin
-* @see app/Http/Controllers/SettingsController.php:811
+* @see app/Http/Controllers/SettingsController.php:845
 * @route '/api/settings/new-admin'
 */
 storeAdminForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

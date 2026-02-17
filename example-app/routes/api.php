@@ -56,6 +56,12 @@ Route::post('/settings/home-seo', [SettingsController::class, 'updateHomeSeo']);
 //Contact hero section update
 Route::post('/settings/contact-hero', [SettingsController::class, 'updateContactHero']);
 
+// Test route
+Route::get('/test-contact-hero', function() {
+    $setting = \App\Models\SiteSetting::where('key', 'contact_hero')->first();
+    return response()->json($setting ? $setting->content : 'Not found');
+});
+
 //Contact map update
 Route::post('/settings/contact-map', [SettingsController::class, 'updateContactMap']);
 
